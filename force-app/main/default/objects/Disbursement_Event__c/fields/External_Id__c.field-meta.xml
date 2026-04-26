@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Id__c</fullName>
+    <description>Composite unique identifier for idempotency: {DebtPositionId}-{TransactionDate}-{Amount}. Prevents duplicate disbursement records from being created if the same transaction is submitted twice (e.g. from an integration retry). Set on insert by DisbursementService. Never changed after creation. Used by integration feeds for upsert operations.</description>
+    <externalId>true</externalId>
+    <label>External ID</label>
+    <length>100</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

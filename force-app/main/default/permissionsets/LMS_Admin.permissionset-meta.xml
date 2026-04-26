@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Full access to all LMS objects — schema, Apex, flows, MDTs. Assign to developers and senior ops.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>LMS Administrator</label>
+    <license>Salesforce</license>
+</PermissionSet>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_DateTime__c</fullName>
+    <description>Exact datetime the event occurred (DateTime.now() in Apex). Distinct from CreatedDate for batch jobs that run overnight.</description>
+    <externalId>false</externalId><label>Event DateTime</label>
+    <required>true</required><trackTrending>false</trackTrending><type>DateTime</type>
+</CustomField>

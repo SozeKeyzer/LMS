@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Amendment__c</fullName>
+    <description>Set to TRUE when a Loan_Amendment targets this DP. Cleared on Commit or Reject. Prevents standard recalculation during active amendment.</description>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId><label>In Amendment</label>
+    <trackTrending>false</trackTrending><type>Checkbox</type>
+</CustomField>

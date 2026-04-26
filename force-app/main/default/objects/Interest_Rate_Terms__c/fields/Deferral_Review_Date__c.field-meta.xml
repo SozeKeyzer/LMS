@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deferral_Review_Date__c</fullName>
+    <description>Date on which ops should review whether the deferred rate should now be applied, further deferred, or waived. Populated when Deferred_To_Date is set. RateApplicationNotifyBatch reads this field to send reminders. Prevents indefinitely deferred rates from falling through the cracks.</description>
+    <externalId>false</externalId>
+    <label>Deferral Review Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Numerator_Basis__c</fullName><description>How to count the numerator days: Actual or Thirty</description>
+    <externalId>false</externalId><fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Numerator Basis</label><length>20</length><type>Text</type><unique>false</unique>
+</CustomField>

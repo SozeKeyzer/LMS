@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application_Status__c</fullName>
+    <description>Current lifecycle status of this rate term's application. Pending = scheduled but not yet active. Applied = confirmed and live — engine reads this for accrual. Deferred = commercially delayed with Deferred_To_Date set. Waived_For_Period = skipped for one period (rate reverts to previous term). Superseded = replaced by a new Interest_Rate_Terms record via Loan_Amendment.</description>
+    <externalId>false</externalId>
+    <label>Application Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Pending</fullName><default>true</default><label>Pending</label></value>
+            <value><fullName>Applied</fullName><default>false</default><label>Applied</label></value>
+            <value><fullName>Deferred</fullName><default>false</default><label>Deferred</label></value>
+            <value><fullName>Waived_For_Period</fullName><default>false</default><label>Waived For Period</label></value>
+            <value><fullName>Superseded</fullName><default>false</default><label>Superseded</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

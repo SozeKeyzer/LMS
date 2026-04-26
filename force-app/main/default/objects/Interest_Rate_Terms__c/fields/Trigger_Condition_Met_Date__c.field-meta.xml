@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger_Condition_Met_Date__c</fullName>
+    <description>For conditional step-up rates: the date on which the trigger condition was confirmed as met (e.g. LVR threshold breached, financial covenant failed, construction milestone achieved). Populated by ops or integration. Once set, the engine uses Scheduled_Application_Date to determine when the step-up actually applies. Required for Rate_Segment_Type = Conditional_Step_Up.</description>
+    <externalId>false</externalId>
+    <label>Trigger Condition Met Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

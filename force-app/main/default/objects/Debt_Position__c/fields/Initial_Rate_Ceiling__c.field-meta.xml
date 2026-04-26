@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Initial_Rate_Ceiling__c</fullName>
+    <description>The all-in rate ceiling (cap) at origination. Reference only — the engine reads the ceiling from Interest_Rate_Terms. If the all-in rate exceeds this value, the cap applies. Populated at origination from the facility agreement.</description>
+    <externalId>false</externalId>
+    <label>Initial Rate Ceiling</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

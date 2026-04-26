@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Notify_Days_Before__c</fullName><description>For advance notifications (e.g. rate reset approaching). 0 = notify on the day.</description>
+    <externalId>false</externalId><fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Notify Days Before</label><precision>3</precision><scale>0</scale><type>Number</type><unique>false</unique>
+</CustomField>

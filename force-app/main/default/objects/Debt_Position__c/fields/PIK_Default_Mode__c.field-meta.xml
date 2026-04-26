@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PIK_Default_Mode__c</fullName>
+    <description>How PIK interest is handled when no explicit Election record is received from the borrower by the deadline. Auto_Cash = default to cash payment. Auto_PIK = default to capitalisation. Elect = borrower must elect; engine does not apply a default and notifies ops. Only relevant when PIK_Allowed__c = true and Interest_Treatment = Split or PIK.</description>
+    <externalId>false</externalId>
+    <label>PIK Default Mode</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Auto_Cash</fullName><default>true</default><label>Auto Cash</label></value>
+            <value><fullName>Auto_PIK</fullName><default>false</default><label>Auto PIK</label></value>
+            <value><fullName>Elect</fullName><default>false</default><label>Borrower Must Elect</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

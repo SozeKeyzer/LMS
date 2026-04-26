@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>After_Snapshot__c</fullName>
+    <description>JSON snapshot of relevant field values AFTER this event. Pair with Before_Snapshot__c to see the exact delta.</description>
+    <externalId>false</externalId><label>After Snapshot</label><length>131072</length>
+    <trackTrending>false</trackTrending><type>LongTextArea</type><visibleLines>3</visibleLines>
+</CustomField>

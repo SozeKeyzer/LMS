@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Read access to all LMS objects. For reporting, auditors, and executive viewers. No create/edit/delete.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>LMS Read Only</label>
+    <license>Salesforce</license>
+</PermissionSet>

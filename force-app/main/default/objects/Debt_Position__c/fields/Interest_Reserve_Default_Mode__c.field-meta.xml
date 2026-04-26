@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Reserve_Default_Mode__c</fullName>
+    <description>Controls how the interest reserve is applied when a payment schedule row comes due. Auto = engine automatically draws from the reserve without ops intervention. Manual = ops must explicitly trigger the reserve draw. Prompt = engine notifies ops and waits for confirmation. Only relevant when an Interest_Reserve__c record exists for this Debt Position.</description>
+    <externalId>false</externalId>
+    <label>Interest Reserve Default Mode</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Auto</fullName><default>false</default><label>Auto</label></value>
+            <value><fullName>Manual</fullName><default>true</default><label>Manual</label></value>
+            <value><fullName>Prompt</fullName><default>false</default><label>Prompt</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

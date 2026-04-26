@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deferral_Approved_By__c</fullName>
+    <description>User who approved the rate deferral. Populated by the Rate_Deferral_Screen flow after dual approval.</description>
+    <externalId>false</externalId><label>Deferral Approved By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Rate Term Deferrals Approved</relationshipLabel>
+    <relationshipName>Rate_Term_Deferrals</relationshipName>
+    <required>false</required><trackTrending>false</trackTrending><type>Lookup</type>
+</CustomField>

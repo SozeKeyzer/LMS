@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cascade_To_Children__c</fullName><description>If true, recalculate all child records of the target object too</description>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId><fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Cascade To Children</label><type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Immutable__c</fullName>
+    <description>When TRUE, ProtectedFieldGuardHandler blocks all edits on this record. Set at crystallisation — never reversed. Enforces the append-only pattern for all financial records.</description>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId><label>Is Immutable</label>
+    <trackTrending>false</trackTrending><type>Checkbox</type>
+</CustomField>

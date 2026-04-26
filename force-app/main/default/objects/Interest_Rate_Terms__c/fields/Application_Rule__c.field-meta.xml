@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application_Rule__c</fullName>
+    <description>Governs when this rate term becomes effective relative to the contractual date. Immediate = applies from the contractual date as soon as confirmed. Next_Period_Start = applies at the start of the next interest period (most common for rate resets). Next_Payment_Date = applies from the next scheduled payment date. Manual_Trigger = requires explicit ops confirmation before the engine applies it.</description>
+    <externalId>false</externalId>
+    <label>Application Rule</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Immediate</fullName><default>false</default><label>Immediate</label></value>
+            <value><fullName>Next_Period_Start</fullName><default>true</default><label>Next Period Start</label></value>
+            <value><fullName>Next_Payment_Date</fullName><default>false</default><label>Next Payment Date</label></value>
+            <value><fullName>Manual_Trigger</fullName><default>false</default><label>Manual Trigger</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

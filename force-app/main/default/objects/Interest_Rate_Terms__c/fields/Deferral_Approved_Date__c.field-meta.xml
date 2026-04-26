@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deferral_Approved_Date__c</fullName>
+    <description>Date on which the rate deferral was formally approved per the Approval_Matrix. Populated by the Rate_Deferral_Screen flow on approval. Used in the audit trail to show when commercial agreement to defer was reached. Must be populated when Application_Status = Deferred.</description>
+    <externalId>false</externalId>
+    <label>Deferral Approved Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

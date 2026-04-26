@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger_Field__c</fullName><description>Field change that initiates the cascade (e.g. Actual_Application_Date__c)</description>
+    <externalId>false</externalId><fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Trigger Field</label><length>80</length><type>Text</type><unique>false</unique>
+</CustomField>
