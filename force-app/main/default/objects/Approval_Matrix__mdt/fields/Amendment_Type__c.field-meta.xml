@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amendment_Type__c</fullName><description>Type of amendment: Rate_Change, Maturity_Extension, Principal_Change, Covenant_Waiver</description>
+    <externalId>false</externalId><fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Amendment Type</label><length>50</length><type>Text</type><unique>false</unique>
+</CustomField>

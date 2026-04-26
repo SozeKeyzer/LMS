@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Initial_Margin__c</fullName>
+    <description>Reference-only snapshot of the credit spread at origination (e.g. 4.00%). The engine reads Interest_Rate_Terms.Spread as the authoritative rate — this field is for reporting and comparison only. Changing loan terms via Loan_Amendment does NOT update this field; it preserves the original deal economics.</description>
+    <externalId>false</externalId>
+    <label>Initial Margin</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

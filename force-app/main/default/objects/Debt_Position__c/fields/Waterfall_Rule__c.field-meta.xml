@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Waterfall_Rule__c</fullName>
+    <description>References a Waterfall_Rule__mdt record by DeveloperName (e.g. STANDARD, CASH_SWEEP, DEFAULT_EVENT, ENFORCEMENT). This determines the priority order for allocating borrower payments across penalty, fee, interest, and principal. Default is STANDARD at origination. Can only be changed via Loan_Amendment — direct edit is blocked by guard trigger. Stored as Text because Salesforce does not support MDT lookups as field types.</description>
+    <externalId>false</externalId>
+    <label>Waterfall Rule</label>
+    <length>50</length>
+    <required>false</required>
+    <defaultValue>&apos;STANDARD&apos;</defaultValue>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

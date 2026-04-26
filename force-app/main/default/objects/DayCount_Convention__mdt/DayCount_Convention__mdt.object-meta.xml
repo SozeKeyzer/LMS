@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Defines how to calculate the day count fraction for interest accrual. Read by GenericDayCountCalculator at runtime.</description>
+    <label>Day Count Convention</label>
+    <pluralLabel>Day Count Conventions</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Protection_Rule__c</fullName><description>Always = always blocked. When_Immutable = blocked when Is_Immutable__c is true. When_In_Amendment = blocked when In_Amendment__c is true.</description>
+    <externalId>false</externalId><fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Protection Rule</label><length>50</length><type>Text</type><unique>false</unique>
+</CustomField>

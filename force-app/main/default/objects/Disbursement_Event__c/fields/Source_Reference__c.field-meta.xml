@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_Reference__c</fullName>
+    <description>Structured reference to the origin — document number, email ID, bank statement ref. Required for Manual_Entry and System_Imported per Rule R12.</description>
+    <externalId>false</externalId><label>Source Reference</label><length>255</length>
+    <required>false</required><trackTrending>false</trackTrending><type>Text</type><unique>false</unique>
+</CustomField>

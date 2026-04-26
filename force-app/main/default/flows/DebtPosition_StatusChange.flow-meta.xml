@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <description>After Debt Position status changes: sets In_Amendment flag on the DP, checks siblings, cascades to parent FI, logs audit event.</description>
+    <environments>Default</environments>
+    <interviewLabel>Debt Position Status Change {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Debt Position Status Change</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <filterLogic>1</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>IsChanged</operator>
+            <value><booleanValue>true</booleanValue></value>
+        </filters>
+        <object>Debt_Position__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+        <connector><targetReference>Check_If_In_Amendment</targetReference></connector>
+    </start>
+
+    <variables>
+        <name>SiblingDPInAmendment</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Debt_Position__c</objectType>
+    </variables>
+
+    <formulas>
+        <name>AuditDescription</name>
+        <dataType>String</dataType>
+        <expression>"Debt Position status changed to: " &amp; TEXT({!$Record.Status__c})</expression>
+    </formulas>
+
+    <decisions>
+        <name>Check_If_In_Amendment</name>
+        <label>Is Status In Amendment?</label>
+        <locationX>176</locationX>
+        <locationY>120</locationY>
+        <defaultConnector><targetReference>Clear_DP_In_Amendment</targetReference></defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_In_Amendment</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue><stringValue>In Amendment</stringValue></rightValue>
+            </conditions>
+            <connector><targetReference>Set_DP_In_Amendment_True</targetReference></connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+
+    <decisions>
+        <name>Decide_FI_Flag</name>
+        <label>Any Other DP Still In Amendment?</label>
+        <locationX>308</locationX>
+        <locationY>480</locationY>
+        <defaultConnector><targetReference>Clear_FI_In_Amendment</targetReference></defaultConnector>
+        <defaultConnectorLabel>No — clear FI flag</defaultConnectorLabel>
+        <rules>
+            <name>Sibling_Still_In_Amendment</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SiblingDPInAmendment</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue><booleanValue>false</booleanValue></rightValue>
+            </conditions>
+            <label>Yes — keep FI flag</label>
+        </rules>
+    </decisions>
+
+    <recordUpdates>
+        <name>Set_DP_In_Amendment_True</name>
+        <label>Set DP In Amendment True</label>
+        <locationX>44</locationX>
+        <locationY>240</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>$Record.Id</elementReference></value>
+        </filters>
+        <inputAssignments>
+            <field>In_Amendment__c</field>
+            <value><booleanValue>true</booleanValue></value>
+        </inputAssignments>
+        <object>Debt_Position__c</object>
+        <connector><targetReference>Set_FI_In_Amendment_True</targetReference></connector>
+    </recordUpdates>
+
+    <recordUpdates>
+        <name>Clear_DP_In_Amendment</name>
+        <label>Clear DP In Amendment Flag</label>
+        <locationX>308</locationX>
+        <locationY>240</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>$Record.Id</elementReference></value>
+        </filters>
+        <inputAssignments>
+            <field>In_Amendment__c</field>
+            <value><booleanValue>false</booleanValue></value>
+        </inputAssignments>
+        <object>Debt_Position__c</object>
+        <connector><targetReference>Check_Sibling_DPs</targetReference></connector>
+    </recordUpdates>
+
+    <recordUpdates>
+        <name>Set_FI_In_Amendment_True</name>
+        <label>Set FI In Amendment True</label>
+        <locationX>44</locationX>
+        <locationY>360</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>$Record.Financial_Instrument__c</elementReference></value>
+        </filters>
+        <inputAssignments>
+            <field>In_Amendment__c</field>
+            <value><booleanValue>true</booleanValue></value>
+        </inputAssignments>
+        <object>Financial_Instrument__c</object>
+        <connector><targetReference>Log_Status_Change_Event</targetReference></connector>
+    </recordUpdates>
+
+    <recordUpdates>
+        <name>Clear_FI_In_Amendment</name>
+        <label>Clear FI In Amendment Flag</label>
+        <locationX>308</locationX>
+        <locationY>600</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>$Record.Financial_Instrument__c</elementReference></value>
+        </filters>
+        <inputAssignments>
+            <field>In_Amendment__c</field>
+            <value><booleanValue>false</booleanValue></value>
+        </inputAssignments>
+        <object>Financial_Instrument__c</object>
+        <connector><targetReference>Log_Status_Change_Event</targetReference></connector>
+    </recordUpdates>
+
+    <recordLookups>
+        <name>Check_Sibling_DPs</name>
+        <label>Get Sibling DPs Still In Amendment</label>
+        <locationX>308</locationX>
+        <locationY>360</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Financial_Instrument__c</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>$Record.Financial_Instrument__c</elementReference></value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value><stringValue>In Amendment</stringValue></value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value><elementReference>$Record.Id</elementReference></value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Debt_Position__c</object>
+        <outputReference>SiblingDPInAmendment</outputReference>
+        <connector><targetReference>Decide_FI_Flag</targetReference></connector>
+    </recordLookups>
+
+    <actionCalls>
+        <name>Log_Status_Change_Event</name>
+        <label>Log Status Change Audit Event</label>
+        <locationX>176</locationX>
+        <locationY>720</locationY>
+        <actionName>AuditEventLogger</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>eventType</name>
+            <value><stringValue>STATUS_CHANGED</stringValue></value>
+        </inputParameters>
+        <inputParameters>
+            <name>objectApiName</name>
+            <value><stringValue>Debt_Position__c</stringValue></value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value><elementReference>$Record.Id</elementReference></value>
+        </inputParameters>
+        <inputParameters>
+            <name>source</name>
+            <value><stringValue>Manual_Entry</stringValue></value>
+        </inputParameters>
+        <inputParameters>
+            <name>reason</name>
+            <value><elementReference>AuditDescription</elementReference></value>
+        </inputParameters>
+    </actionCalls>
+
+</Flow>

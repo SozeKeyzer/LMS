@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger_Condition_Source__c</fullName>
+    <description>Reference to the document, report, or system event that confirmed the trigger condition was met (e.g. valuation report ref, covenant test ID, construction inspection report number). Provides the audit link between the condition being met and the rate step-up. Required when Trigger_Condition_Met_Date is populated.</description>
+    <externalId>false</externalId>
+    <label>Trigger Condition Source</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

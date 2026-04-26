@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Initial_Rate_Floor__c</fullName>
+    <description>The all-in rate floor at origination. Reference only — the engine reads the floor from Interest_Rate_Terms. If the benchmark drops below this value, the floor applies. Populated at origination from the facility agreement.</description>
+    <externalId>false</externalId>
+    <label>Initial Rate Floor</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

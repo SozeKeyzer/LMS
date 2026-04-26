@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_AE_01_InsertOnly</fullName>
+    <active>true</active>
+    <description>Audit Event records are insert-only. The audit trail is immutable. Create a new corrective event instead of editing an existing one.</description>
+    <errorConditionFormula>NOT(ISNEW())</errorConditionFormula>
+    <errorMessage>Audit Event records cannot be modified after creation. The audit trail is immutable.</errorMessage>
+</ValidationRule>

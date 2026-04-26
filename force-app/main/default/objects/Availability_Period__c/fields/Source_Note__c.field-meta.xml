@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_Note__c</fullName><description>Free-text explanation for why this Availability Period was created.</description>
+    <externalId>false</externalId><label>Source Note</label><length>32768</length>
+    <trackTrending>false</trackTrending><type>LongTextArea</type><visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PIK_Election_Deadline_Days__c</fullName>
+    <description>Number of business days before the payment due date by which the borrower must submit their PIK election notice. If no Election record is received by this deadline, PIK_Default_Mode__c applies. Typically 2-5 business days per the facility agreement. Only relevant when PIK_Allowed__c = true.</description>
+    <externalId>false</externalId>
+    <label>PIK Election Deadline (Business Days)</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

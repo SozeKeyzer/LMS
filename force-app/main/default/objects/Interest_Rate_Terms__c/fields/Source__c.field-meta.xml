@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source__c</fullName>
+    <description>Identifies what created this record. Set once at creation — never changed. Engine only recalculates System_Calculated records (Rule R10).</description>
+    <externalId>false</externalId><label>Source</label><required>false</required>
+    <trackTrending>false</trackTrending><type>Picklist</type>
+    <valueSet><restricted>true</restricted><valueSetName>LMS_Source</valueSetName></valueSet>
+</CustomField>
