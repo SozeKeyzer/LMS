@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linked_Payment_Transaction__c</fullName><description>Payment_Transaction record for the settlement cash receipt.</description>
+    <externalId>false</externalId><label>Linked Payment Transaction</label><required>false</required>
+    <referenceTo>Payment_Transaction__c</referenceTo><relationshipLabel>Prepayment Events</relationshipLabel>
+    <relationshipName>Prepayment_Transactions</relationshipName><trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

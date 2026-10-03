@@ -1,0 +1,244 @@
+<template>
+    <div class="modal-backdrop" onclick={handleBackdropClick}>
+        <div class="modal-dialog" onclick={stopPropagation}>
+            <div class="modal-header">
+                <h2>{modalTitle}</h2>
+                <button class="modal-close" onclick={handleClose} aria-label="Close">
+                    <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <template if:true={isLoading}>
+                    <div class="modal-spinner">
+                        <lightning-spinner alternative-text="Saving..." size="small"></lightning-spinner>
+                    </div>
+                </template>
+
+                <template if:true={hasError}>
+                    <div class="modal-error">
+                        <lightning-icon icon-name="utility:error" variant="error" size="x-small"></lightning-icon>
+                        <span>{errorMessage}</span>
+                    </div>
+                </template>
+
+                <!-- Row 1: Date + Vehicle Type -->
+                <div class="form-row">
+                    <div class="form-col">
+                        <lightning-input
+                            type="date"
+                            label="Transaction Date"
+                            value={record.Transaction_Date__c}
+                            onchange={handleFieldChange}
+                            data-field="Transaction_Date__c"
+                            required
+                            class="form-field"
+                        ></lightning-input>
+                    </div>
+                    <div class="form-col">
+                        <lightning-combobox
+                            label="Investment Vehicle Type"
+                            placeholder="Select type..."
+                            value={record.Investment_Vehicle_Type__c}
+                            options={vehicleTypeOptions}
+                            onchange={handleVehicleTypeChange}
+                            required
+                            class="form-field"
+                        ></lightning-combobox>
+                    </div>
+                </div>
+
+                <!-- Row 2: Vehicle record picker — all 3 types use lightning-record-picker -->
+                <div class="form-row">
+                    <div class="form-col form-col--full">
+                        <template if:true={isFundType}>
+                            <lightning-record-picker
+                                label="Fund"
+                                placeholder="Search funds..."
+                                object-api-name="Funds__c"
+                                value={fundPickerValue}
+                                onchange={handleVehiclePickerChange}
+                                class="form-field"
+                            ></lightning-record-picker>
+                        </template>
+                        <template if:true={isFIType}>
+                            <lightning-record-picker
+                                label="Financial Instrument"
+                                placeholder="Search financial instruments..."
+                                object-api-name="Financial_Instrument__c"
+                                value={fiPickerValue}
+                                onchange={handleVehiclePickerChange}
+                                class="form-field"
+                            ></lightning-record-picker>
+                        </template>
+                        <template if:true={isWNType}>
+                            <lightning-record-picker
+                                label="Warehouse Note"
+                                placeholder="Search warehouse notes..."
+                                object-api-name="Warehouse_Note__c"
+                                value={wnPickerValue}
+                                onchange={handleVehiclePickerChange}
+                                class="form-field"
+                            ></lightning-record-picker>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Row 3: Investor Entity ID + Transaction Type -->
+                <div class="form-row">
+                    <div class="form-col">
+                        <lightning-input
+                            type="text"
+                            label="Investor Entity ID"
+                            placeholder="e.g. LKD94"
+                            value={record.Investor_Entity_ID__c}
+                            onchange={handleEntityIdChange}
+                            required
+                            class="form-field"
+                        ></lightning-input>
+                        <template if:true={selectedEntityName}>
+                            <p class="entity-resolved">&#10003; {selectedEntityName}</p>
+                        </template>
+                        <template if:true={entityNotFound}>
+                            <p class="entity-not-found">Entity ID not found — check and re-enter</p>
+                        </template>
+                    </div>
+                    <div class="form-col">
+                        <lightning-combobox
+                            label="Transaction Type"
+                            placeholder="Select type..."
+                            value={record.Transaction_Type__c}
+                            options={txTypeOptions}
+                            onchange={handleTypeChange}
+                            required
+                            class="form-field"
+                        ></lightning-combobox>
+                    </div>
+                </div>
+
+                <!-- Row 4: Amount + BDM -->
+                <div class="form-row">
+                    <div class="form-col">
+                        <lightning-input
+                            type="number"
+                            label="Amount (AUD)"
+                            value={record.Amount__c}
+                            onchange={handleFieldChange}
+                            data-field="Amount__c"
+                            min="0"
+                            formatter="currency"
+                            required
+                            class="form-field"
+                        ></lightning-input>
+                    </div>
+                    <div class="form-col">
+                        <lightning-record-picker
+                            label="BDM"
+                            placeholder="Search users..."
+                            object-api-name="User"
+                            value={bdmPickerValue}
+                            onchange={handleBdmPickerChange}
+                            required
+                            class="form-field"
+                        ></lightning-record-picker>
+                    </div>
+                </div>
+
+                <!-- Switch fields -->
+                <template if:true={isSwitchType}>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <lightning-record-picker
+                                label="Switched From"
+                                placeholder="Search funds..."
+                                object-api-name="Funds__c"
+                                value={switchedFromPickerValue}
+                                onchange={handleSwitchedFromPickerChange}
+                                class="form-field"
+                            ></lightning-record-picker>
+                        </div>
+                        <div class="form-col">
+                            <lightning-input
+                                type="date"
+                                label="Switch Completed"
+                                value={record.Switch_Completed__c}
+                                onchange={handleFieldChange}
+                                data-field="Switch_Completed__c"
+                                class="form-field"
+                            ></lightning-input>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Row: Money Received On + Money Received checkbox -->
+                <div class="form-row">
+                    <div class="form-col">
+                        <lightning-input
+                            type="date"
+                            label="Money Received On"
+                            value={record.Money_Received_On__c}
+                            onchange={handleFieldChange}
+                            data-field="Money_Received_On__c"
+                            class="form-field"
+                        ></lightning-input>
+                    </div>
+                    <div class="form-col form-col--checkbox">
+                        <lightning-input
+                            type="checkbox"
+                            label="Money Received"
+                            checked={record.Money_Received__c}
+                            onchange={handleFieldChange}
+                            data-field="Money_Received__c"
+                            class="form-field"
+                        ></lightning-input>
+                    </div>
+                </div>
+
+                <!-- Row: Comment -->
+                <div class="form-row">
+                    <div class="form-col form-col--full">
+                        <lightning-textarea
+                            label="Comment"
+                            value={record.Comment__c}
+                            onchange={handleFieldChange}
+                            data-field="Comment__c"
+                            max-length="32768"
+                            class="form-field"
+                        ></lightning-textarea>
+                    </div>
+                </div>
+
+                <!-- Auto-derived preview -->
+                <template if:true={showDerivedPreview}>
+                    <div class="derived-preview">
+                        <h4>Auto-Derived Fields</h4>
+                        <div class="derived-grid">
+                            <div class="derived-item">
+                                <span class="derived-label">Entity Used</span>
+                                <span class="derived-val">{selectedEntityName}</span>
+                            </div>
+                            <div class="derived-item">
+                                <span class="derived-label">Month</span>
+                                <span class="derived-val">{derivedMonth}</span>
+                            </div>
+                            <div class="derived-item">
+                                <span class="derived-label">Intrafund</span>
+                                <span class="derived-val">{derivedIntrafund}</span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <div class="modal-footer">
+                <lightning-button label="Cancel" variant="neutral" onclick={handleClose}></lightning-button>
+                <lightning-button
+                    label={saveLabel}
+                    variant="brand"
+                    onclick={handleSave}
+                    disabled={isSaveDisabled}
+                ></lightning-button>
+            </div>
+        </div>
+    </div>
+</template>

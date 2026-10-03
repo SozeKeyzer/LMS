@@ -1,0 +1,60 @@
+<template>
+  <div class="deal-kpi-strip">
+    <div class="kpi-tile">
+      <div class="kpi-label">Total Committed</div>
+      <div class="kpi-value">{kpis.totalCommitted}</div>
+      <div class="kpi-sub">{kpis.trancheCount} tranches</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">Total Outstanding</div>
+      <div class="kpi-value">{kpis.totalOutstanding}</div>
+      <div class="kpi-sub">{kpis.outstandingDelta}</div>
+    </div>
+    <div class="kpi-tile kpi-tile-amber">
+      <div class="kpi-label">Weighted Avg Rate</div>
+      <div class="kpi-value">{kpis.avgRate}</div>
+      <div class="kpi-sub">{kpis.avgRateNote}</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">Avg Maturity</div>
+      <div class="kpi-value">{kpis.avgMaturity}</div>
+      <div class="kpi-sub">{kpis.earliestMaturity}</div>
+    </div>
+    <div class="kpi-tile kpi-tile-green">
+      <div class="kpi-label">YTD Income</div>
+      <div class="kpi-value">{kpis.ytdIncome}</div>
+      <div class="kpi-sub">Interest earned</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">Holders</div>
+      <div class="kpi-value">{kpis.holderCount}</div>
+      <div class="kpi-sub">Across all tranches</div>
+    </div>
+  </div>
+  <lightning-card title="Tranches" class="slds-m-bottom_medium">
+    <template if:true={hasError}>
+      <div class="slds-notify slds-notify_alert slds-theme_error slds-m-around_small" role="alert">
+        <strong>Failed to load tranches:</strong> {errorMessage}
+      </div>
+    </template>
+    <template if:true={hasFallback}>
+      <div class="slds-notify slds-notify_alert slds-theme_warning slds-m-around_small" role="alert">
+        <strong>Partial data:</strong> {fallbackReason}
+      </div>
+    </template>
+    <lightning-datatable key-field="Id" data={formattedTranches}
+      columns={trancheColumns} onrowaction={openTranche}>
+    </lightning-datatable>
+  </lightning-card>
+  <lightning-tabset>
+    <lightning-tab label="Combined Cashflows">
+      <c-cashflow-chart record-id={recordId} mode="aggregate"></c-cashflow-chart>
+    </lightning-tab>
+    <lightning-tab label="Maturity Ladder">
+      <c-maturity-ladder-chart deal-id={recordId} mode="aggregate"></c-maturity-ladder-chart>
+    </lightning-tab>
+    <lightning-tab label="Holders Across Deal">
+      <c-holder-economics-view record-id={recordId} mode="aggregate"></c-holder-economics-view>
+    </lightning-tab>
+  </lightning-tabset>
+</template>

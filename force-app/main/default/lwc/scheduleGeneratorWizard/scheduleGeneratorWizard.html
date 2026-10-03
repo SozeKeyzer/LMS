@@ -1,0 +1,94 @@
+<template>
+  <lightning-card title="Schedule Generation — Maker" icon-name="utility:announcement">
+    <div class="slds-p-horizontal_medium">
+      <lightning-progress-indicator current-step={currentStep} type="base" variant="base">
+        <lightning-progress-step label="Not Generated" value="Not_Generated"></lightning-progress-step>
+        <lightning-progress-step label="Draft" value="Draft"></lightning-progress-step>
+        <lightning-progress-step label="Pending Review" value="Pending_Review"></lightning-progress-step>
+        <lightning-progress-step label="Active" value="Active"></lightning-progress-step>
+      </lightning-progress-indicator>
+    </div>
+
+    <div class="slds-p-around_medium slds-is-relative">
+      <template if:true={isBusy}>
+        <lightning-spinner alternative-text="Working..." size="small"></lightning-spinner>
+      </template>
+
+      <!-- Rejected banner -->
+      <template if:true={hasRejectReason}>
+        <div class="slds-notify slds-notify_alert slds-theme_warning slds-m-bottom_small" role="alert">
+          <lightning-icon icon-name="utility:warning" variant="inverse" size="x-small"
+            class="slds-m-right_x-small"></lightning-icon>
+          <strong>Previous draft was rejected:</strong> {status.lastRejectReason}
+        </div>
+      </template>
+
+      <!-- Not_Generated: pre-conditions + Generate -->
+      <template if:true={isNotGenerated}>
+        <p class="slds-text-heading_small slds-m-bottom_small">Pre-Conditions</p>
+        <template if:true={hasFailures}>
+          <ul class="slds-list_dotted precondition-list">
+            <template for:each={preconditionItems} for:item="item">
+              <li key={item.key} class="precondition-fail">
+                <lightning-icon icon-name="utility:error" size="xx-small" variant="error"
+                  class="slds-m-right_xx-small"></lightning-icon>
+                {item.message}
+              </li>
+            </template>
+          </ul>
+        </template>
+        <template if:false={hasFailures}>
+          <p class="precondition-pass">
+            <lightning-icon icon-name="utility:success" size="xx-small" variant="success"
+              class="slds-m-right_xx-small"></lightning-icon>
+            All pre-conditions met — ready to generate.
+          </p>
+        </template>
+
+        <lightning-button label="Generate Schedule" variant="brand" class="slds-m-top_medium"
+          disabled={generateDisabled} onclick={handleGenerate}>
+        </lightning-button>
+      </template>
+
+      <!-- Draft: review rows + Submit for Review -->
+      <template if:true={isDraft}>
+        <p class="slds-text-heading_small slds-m-bottom_small">{rowCountLabel} — review before submitting</p>
+
+        <div class="draft-table-wrap">
+          <lightning-datatable
+            key-field="id"
+            data={draftRows}
+            columns={columns}
+            hide-checkbox-column
+            show-row-number-column>
+          </lightning-datatable>
+        </div>
+
+        <lightning-textarea label="Notes (optional)" value={notes} onchange={handleNotesChange}
+          class="slds-m-top_medium" max-length="1000">
+        </lightning-textarea>
+
+        <lightning-button label="Submit for Review" variant="brand" class="slds-m-top_small"
+          disabled={submitDisabled} onclick={handleSubmit}>
+        </lightning-button>
+      </template>
+
+      <!-- Pending_Review: read-only summary, checker owns it now -->
+      <template if:true={isPendingReview}>
+        <div class="status-summary">
+          <lightning-icon icon-name="utility:clock" size="small" class="slds-m-right_small"></lightning-icon>
+          <p>{pendingReviewMessage}</p>
+        </div>
+      </template>
+
+      <!-- Active: read-only summary -->
+      <template if:true={isActive}>
+        <div class="status-summary status-summary_success">
+          <lightning-icon icon-name="utility:success" variant="success" size="small"
+            class="slds-m-right_small"></lightning-icon>
+          <p>{activeMessage}</p>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

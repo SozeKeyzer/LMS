@@ -1,0 +1,11 @@
+.chart-scroll { overflow-x: auto; }
+.chart-svg    { display: block; width: 100%; min-width: 400px; }
+.state-box    { padding: 24px; text-align: center; }
+
+.grid-line    { stroke: #e4e4e4; stroke-width: 1; }
+.axis-line    { stroke: #747474; stroke-width: 1.5; }
+.axis-label   { font-size: 11px; fill: #747474; font-family: 'Salesforce Sans', Arial, sans-serif; }
+
+.balance-line { stroke: #0176d3; stroke-width: 2.5; stroke-linejoin: round; }
+.balance-area { opacity: 0.35; }
+.balance-dot  { fill: #0176d3; stroke: #fff; stroke-width: 1.5; }

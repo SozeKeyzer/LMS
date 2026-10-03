@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Repayment_Amount__c</fullName>
+    <label>Total Repayment Amount</label>
+    <summarizedField>Repayment_Event__c.Amount__c</summarizedField>
+    <summaryForeignKey>Repayment_Event__c.Debt_Position__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>PIK Interest Accrual</label>
+    <protected>false</protected>
+    <values><field>Description__c</field><value xsi:type="xsd:string">Payment-In-Kind interest accrual. Accrues interest without cash payment — capitalised into principal at period end. Requires PIK_Default_Mode__c to be set. Is_PIK__c flagged true on output rows.</value></values>
+    <values><field>Strategy_Class__c</field><value xsi:type="xsd:string">PIKAccrualStrategy</value></values>
+    <values><field>Trigger_Object__c</field><value xsi:type="xsd:string">Debt_Position__c</value></values>
+    <values><field>Trigger_Event__c</field><value xsi:type="xsd:string">Scheduled</value></values>
+    <values><field>Mode__c</field><value xsi:type="xsd:string">Generated</value></values>
+    <values><field>Input_Fields__c</field><value xsi:type="xsd:string">[{"apiName":"PIK_Default_Mode__c","label":"PIK Default Mode","required":true},{"apiName":"Day_Count_Convention__c","label":"Day Count Convention","required":true},{"apiName":"Initial_Margin__c","label":"Initial Margin","required":true},{"type":"childRecord","objectApiName":"Interest_Period__c","parentField":"Debt_Position__c","filter":"Period_Start__c &lt;= TODAY","label":"Active Interest Period","required":true}]</value></values>
+    <values><field>Output_Object__c</field><value xsi:type="xsd:string">Accrual_Daily__c</value></values>
+    <values><field>Output_Fields__c</field><value xsi:type="xsd:string">Accrual_Date__c,Accrued_Amount__c,Rate__c,Is_PIK__c</value></values>
+    <values><field>Owned_Fields__c</field><value xsi:type="xsd:string">Accrued_Amount__c,Is_PIK__c</value></values>
+    <values><field>Cascade_Trigger_Fields__c</field><value xsi:type="xsd:string">PIK_Default_Mode__c,Initial_Margin__c,Day_Count_Convention__c</value></values>
+    <values><field>Invalidates__c</field><value xsi:type="xsd:string">Amortisation_Schedule</value></values>
+    <values><field>Depends_On__c</field><value xsi:type="xsd:string">Floating_Rate_Interest_Accrual</value></values>
+    <values><field>Business_Rule_Refs__c</field><value xsi:type="xsd:string">R5,R8</value></values>
+    <values><field>Version__c</field><value xsi:type="xsd:string">1.0</value></values>
+    <values><field>Lifecycle_State__c</field><value xsi:type="xsd:string">Locked</value></values>
+    <values><field>Active__c</field><value xsi:type="xsd:boolean">true</value></values>
+</CustomMetadata>

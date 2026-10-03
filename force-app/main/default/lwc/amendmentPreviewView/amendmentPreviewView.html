@@ -1,0 +1,198 @@
+<template>
+    <lightning-card title="Schedule Preview" icon-name="utility:preview">
+
+        <div slot="actions">
+            <template if:true={isGenerating}>
+                <lightning-spinner alternative-text="Generating..." size="small"></lightning-spinner>
+            </template>
+            <template if:false={isGenerating}>
+                <lightning-button
+                    label={generateButtonLabel}
+                    icon-name="utility:refresh"
+                    variant={generateButtonVariant}
+                    disabled={isGenerateDisabled}
+                    onclick={handleGeneratePreview}>
+                </lightning-button>
+            </template>
+        </div>
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="slds-m-around_large slds-text-align_center">
+                <lightning-spinner alternative-text="Loading comparison..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template if:true={error}>
+            <div class="slds-m-around_medium">
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <lightning-icon icon-name="utility:error" variant="inverse" size="x-small"
+                        class="slds-m-right_x-small"></lightning-icon>
+                    <h2>{error}</h2>
+                </div>
+            </div>
+        </template>
+
+        <!-- Content -->
+        <template if:true={hasData}>
+
+            <!-- Amendment metadata strip -->
+            <div class="meta-strip slds-m-horizontal_medium slds-m-bottom_medium">
+                <div class="meta-strip__item">
+                    <span class="meta-strip__label">Amendment Type</span>
+                    <span class="meta-strip__value">{comparisonResult.amendmentType}</span>
+                </div>
+                <div class="meta-strip__divider"></div>
+                <div class="meta-strip__item">
+                    <span class="meta-strip__label">Scope</span>
+                    <span class="meta-strip__value">{comparisonResult.scope}</span>
+                </div>
+                <div class="meta-strip__divider"></div>
+                <div class="meta-strip__item">
+                    <span class="meta-strip__label">Status</span>
+                    <span class={amendmentStatusBadgeClass}>{comparisonResult.amendmentStatus}</span>
+                </div>
+                <div class="meta-strip__divider"></div>
+                <div class="meta-strip__item">
+                    <span class="meta-strip__label">Effective Date</span>
+                    <span class="meta-strip__value">{effectiveDateLabel}</span>
+                </div>
+            </div>
+
+            <!-- No-projection info banner -->
+            <template if:false={hasProjection}>
+                <div class="info-banner slds-m-horizontal_medium slds-m-bottom_medium">
+                    <lightning-icon icon-name="utility:info" size="x-small"
+                        class="slds-m-right_x-small"></lightning-icon>
+                    <span>No projection linked yet. Click <strong>Generate Preview </strong>
+                        above to run the calculation engine. A projection is required before
+                        submission (VR.LA.04).</span>
+                </div>
+            </template>
+
+            <!-- KPI impact bar — only when projection exists -->
+            <template if:true={hasProjection}>
+                <div class="kpi-bar slds-m-horizontal_medium slds-m-bottom_x-small">
+                    <div class="kpi-tile">
+                        <span class="kpi-tile__label">Periods Affected</span>
+                        <span class="kpi-tile__value">{impact.periodsAffected}</span>
+                    </div>
+                    <div class="kpi-tile kpi-tile_sep">
+                        <span class="kpi-tile__label">Current Interest</span>
+                        <span class="kpi-tile__value">{impact.currentInterestFmt}</span>
+                    </div>
+                    <div class="kpi-tile kpi-tile_sep">
+                        <span class="kpi-tile__label">Projected Interest</span>
+                        <span class="kpi-tile__value">{impact.projectedInterestFmt}</span>
+                    </div>
+                    <div class="kpi-tile kpi-tile_sep">
+                        <span class="kpi-tile__label">&#916; Interest</span>
+                        <span class={impact.deltaClass}>{impact.deltaInterestFmt}</span>
+                    </div>
+                </div>
+                <p class="proj-meta slds-m-horizontal_medium slds-m-bottom_medium">{projectionSubtitle}</p>
+            </template>
+
+            <!-- Unified comparison table -->
+            <template if:true={hasEnrichedRows}>
+                <div class="table-scroller slds-m-horizontal_medium slds-m-bottom_medium">
+                    <table class="comparison-table" role="grid">
+                        <colgroup>
+                            <col style="width:18%"/>
+                            <col style="width:10%"/>
+                            <col style="width:10%"/>
+                            <col style="width:10%"/>
+                            <col style="width:10%"/>
+                            <col style="width:10%"/>
+                            <col style="width:10%"/>
+                            <col style="width:12%"/>
+                            <col style="width:10%"/>
+                        </colgroup>
+                        <thead>
+                            <!-- Group header row -->
+                            <tr>
+                                <th rowspan="2" scope="col" class="th-corner th-period">
+                                    Period
+                                </th>
+                                <th colspan="3" scope="colgroup" class="th-group th-group_current">
+                                    Current Schedule
+                                </th>
+                                <th colspan="4" scope="colgroup" class="th-group th-group_projected col-sep">
+                                    <template if:true={hasProjection}>
+                                        Projected Schedule
+                                    </template>
+                                    <template if:false={hasProjection}>
+                                        Projected Schedule — pending generation
+                                    </template>
+                                </th>
+                                <th rowspan="2" scope="col" class="th-corner th-status">
+                                    Status
+                                </th>
+                            </tr>
+                            <!-- Sub-header row -->
+                            <tr>
+                                <th scope="col" class="th-sub th-current slds-text-align_right">Principal</th>
+                                <th scope="col" class="th-sub th-current slds-text-align_right">Interest</th>
+                                <th scope="col" class="th-sub th-current slds-text-align_right">Total</th>
+                                <th scope="col" class="th-sub th-projected slds-text-align_right col-sep">Principal</th>
+                                <th scope="col" class="th-sub th-projected slds-text-align_right">Interest</th>
+                                <th scope="col" class="th-sub th-projected slds-text-align_right">Total</th>
+                                <th scope="col" class="th-sub th-delta slds-text-align_right">&#916; Interest</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={enrichedRows} for:item="row">
+                                <tr key={row.key} class={row.rowClass}>
+                                    <td data-label="Period" class="td-period">
+                                        <div class="period-label" title={row.periodLabel}>{row.periodLabel}</div>
+                                        <template if:true={row.isAffectedByAmend}>
+                                            <span class="affected-badge">Superseded</span>
+                                        </template>
+                                    </td>
+                                    <td class="slds-text-align_right td-current" data-label="Current Principal">
+                                        <span class="mono">{row.principalFmt}</span>
+                                    </td>
+                                    <td class="slds-text-align_right td-current" data-label="Current Interest">
+                                        <span class="mono">{row.interestFmt}</span>
+                                    </td>
+                                    <td class="slds-text-align_right td-current" data-label="Current Total">
+                                        <span class="mono">{row.totalFmt}</span>
+                                    </td>
+                                    <td class="slds-text-align_right td-projected col-sep" data-label="Projected Principal">
+                                        <span class="mono">{row.projPrincipalFmt}</span>
+                                    </td>
+                                    <td class="slds-text-align_right td-projected" data-label="Projected Interest">
+                                        <span class="mono">{row.projInterestFmt}</span>
+                                    </td>
+                                    <td class="slds-text-align_right td-projected" data-label="Projected Total">
+                                        <span class="mono">{row.projTotalFmt}</span>
+                                    </td>
+                                    <td class="slds-text-align_right td-delta" data-label="Delta Interest">
+                                        <span class={row.deltaClass}>{row.deltaFmt}</span>
+                                    </td>
+                                    <td class="td-status" data-label="Status">
+                                        <lightning-badge label={row.status}></lightning-badge>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <!-- Empty state — no schedule rows -->
+            <template if:false={hasEnrichedRows}>
+                <div class="empty-state slds-m-horizontal_medium slds-m-bottom_medium">
+                    <lightning-icon icon-name="utility:table" size="medium"
+                        class="slds-m-bottom_small"></lightning-icon>
+                    <p class="slds-text-body_small slds-text-color_weak">
+                        No open Payment Schedule rows found for this amendment.
+                    </p>
+                </div>
+            </template>
+
+        </template>
+
+    </lightning-card>
+</template>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_CROSS_04_ImmutableFlag</fullName>
+    <active>true</active>
+    <description>VR.CROSS.04</description>
+    <errorConditionFormula>NOT(ISNEW()) &amp;&amp; ISCHANGED(Is_Immutable__c) &amp;&amp; NOT(Is_Immutable__c)</errorConditionFormula>
+    <errorMessage>Is Immutable cannot be set back to false once true.</errorMessage>
+</ValidationRule>

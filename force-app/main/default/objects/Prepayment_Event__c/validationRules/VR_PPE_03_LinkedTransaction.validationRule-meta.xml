@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PPE_03_LinkedTransaction</fullName>
+    <active>true</active>
+    <description>Settlement must reference the cash receipt.</description>
+    <errorConditionFormula>ISPICKVAL(Status__c,'Settled') &amp;&amp; ISBLANK(Linked_Payment_Transaction__c)</errorConditionFormula>
+    <errorMessage>Linked Payment Transaction is required when Status = Settled.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PS_05_ExternalId_Required</fullName>
+    <active>true</active>
+    <description>VR.PS.05</description>
+    <errorConditionFormula>ISBLANK(External_Id__c) &amp;&amp; NOT(ISNEW())</errorConditionFormula>
+    <errorMessage>External ID must be populated. Use {DebtPositionId}-{PeriodStart} composite format.</errorMessage>
+</ValidationRule>

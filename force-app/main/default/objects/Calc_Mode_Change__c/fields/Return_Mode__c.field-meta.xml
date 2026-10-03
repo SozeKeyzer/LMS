@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Return_Mode__c</fullName>
+    <label>Return Mode</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Adopt_Manual_As_Baseline</fullName><default>false</default><label>Adopt Manual As Baseline</label></value>
+            <value><fullName>Recalculate_From_Scratch</fullName><default>false</default><label>Recalculate From Scratch</label></value>
+            <value><fullName>Recalculate_Forward_Only</fullName><default>false</default><label>Recalculate Forward Only</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

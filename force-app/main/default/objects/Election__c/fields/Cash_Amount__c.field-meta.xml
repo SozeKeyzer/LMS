@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cash_Amount__c</fullName>
+    <description>Cash portion of a Split election. Must sum with PIK_Amount to equal Interest_Due on the linked Payment_Schedule.</description>
+    <externalId>false</externalId>
+    <label>Cash Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

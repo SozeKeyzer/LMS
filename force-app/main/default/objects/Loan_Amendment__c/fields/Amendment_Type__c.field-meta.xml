@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amendment_Type__c</fullName>
+    <description>Category of change. Drives Approval_Matrix routing and required field validation.</description>
+    <externalId>false</externalId>
+    <label>Amendment Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Rate_Change</fullName>
+                <default>true</default>
+                <label>Rate Change</label>
+            </value>
+            <value>
+                <fullName>Margin_Ratchet</fullName>
+                <default>false</default>
+                <label>Margin Ratchet</label>
+            </value>
+            <value>
+                <fullName>Tenor_Extension</fullName>
+                <default>false</default>
+                <label>Tenor Extension</label>
+            </value>
+            <value>
+                <fullName>Principal_Increase</fullName>
+                <default>false</default>
+                <label>Principal Increase</label>
+            </value>
+            <value>
+                <fullName>Covenant_Waiver</fullName>
+                <default>false</default>
+                <label>Covenant Waiver</label>
+            </value>
+            <value>
+                <fullName>Payment_Reschedule</fullName>
+                <default>false</default>
+                <label>Payment Reschedule</label>
+            </value>
+            <value>
+                <fullName>DayCount_Change</fullName>
+                <default>false</default>
+                <label>DayCount Change</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

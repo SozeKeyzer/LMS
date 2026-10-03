@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_By__c</fullName>
+    <description>User who approved the rate application decision. Required for non-Apply decisions per Approval_Matrix.</description>
+    <externalId>false</externalId>
+    <label>Approved By</label>
+    <required>false</required>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Rate Application Events Approved</relationshipLabel>
+    <relationshipName>Rate_Application_Events_Approved</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

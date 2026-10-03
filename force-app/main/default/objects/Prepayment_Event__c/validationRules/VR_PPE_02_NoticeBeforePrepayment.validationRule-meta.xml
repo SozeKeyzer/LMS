@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PPE_02_NoticeBeforePrepayment</fullName>
+    <active>true</active>
+    <description>Notice must precede settlement date.</description>
+    <errorConditionFormula>NOT(ISBLANK(Notice_Date__c)) &amp;&amp; NOT(ISBLANK(Prepayment_Date__c)) &amp;&amp; Notice_Date__c &gt; Prepayment_Date__c</errorConditionFormula>
+    <errorMessage>Notice Date must be on or before Prepayment Date.</errorMessage>
+</ValidationRule>

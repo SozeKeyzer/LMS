@@ -1,0 +1,53 @@
+<template>
+  <template if:true={shouldRender}>
+    <lightning-card title="Schedule Generation — Checker" icon-name="utility:approval">
+      <div class="slds-p-around_medium slds-is-relative">
+        <template if:true={isSubmitting}>
+          <lightning-spinner alternative-text="Working..." size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={isSelfReview}>
+          <div class="slds-notify slds-notify_alert slds-theme_warning slds-m-bottom_small" role="alert">
+            <lightning-icon icon-name="utility:warning" variant="inverse" size="x-small"
+              class="slds-m-right_x-small"></lightning-icon>
+            You generated this draft. A different user must approve or reject it (4-eyes rule).
+          </div>
+        </template>
+
+        <p class="slds-text-heading_small slds-m-bottom_small">
+          Submitted by {status.makerName} — {rowCountLabel}
+        </p>
+        <template if:true={status.notes}>
+          <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+            Maker notes: {status.notes}
+          </p>
+        </template>
+
+        <div class="draft-table-wrap">
+          <lightning-datatable
+            key-field="id"
+            data={draftRows}
+            columns={columns}
+            hide-checkbox-column
+            show-row-number-column>
+          </lightning-datatable>
+        </div>
+
+        <lightning-textarea label="Approval notes (optional)" value={notes} onchange={handleNotesChange}
+          class="slds-m-top_medium" max-length="1000">
+        </lightning-textarea>
+        <lightning-textarea label="Rejection reason (required to reject)" value={reason} onchange={handleReasonChange}
+          class="slds-m-top_small" max-length="1000">
+        </lightning-textarea>
+
+        <div class="slds-m-top_small">
+          <lightning-button label="Approve" variant="brand" disabled={approveDisabled} onclick={handleApprove}>
+          </lightning-button>
+          <lightning-button label="Reject" variant="destructive-text" class="slds-m-left_x-small"
+            disabled={rejectDisabled} onclick={handleReject}>
+          </lightning-button>
+        </div>
+      </div>
+    </lightning-card>
+  </template>
+</template>

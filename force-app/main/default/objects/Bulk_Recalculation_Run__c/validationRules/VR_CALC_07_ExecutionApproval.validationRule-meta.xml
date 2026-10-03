@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_CALC_07_ExecutionApproval</fullName>
+    <active>true</active>
+    <description>VR.CALC.07 — Prevents a Bulk Recalculation Run from being moved to Running status without prior approval. Bulk recalculations affecting many records require explicit sign-off before execution begins.</description>
+    <errorConditionFormula>AND(
+  ISCHANGED(Execution_Status__c),
+  ISPICKVAL(Execution_Status__c, 'Running'),
+  NOT(ISPICKVAL(Approval_Status__c, 'Approved'))
+)</errorConditionFormula>
+    <errorMessage>A Bulk Recalculation Run cannot be started until it has been approved. Submit the run for approval before executing.</errorMessage>
+</ValidationRule>

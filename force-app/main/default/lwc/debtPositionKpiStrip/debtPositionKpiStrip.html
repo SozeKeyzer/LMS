@@ -1,0 +1,11 @@
+<template>
+  <div class="kpi-strip">
+    <template for:each={tiles} for:item="t">
+      <div key={t.key} class={t.tileClass}>
+        <div class="kpi-label">{t.label}</div>
+        <div class="kpi-value">{t.value}</div>
+        <div class="kpi-sub">{t.subtext}</div>
+      </div>
+    </template>
+  </div>
+</template>

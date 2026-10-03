@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Investor_Entity_ID__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Type the Investor Entity ID. The entity name and lookup will be auto-populated.</inlineHelpText>
+    <label>Investor Entity ID</label>
+    <length>50</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

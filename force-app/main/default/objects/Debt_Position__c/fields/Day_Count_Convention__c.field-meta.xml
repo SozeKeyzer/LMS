@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Day_Count_Convention__c</fullName>
+    <description>Day count convention governing daily accrual calculations. Value must match a DayCount_Convention__mdt Convention_Code__c record. Defaults to ACT_365.</description>
+    <label>Day Count Convention</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ACT_365</fullName>
+                <default>true</default>
+                <label>Actual/365 (Fixed)</label>
+            </value>
+            <value>
+                <fullName>ACT_360</fullName>
+                <default>false</default>
+                <label>Actual/360</label>
+            </value>
+            <value>
+                <fullName>THIRTY_360_US</fullName>
+                <default>false</default>
+                <label>30/360 (US)</label>
+            </value>
+            <value>
+                <fullName>THIRTY_360_EU</fullName>
+                <default>false</default>
+                <label>30/360 (European)</label>
+            </value>
+            <value>
+                <fullName>ACT_ACT_ISDA</fullName>
+                <default>false</default>
+                <label>Actual/Actual (ISDA)</label>
+            </value>
+            <value>
+                <fullName>30/360</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>30/360</label>
+            </value>
+            <value>
+                <fullName>Actual/365</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Actual/365</label>
+            </value>
+            <value>
+                <fullName>Actual/Actual</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Actual/Actual</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

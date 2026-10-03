@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason__c</fullName>
+    <label>Reason</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Calculation_Error_Investigation</fullName><default>false</default><label>Calculation Error Investigation</label></value>
+            <value><fullName>Regulatory_Reporting</fullName><default>false</default><label>Regulatory Reporting</label></value>
+            <value><fullName>Audit_Confirmation</fullName><default>false</default><label>Audit Confirmation</label></value>
+            <value><fullName>Data_Reconciliation</fullName><default>false</default><label>Data Reconciliation</label></value>
+            <value><fullName>Other</fullName><default>false</default><label>Other</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

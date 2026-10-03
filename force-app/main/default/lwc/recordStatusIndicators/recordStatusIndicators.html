@@ -1,0 +1,109 @@
+<template>
+    <!--
+        recordStatusIndicators.html
+        Bug fix: replaced all deprecated if:true / if:false directives (deprecated API v57+)
+        with lwc:if / lwc:elseif / lwc:else. The three body states (loading, error, data)
+        are now properly mutually exclusive via lwc:if / lwc:elseif / lwc:else, which is
+        both correct and more readable than the original nested if:false={isLoading} pattern.
+    -->
+    <template lwc:if={showCard}>
+        <article class="slds-card status-card">
+
+            <!-- ── Header ─────────────────────────────────────────────────── -->
+            <header class="slds-card__header slds-grid status-card__header">
+                <lightning-icon
+                    icon-name="utility:shield"
+                    size="x-small"
+                    alternative-text="Status"
+                    class="slds-m-right_x-small">
+                </lightning-icon>
+                <h2 class="slds-card__header-title status-card__title">{cardTitle}</h2>
+                <template lwc:if={hasIndicators}>
+                    <span class="slds-badge status-card__count">{indicators.length}</span>
+                </template>
+            </header>
+
+            <!-- ── Body ──────────────────────────────────────────────────── -->
+            <div class="slds-card__body">
+
+                <!-- Loading skeleton -->
+                <template lwc:if={isLoading}>
+                    <div class="status-card__loading">
+                        <div class="status-card__skeleton"></div>
+                        <div class="status-card__skeleton"></div>
+                        <div class="status-card__skeleton"></div>
+                    </div>
+                </template>
+
+                <!-- Error state -->
+                <template lwc:elseif={error}>
+                    <div class="status-card__empty">
+                        <lightning-icon
+                            icon-name="utility:warning"
+                            size="small"
+                            variant="error">
+                        </lightning-icon>
+                        <p>{error}</p>
+                    </div>
+                </template>
+
+                <!-- Data loaded (indicators or empty) -->
+                <template lwc:else>
+                    <template lwc:if={hasIndicators}>
+                        <ul class="indicator-list">
+                            <template for:each={indicators} for:item="ind">
+                                <li key={ind.developerName} class={ind.cssClass}>
+                                    <a href="#"
+                                       data-dev={ind.developerName}
+                                       onclick={handleClick}
+                                       class="indicator-link">
+
+                                        <!-- Icon glyph -->
+                                        <span class="indicator-glyph">
+                                            <lightning-icon
+                                                icon-name={ind.iconName}
+                                                size="x-small">
+                                            </lightning-icon>
+                                        </span>
+
+                                        <!-- Label + optional detail line -->
+                                        <span class="indicator-body">
+                                            <span class="indicator-label">{ind.label}</span>
+                                            <template lwc:if={ind.detail}>
+                                                <span class="indicator-detail">{ind.detail}</span>
+                                            </template>
+                                        </span>
+
+                                        <!-- Count badge (Active_Count mode) -->
+                                        <template lwc:if={ind.isCount}>
+                                            <span class="indicator-count">{ind.count}</span>
+                                        </template>
+
+                                        <!-- Status pill (Latest_Record mode) -->
+                                        <template lwc:elseif={ind.isLatest}>
+                                            <span class={ind.statusPillClass}>{ind.statusValue}</span>
+                                        </template>
+
+                                    </a>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+
+                    <!-- Empty state — no active indicators -->
+                    <template lwc:else>
+                        <div class="status-card__empty">
+                            <lightning-icon
+                                icon-name="utility:success"
+                                size="small"
+                                variant="success">
+                            </lightning-icon>
+                            <p>No active workflows on this record</p>
+                        </div>
+                    </template>
+                </template>
+
+            </div><!-- /.slds-card__body -->
+        </article>
+    </template>
+</template>

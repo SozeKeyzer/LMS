@@ -1,0 +1,313 @@
+/* ── Metadata strip ────────────────────────────────────────────────────────── */
+
+.meta-strip {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+}
+
+.meta-strip__item {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    flex: 1;
+}
+
+.meta-strip__item:first-child {
+    padding-left: 0;
+}
+
+.meta-strip__label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #706e6b;
+    margin-bottom: 0.2rem;
+}
+
+.meta-strip__value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #080707;
+}
+
+.meta-strip__divider {
+    width: 1px;
+    height: 2rem;
+    background-color: #dddbda;
+    flex-shrink: 0;
+}
+
+/* Status badges */
+.meta-strip__badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+}
+
+.meta-strip__badge_neutral {
+    background-color: #f3f3f3;
+    color: #3e3e3c;
+    border-color: #dddbda;
+}
+
+.meta-strip__badge_pending {
+    background-color: #fef7e6;
+    color: #7a5c00;
+    border-color: #f4bc25;
+}
+
+.meta-strip__badge_approved {
+    background-color: #eff7ef;
+    color: #2e7d32;
+    border-color: #78c178;
+}
+
+.meta-strip__badge_effective {
+    background-color: #e8f4ff;
+    color: #0070d2;
+    border-color: #7abcf7;
+}
+
+/* ── Info banner (no projection) ───────────────────────────────────────────── */
+
+.info-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background-color: #fef7e6;
+    border: 1px solid #f4bc25;
+    border-radius: 4px;
+    padding: 0.7rem 1rem;
+    font-size: 0.8125rem;
+    color: #3e3e3c;
+    line-height: 1.5;
+}
+
+/* ── KPI bar ────────────────────────────────────────────────────────────────── */
+
+.kpi-bar {
+    display: flex;
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #f8faff 0%, #eef2fb 100%);
+    overflow: hidden;
+}
+
+.kpi-tile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.85rem 1rem;
+}
+
+.kpi-tile_sep {
+    border-left: 1px solid #d8dde6;
+}
+
+.kpi-tile__label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #706e6b;
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+}
+
+.kpi-tile__value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #080707;
+}
+
+.proj-meta {
+    font-size: 0.72rem;
+    color: #706e6b;
+    margin-top: 0.25rem;
+}
+
+/* ── Comparison table ───────────────────────────────────────────────────────── */
+
+.table-scroller {
+    overflow-x: auto;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+}
+
+.comparison-table {
+    width: 100%;
+    min-width: 860px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+/* Group header row */
+.th-group {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    text-align: center;
+    border-bottom: 1px solid #dddbda;
+}
+
+.th-group_current {
+    background-color: #f3f3f3;
+    color: #3e3e3c;
+}
+
+.th-group_projected {
+    background-color: #eef2fb;
+    color: #0b5cab;
+}
+
+/* Corner cells (rowspan=2) */
+.th-corner {
+    background-color: #f3f3f3;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #3e3e3c;
+    vertical-align: middle;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 2px solid #dddbda;
+}
+
+.th-period {
+    text-align: left;
+}
+
+.th-status {
+    text-align: center;
+}
+
+/* Sub-header row */
+.th-sub {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.6rem;
+    border-bottom: 2px solid #dddbda;
+    white-space: nowrap;
+}
+
+.th-current {
+    background-color: #f3f3f3;
+    color: #3e3e3c;
+}
+
+.th-projected {
+    background-color: #eef2fb;
+    color: #0b5cab;
+}
+
+.th-delta {
+    background-color: #f3f3f3;
+    color: #3e3e3c;
+}
+
+/* Column separator */
+.col-sep {
+    border-left: 2px solid #c9d7e8 !important;
+}
+
+/* Body cells */
+.comparison-table tbody td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid #f0f0ee;
+    vertical-align: middle;
+    color: #3e3e3c;
+}
+
+.comparison-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tbody tr:hover td {
+    background-color: #f3f6fd;
+}
+
+.td-period {
+    vertical-align: top;
+    padding-top: 0.55rem;
+}
+
+.td-status {
+    text-align: center;
+}
+
+/* Monospace class for financial figures */
+.mono {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+}
+
+/* Period label — allow wrapping on date ranges */
+.period-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #3e3e3c;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Amber left-border on rows that will be superseded */
+.affected-row > td:first-child {
+    border-left: 3px solid #f4bc25;
+    padding-left: calc(0.6rem - 3px);
+}
+
+.affected-badge {
+    display: inline-block;
+    background-color: #fef7e6;
+    color: #7a5c00;
+    border: 1px solid #f4bc25;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Delta colour classes */
+.delta-positive {
+    color: #2e844a;
+    font-weight: 700;
+}
+
+.delta-negative {
+    color: #ba0517;
+    font-weight: 700;
+}
+
+/* ── Empty state ────────────────────────────────────────────────────────────── */
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 8rem;
+    padding: 2rem;
+    color: #706e6b;
+    background-color: #fafaf9;
+    border: 1px dashed #dddbda;
+    border-radius: 4px;
+}

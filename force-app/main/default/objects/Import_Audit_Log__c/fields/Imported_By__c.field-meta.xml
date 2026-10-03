@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Imported_By__c</fullName>
+    <description>Auto-set from UserInfo.getUserId() at import time.</description>
+    <externalId>false</externalId>
+    <label>Imported By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Import Audit Logs</relationshipLabel>
+    <relationshipName>Import_Audit_Logs</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

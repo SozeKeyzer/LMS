@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approval_Matrix_Tier__c</fullName>
+    <description>Which Approval_Matrix__mdt tier was applied (e.g. Ops_Lead, Credit_Team, Investment_Committee).</description>
+    <externalId>false</externalId>
+    <label>Approval Matrix Tier</label>
+    <length>50</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

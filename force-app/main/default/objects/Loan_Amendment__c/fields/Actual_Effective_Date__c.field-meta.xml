@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Effective_Date__c</fullName>
+    <description>Date amendment was actually committed. Set by AmendmentService at commit time.</description>
+    <externalId>false</externalId>
+    <label>Actual Effective Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

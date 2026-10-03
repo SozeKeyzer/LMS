@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_CALC_05_OutputRowProtection</fullName>
+    <active>true</active>
+    <description>VR.CALC.05 — Prevents deletion of Payment Schedule rows that are linked to a non-superseded Calculation Run. The row must be superseded or cancelled before its provenance record can be removed.</description>
+    <errorConditionFormula>AND(
+  NOT(ISNEW()),
+  NOT(ISNULL(Calculation_Run__c)),
+  OR(
+    ISPICKVAL(PRIORVALUE(Status__c), 'Superseded'),
+    ISPICKVAL(PRIORVALUE(Status__c), 'Cancelled')
+  ),
+  NOT(ISPICKVAL(Status__c, 'Superseded')),
+  NOT(ISPICKVAL(Status__c, 'Cancelled'))
+)</errorConditionFormula>
+    <errorMessage>This Payment Schedule row cannot be deleted because it is linked to an active Calculation Run. Set Status to Superseded or Cancelled first.</errorMessage>
+</ValidationRule>

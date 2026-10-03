@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fee_Treatment__c</fullName>
+    <description>How the fee is collected. Cash = standard cash invoice (default). Capitalised = fee uplifts Position_Notional at due date via Fee_Capitalisation_Event; no cash expected. Cash_or_Capitalised_Election = borrower elects per-occurrence via Linked_Election. Spec v7 Part 5.2.8, Rule R22.</description>
+    <label>Fee Treatment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Cash</fullName><default>true</default><label>Cash</label></value>
+            <value><fullName>Capitalised</fullName><default>false</default><label>Capitalised</label></value>
+            <value><fullName>Cash_or_Capitalised_Election</fullName><default>false</default><label>Cash or Capitalised (Borrower Election)</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

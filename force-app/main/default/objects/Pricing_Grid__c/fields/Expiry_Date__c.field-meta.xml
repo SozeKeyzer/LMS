@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expiry_Date__c</fullName><description>Date this pricing grid expires. Null = no fixed expiry.</description>
+    <externalId>false</externalId><label>Expiry Date</label><required>false</required>
+    <trackTrending>false</trackTrending><type>Date</type>
+</CustomField>

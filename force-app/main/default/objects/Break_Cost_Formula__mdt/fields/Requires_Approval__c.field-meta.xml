@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requires_Approval__c</fullName>
+    <description>If true, the computed break cost must be approved by Credit Team before Prepayment_Event can move to Approved status.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Requires Approval</label>
+    <defaultValue>true</defaultValue>
+    <type>Checkbox</type>
+</CustomField>

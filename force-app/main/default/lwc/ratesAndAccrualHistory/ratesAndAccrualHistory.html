@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Rate and Accrual History">
+        <template if:true={rateSegments}>
+            <template for:each={rateSegments} for:item="seg">
+                <div key={seg.id} class="slds-box slds-m-bottom_x-small">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_3-of-4">
+                            <p><strong>{seg.effectiveDateRange}</strong> — {seg.rateDisplay}</p>
+                            <p class="slds-text-color_weak">{seg.applicationStatus}</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-4 slds-text-align_right">
+                            <lightning-badge label={seg.applicationStatus} class={seg.badgeClass}></lightning-badge>
+                        </div>
+                    </div>
+                    <template if:true={seg.events}>
+                        <div class="slds-m-top_x-small slds-m-left_medium">
+                            <template for:each={seg.events} for:item="evt">
+                                <p key={evt.id} class="slds-text-body_small slds-text-color_weak">
+                                    {evt.decisionDate} — {evt.decisionType}: {evt.reason}
+                                </p>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

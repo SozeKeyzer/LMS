@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Placeholder_Base_Rate__c</fullName>
+    <description>For floating-rate loans: the index rate used as placeholder before actual BBSW fixing is known. Set to the first known floating rate at schedule generation. Preserved for variance analysis even after Rate_Finalised.</description>
+    <externalId>false</externalId>
+    <label>Placeholder Base Rate</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

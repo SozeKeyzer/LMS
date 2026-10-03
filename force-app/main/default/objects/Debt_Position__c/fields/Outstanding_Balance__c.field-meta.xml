@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Outstanding_Balance__c</fullName>
+    <description>Outstanding Balance = Total Drawdowns - Total Repayments + Total PIK Capitalised</description>
+    <formula>Total_Drawdown_Amount__c - Total_Repayment_Amount__c + Total_PIK_Capitalised__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Outstanding Balance = Total Drawdowns - Total Repayments + Total PIK Capitalised</inlineHelpText>
+    <label>Outstanding Balance</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

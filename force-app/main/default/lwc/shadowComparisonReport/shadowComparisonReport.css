@@ -1,0 +1,7 @@
+.stats-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.stat-tile { background: white; border-radius: 4px; padding: 12px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; border-left: 3px solid #0176d3; }
+.stat-label { font-size: 11px; text-transform: uppercase; color: #747474; font-weight: 600; letter-spacing: 0.4px; margin-bottom: 4px; }
+.stat-value { font-size: 22px; font-weight: 700; color: #1b1b1b; }
+.stat-value-warn { font-size: 22px; font-weight: 700; color: #fe9339; }
+.report-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid #e5e5e5; }
+.largest-diff-label { font-size: 12px; color: #747474; }

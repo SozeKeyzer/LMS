@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Reverse a cleared payment. Captures reversal reason and enforces 4-eyes approval rule.</description>
+    <flowDefinition>PaymentTransaction_Reverse</flowDefinition>
+    <label>Reverse Payment</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

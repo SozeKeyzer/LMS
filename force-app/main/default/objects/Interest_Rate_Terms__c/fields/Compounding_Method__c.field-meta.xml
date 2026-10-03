@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Compounding_Method__c</fullName>
+    <description>Mathematical method for compounding when Compounding_Frequency is not None. Discrete = step-wise compounding at frequency boundary (most common in private credit). ACT_Continuous = continuous compounding via e^(R×t). Spec v7 Part 5.2.7.</description>
+    <label>Compounding Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Discrete</fullName><default>true</default><label>Discrete</label></value>
+            <value><fullName>ACT_Continuous</fullName><default>false</default><label>ACT Continuous</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

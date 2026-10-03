@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "sf_mcp": {
+      "command": "node",
+      "args": ["D:/coding/sf_mcp/dist/index.js"]
+    }
+  }
+}

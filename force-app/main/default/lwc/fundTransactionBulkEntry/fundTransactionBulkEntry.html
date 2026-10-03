@@ -1,0 +1,284 @@
+<template>
+    <div class="bulk-container">
+        <!-- Toolbar -->
+        <div class="bulk-toolbar">
+            <div class="toolbar-left">
+                <h3>Bulk Entry</h3>
+                <span class="toolbar-hint">Tab navigates right · Enter moves down</span>
+            </div>
+            <div class="toolbar-right">
+                <lightning-button
+                    label="Add Row"
+                    variant="neutral"
+                    icon-name="utility:add"
+                    onclick={addRow}
+                ></lightning-button>
+                <lightning-button
+                    label="Clear All"
+                    variant="neutral"
+                    icon-name="utility:delete"
+                    onclick={clearAll}
+                ></lightning-button>
+                <lightning-button
+                    label="Undo"
+                    variant="neutral"
+                    icon-name="utility:undo"
+                    onclick={undo}
+                    disabled={noHistory}
+                ></lightning-button>
+                <lightning-button
+                    label={saveLabel}
+                    variant="brand"
+                    icon-name="utility:save"
+                    onclick={handleSave}
+                    disabled={isSaveDisabled}
+                ></lightning-button>
+            </div>
+        </div>
+
+        <!-- Save Result -->
+        <template if:true={saveResult}>
+            <div class={saveResultClass}>
+                <lightning-icon icon-name={saveResultIcon} size="x-small"></lightning-icon>
+                <span>{saveResultMessage}</span>
+            </div>
+        </template>
+
+        <!-- Grid -->
+        <div class="grid-wrapper" onfocusin={handlePickerFocus}>
+            <table class="bulk-grid">
+                <thead>
+                    <tr>
+                        <th class="col-num">#</th>
+                        <th class="col-date">Date <span class="req">*</span></th>
+                        <th class="col-vehicle">Type <span class="req">*</span></th>
+                        <th class="col-target">Vehicle <span class="req">*</span></th>
+                        <th class="col-entity">Entity ID <span class="req">*</span></th>
+                        <th class="col-type">Tx Type <span class="req">*</span></th>
+                        <th class="col-amount">Amount <span class="req">*</span></th>
+                        <th class="col-bdm">BDM <span class="req">*</span></th>
+                        <th class="col-switched">Switched From</th>
+                        <th class="col-comment">Comment</th>
+                        <th class="col-derived">Entity Used</th>
+                        <th class="col-derived">Month</th>
+                        <th class="col-derived">Intrafund</th>
+                        <th class="col-del"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={decoratedRows} for:item="row">
+                        <tr key={row.key} class={row.rowClass}>
+                            <td class="col-num">{row.displayIndex}</td>
+
+                            <!-- col 0: Date -->
+                            <td class={row.dateCellClass}>
+                                <input
+                                    type="date"
+                                    class="cell-input"
+                                    value={row.Transaction_Date__c}
+                                    onchange={handleCellChange}
+                                    onkeydown={handleKeyDown}
+                                    data-row={row.key}
+                                    data-field="Transaction_Date__c"
+                                    data-col="0"
+                                />
+                            </td>
+
+                            <!-- col 1: Vehicle Type -->
+                            <td class={row.vehicleCellClass}>
+                                <select
+                                    class="cell-select"
+                                    onchange={handleVehicleTypeChange}
+                                    onkeydown={handleKeyDown}
+                                    data-row={row.key}
+                                    data-col="1"
+                                >
+                                    <option value="Fund" selected={row.isFundTarget}>Fund</option>
+                                    <option value="Financial Instrument" selected={row.isFITarget}>Financial Instrument</option>
+                                    <option value="Warehouse Note" selected={row.isWNTarget}>Warehouse Note</option>
+                                </select>
+                            </td>
+
+                            <!-- col 2: Vehicle record picker — same component for all 3 types -->
+                            <td class={row.targetCellClass}>
+                                <template if:true={row.isFundTarget}>
+                                    <lightning-record-picker
+                                        label="Fund"
+                                        variant="label-hidden"
+                                        placeholder="Search funds..."
+                                        object-api-name="Funds__c"
+                                        value={row.fundPickerValue}
+                                        data-row={row.key}
+                                        data-col="2"
+                                        onchange={handleVehiclePickerChange}
+                                    ></lightning-record-picker>
+                                </template>
+                                <template if:true={row.isFITarget}>
+                                    <lightning-record-picker
+                                        label="Financial Instrument"
+                                        variant="label-hidden"
+                                        placeholder="Search FI..."
+                                        object-api-name="Financial_Instrument__c"
+                                        value={row.fiPickerValue}
+                                        data-row={row.key}
+                                        data-col="2"
+                                        onchange={handleVehiclePickerChange}
+                                    ></lightning-record-picker>
+                                </template>
+                                <template if:true={row.isWNTarget}>
+                                    <lightning-record-picker
+                                        label="Warehouse Note"
+                                        variant="label-hidden"
+                                        placeholder="Search notes..."
+                                        object-api-name="Warehouse_Note__c"
+                                        value={row.wnPickerValue}
+                                        data-row={row.key}
+                                        data-col="2"
+                                        onchange={handleVehiclePickerChange}
+                                    ></lightning-record-picker>
+                                </template>
+                            </td>
+
+                            <!-- col 3: Entity ID -->
+                            <td class={row.entityCellClass}>
+                                <input
+                                    type="text"
+                                    class="cell-input"
+                                    placeholder="e.g. LKD94"
+                                    oninput={handleEntityIdInput}
+                                    onkeydown={handleKeyDown}
+                                    data-row={row.key}
+                                    data-field="Investor_Entity_ID__c"
+                                    data-col="3"
+                                    autocomplete="off"
+                                />
+                            </td>
+
+                            <!-- col 4: Transaction Type -->
+                            <td class={row.typeCellClass}>
+                                <select
+                                    class="cell-select"
+                                    onchange={handleCellChange}
+                                    onkeydown={handleKeyDown}
+                                    data-row={row.key}
+                                    data-field="Transaction_Type__c"
+                                    data-col="4"
+                                >
+                                    <option value="">— Select —</option>
+                                    <option value="New Application">New Application</option>
+                                    <option value="Fund Switch In">Fund Switch In</option>
+                                    <option value="Fund Redemption">Fund Redemption</option>
+                                    <option value="Fund Switch Out">Fund Switch Out</option>
+                                </select>
+                            </td>
+
+                            <!-- col 5: Amount -->
+                            <td class={row.amountCellClass}>
+                                <input
+                                    type="number"
+                                    class="cell-input cell-input--right"
+                                    placeholder="0.00"
+                                    value={row.Amount__c}
+                                    onchange={handleCellChange}
+                                    onkeydown={handleKeyDown}
+                                    data-row={row.key}
+                                    data-field="Amount__c"
+                                    data-col="5"
+                                    min="0"
+                                    step="0.01"
+                                />
+                            </td>
+
+                            <!-- col 6: BDM -->
+                            <td class={row.bdmCellClass}>
+                                <lightning-record-picker
+                                    label="BDM"
+                                    variant="label-hidden"
+                                    placeholder="Search users..."
+                                    object-api-name="User"
+                                    value={row.bdmPickerValue}
+                                    data-row={row.key}
+                                    data-col="6"
+                                    onchange={handleBdmPickerChange}
+                                ></lightning-record-picker>
+                            </td>
+
+                            <!-- col 7: Switched From -->
+                            <td class="col-switched">
+                                <template if:true={row.isSwitchType}>
+                                    <lightning-record-picker
+                                        label="Switched From"
+                                        variant="label-hidden"
+                                        placeholder="Search funds..."
+                                        object-api-name="Funds__c"
+                                        value={row.switchPickerValue}
+                                        data-row={row.key}
+                                        data-col="7"
+                                        onchange={handleSwitchedFromPickerChange}
+                                    ></lightning-record-picker>
+                                </template>
+                                <template if:false={row.isSwitchType}>
+                                    <span class="derived-cell derived-cell--na">N/A</span>
+                                </template>
+                            </td>
+
+                            <!-- col 8: Comment -->
+                            <td class="col-comment">
+                                <input
+                                    type="text"
+                                    class="cell-input"
+                                    placeholder="Optional..."
+                                    value={row.Comment__c}
+                                    onchange={handleCellChange}
+                                    onkeydown={handleKeyDown}
+                                    data-row={row.key}
+                                    data-field="Comment__c"
+                                    data-col="8"
+                                />
+                            </td>
+
+                            <!-- Derived -->
+                            <td class="col-derived">
+                                <span class="derived-cell">{row.entityUsed}</span>
+                            </td>
+                            <td class="col-derived">
+                                <span class="derived-cell">{row.month}</span>
+                            </td>
+                            <td class="col-derived">
+                                <span class={row.intrafundClass}>{row.intrafundLabel}</span>
+                            </td>
+                            <td class="col-del">
+                                <button class="del-btn" onclick={deleteRow} data-row={row.key} aria-label="Delete row">
+                                    <lightning-icon icon-name="utility:delete" size="x-small"></lightning-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Validation errors -->
+        <template if:true={showValidationErrors}>
+            <div class="error-panel">
+                <div class="error-panel__header">
+                    <lightning-icon icon-name="utility:error" variant="error" size="x-small"></lightning-icon>
+                    <span>Please fix the following before saving:</span>
+                </div>
+                <ul class="error-list">
+                    <template for:each={validationErrors} for:item="err">
+                        <li key={err.key}>{err.message}</li>
+                    </template>
+                </ul>
+            </div>
+        </template>
+
+        <!-- Loading overlay -->
+        <template if:true={isSaving}>
+            <div class="saving-overlay">
+                <lightning-spinner alternative-text="Saving..." size="medium"></lightning-spinner>
+                <p>Saving {rows.length} transaction(s)…</p>
+            </div>
+        </template>
+    </div>
+</template>

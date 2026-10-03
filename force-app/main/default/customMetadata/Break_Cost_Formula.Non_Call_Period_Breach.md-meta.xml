@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Non-Call Period Breach</label>
+    <protected>false</protected>
+    <values><field>Basis_Code__c</field><value xsi:type="xsd:string">Non_Call_Period_Breach</value></values>
+    <values><field>Formula_Description__c</field><value xsi:type="xsd:string">Flat fee (typically expressed as a percentage of prepaid principal) for prepaying within the non-call period defined in the facility agreement.</value></values>
+    <values><field>Requires_Approval__c</field><value xsi:type="xsd:boolean">true</value></values>
+    <values><field>Is_Active__c</field><value xsi:type="xsd:boolean">true</value></values>
+</CustomMetadata>

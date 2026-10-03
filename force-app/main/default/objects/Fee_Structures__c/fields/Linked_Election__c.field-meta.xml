@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linked_Election__c</fullName>
+    <description>Election__c record that drives the Cash vs Capitalised choice for this period. Only populated when Fee_Treatment = Cash_or_Capitalised_Election. The Election.Election_Type__c field (Cash / Capitalised) is read at due date to determine treatment. Spec v7 Part 5.2.8.</description>
+    <label>Linked Election</label>
+    <referenceTo>Election__c</referenceTo>
+    <relationshipLabel>Fee Structures</relationshipLabel>
+    <relationshipName>Fee_Structures</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

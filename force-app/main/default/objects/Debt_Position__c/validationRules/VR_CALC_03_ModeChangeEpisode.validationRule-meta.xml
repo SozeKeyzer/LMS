@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_CALC_03_ModeChangeEpisode</fullName>
+    <active>true</active>
+    <description>VR.CALC.03 — Prevents Calc_Mode from being set to Manual or Hybrid without a linked Active_Mode_Change__c episode record. Mode transitions must go through CalcModeService to create the episode first.</description>
+    <errorConditionFormula>AND(
+  ISCHANGED(Calc_Mode__c),
+  OR(
+    ISPICKVAL(Calc_Mode__c, &apos;Manual&apos;),
+    ISPICKVAL(Calc_Mode__c, &apos;Hybrid&apos;)
+  ),
+  ISNULL(Active_Mode_Change__c)
+)</errorConditionFormula>
+    <errorMessage>A Calc Mode Change episode must be created and linked before transitioning to Manual or Hybrid mode. Use the Mode Transition action to initiate the process.</errorMessage>
+</ValidationRule>

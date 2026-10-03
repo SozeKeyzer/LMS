@@ -1,0 +1,80 @@
+<template>
+  <lightning-card title="Outstanding Balance">
+    <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+
+      <template if:true={isLoading}>
+        <div class="state-box">
+          <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+        </div>
+      </template>
+
+      <template if:true={hasError}>
+        <div class="slds-notify slds-notify_alert slds-theme_error slds-m-around_small" role="alert">
+          {errorMsg}
+        </div>
+      </template>
+
+      <template if:true={isEmpty}>
+        <div class="state-box slds-text-color_weak">
+          No principal data yet. Run the Amortisation Schedule first.
+        </div>
+      </template>
+
+      <template if:true={hasData}>
+        <div class="chart-scroll">
+          <svg class="chart-svg"
+               viewBox={chartSvg.viewBox}
+               xmlns="http://www.w3.org/2000/svg"
+               aria-label="Outstanding Balance">
+
+            <!-- Grid lines -->
+            <template for:each={chartSvg.yAxis} for:item="yl">
+              <line key={yl.lineKey}
+                    x1="78" y1={yl.lineY} x2={chartSvg.chartRight} y2={yl.lineY}
+                    class="grid-line"/>
+            </template>
+
+            <!-- Y-axis labels -->
+            <template for:each={chartSvg.yAxis} for:item="yl">
+              <text key={yl.textKey}
+                    x="76" y={yl.cy}
+                    text-anchor="end" dominant-baseline="middle"
+                    class="axis-label">{yl.label}</text>
+            </template>
+
+            <!-- Shaded area under line -->
+            <polyline points={chartSvg.pts}
+                      class="balance-area" fill="#0176d322" stroke="none"/>
+
+            <!-- Balance line -->
+            <polyline points={chartSvg.pts}
+                      class="balance-line" fill="none"/>
+
+            <!-- Data point dots -->
+            <template for:each={chartSvg.dots} for:item="dot">
+              <circle key={dot.key}
+                      cx={dot.cx} cy={dot.cy} r="4"
+                      class="balance-dot">
+                <title>{dot.period}: {dot.label}</title>
+              </circle>
+            </template>
+
+            <!-- X-axis labels -->
+            <template for:each={chartSvg.xLabels} for:item="xl">
+              <text key={xl.key}
+                    x={xl.x} y={xl.y}
+                    text-anchor="middle" class="axis-label">{xl.label}</text>
+            </template>
+
+            <!-- X axis line -->
+            <line x1="78" y1={chartSvg.chartBottom}
+                  x2={chartSvg.chartRight} y2={chartSvg.chartBottom}
+                  class="axis-line"/>
+
+          </svg>
+        </div>
+      </template>
+
+    </div>
+  </lightning-card>
+</template>

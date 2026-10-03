@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_IRT_03_FundLinkedTransaction</fullName>
+    <active>true</active>
+    <description>Fund and Replenish transactions must reference the inbound cash receipt.</description>
+    <errorConditionFormula>OR(ISPICKVAL(Type__c,'Fund'),ISPICKVAL(Type__c,'Replenish')) &amp;&amp; ISBLANK(Linked_Payment_Transaction__c)</errorConditionFormula>
+    <errorMessage>Linked Payment Transaction is required when Type = Fund or Replenish.</errorMessage>
+</ValidationRule>

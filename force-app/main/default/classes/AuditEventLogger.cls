@@ -99,7 +99,7 @@ public class AuditEventLogger {
         for (AuditLogRequest req : requests) {
             log(req.eventType, req.objectApiName, req.recordId,
                 req.source != null ? req.source : 'Manual_Entry',
-                req.reason, null, null, 'Flow');
+                req.reason, req.beforeSnapshot, req.afterSnapshot, 'Flow');
         }
         flush();
     }
@@ -110,5 +110,7 @@ public class AuditEventLogger {
         @InvocableVariable(required=false label='Record ID')        public String recordId;
         @InvocableVariable(required=false label='Source')           public String source;
         @InvocableVariable(required=false label='Reason')           public String reason;
+        @InvocableVariable(required=false label='Before Snapshot')  public String beforeSnapshot;
+        @InvocableVariable(required=false label='After Snapshot')   public String afterSnapshot;
     }
 }

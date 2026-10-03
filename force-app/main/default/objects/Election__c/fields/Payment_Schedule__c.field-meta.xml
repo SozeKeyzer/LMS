@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Schedule__c</fullName>
+    <description>Payment_Schedule row for the period this election covers. Links election to the cash/PIK due amounts.</description>
+    <externalId>false</externalId>
+    <label>Payment Schedule</label>
+    <required>false</required>
+    
+    <referenceTo>Payment_Schedule__c</referenceTo>
+    <relationshipLabel>Elections</relationshipLabel>
+    <relationshipName>Elections_PS</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

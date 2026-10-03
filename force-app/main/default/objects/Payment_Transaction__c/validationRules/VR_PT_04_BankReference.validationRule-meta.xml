@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PT_04_BankReference</fullName>
+    <active>true</active>
+    <description>VR.PT.04</description>
+    <errorConditionFormula>ISPICKVAL(Status__c,'Cleared') &amp;&amp; ISBLANK(Bank_Reference__c)</errorConditionFormula>
+    <errorMessage>Bank Reference is required when Status = Cleared.</errorMessage>
+</ValidationRule>

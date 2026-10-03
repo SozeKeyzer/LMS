@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <description>When Accrual_Daily Is_Immutable__c becomes true, logs period close event. Roll-up to Payment_Schedule.Interest_Due is handled by PeriodCloseBatch per Rule R1.</description>
+    <label>Accrual Daily Period Close</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+    <start>
+        <locationX>176</locationX><locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters><field>Is_Immutable__c</field><operator>IsChanged</operator><value><booleanValue>true</booleanValue></value></filters>
+        <filters><field>Is_Immutable__c</field><operator>EqualTo</operator><value><booleanValue>true</booleanValue></value></filters>
+        <object>Accrual_Daily__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+        <connector><targetReference>Log_Period_Close</targetReference></connector>
+    </start>
+    <actionCalls>
+        <name>Log_Period_Close</name>
+        <label>Log Accrual Crystallised Audit Event</label>
+        <locationX>176</locationX><locationY>120</locationY>
+        <actionName>AuditEventLogger</actionName>
+        <actionType>apex</actionType>
+        <inputParameters><name>eventType</name><value><stringValue>PERIOD_CLOSED</stringValue></value></inputParameters>
+        <inputParameters><name>objectApiName</name><value><stringValue>Accrual_Daily__c</stringValue></value></inputParameters>
+        <inputParameters><name>recordId</name><value><elementReference>$Record.Id</elementReference></value></inputParameters>
+        <inputParameters><name>source</name><value><stringValue>System_Calculated</stringValue></value></inputParameters>
+        <inputParameters><name>reason</name><value><stringValue>Accrual crystallised — period closed. Is_Immutable set to true.</stringValue></value></inputParameters>
+    </actionCalls>
+</Flow>

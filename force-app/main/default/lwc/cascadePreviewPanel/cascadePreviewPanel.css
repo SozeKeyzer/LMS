@@ -1,0 +1,10 @@
+.change-banner { background: #fde2c5; border-left: 4px solid #fe9339; padding: 10px 14px; border-radius: 4px; margin-bottom: 12px; }
+.change-label { font-size: 12px; font-weight: 600; color: #7a4500; margin-bottom: 4px; }
+.change-value { font-size: 13px; color: #7a4500; }
+.old-value { color: #747474; text-decoration: line-through; }
+.arrow { color: #747474; margin: 0 8px; }
+.new-value { color: #1b1b1b; font-weight: 600; }
+.impact-box { background: #fef5e6; border: 1px solid #fe9339; border-radius: 4px; padding: 10px 12px; margin-bottom: 12px; }
+.impact-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #f5e0a8; font-size: 13px; }
+.impact-item:last-child { border: none; }
+.impact-count { color: #747474; }

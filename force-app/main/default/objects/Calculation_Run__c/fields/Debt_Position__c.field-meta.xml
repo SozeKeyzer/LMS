@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Debt_Position__c</fullName>
+    <label>Debt Position</label>
+    <referenceTo>Debt_Position__c</referenceTo>
+    <relationshipLabel>Calculation Runs</relationshipLabel>
+    <relationshipName>Calculation_Runs</relationshipName>
+    <type>Lookup</type>
+</CustomField>

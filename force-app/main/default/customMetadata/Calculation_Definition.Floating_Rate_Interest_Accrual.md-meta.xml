@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Floating Rate Interest Accrual</label>
+    <protected>false</protected>
+    <values><field>Description__c</field><value xsi:type="xsd:string">Daily accrual for floating-rate Debt Positions (BBSW + margin). All-in rate sourced from current Interest_Period. Floor and ceiling applied per Interest_Rate_Terms. Output written to Accrual_Daily__c.</value></values>
+    <values><field>Strategy_Class__c</field><value xsi:type="xsd:string">FloatingRateAccrualStrategy</value></values>
+    <values><field>Trigger_Object__c</field><value xsi:type="xsd:string">Debt_Position__c</value></values>
+    <values><field>Trigger_Event__c</field><value xsi:type="xsd:string">Scheduled</value></values>
+    <values><field>Mode__c</field><value xsi:type="xsd:string">Generated</value></values>
+    <values><field>Input_Fields__c</field><value xsi:type="xsd:string">[{"apiName":"Day_Count_Convention__c","label":"Day Count Convention","required":true},{"apiName":"Initial_Margin__c","label":"Initial Margin","required":true},{"apiName":"Initial_Benchmark__c","label":"Initial Benchmark","required":true},{"type":"childRecord","objectApiName":"Interest_Period__c","parentField":"Debt_Position__c","filter":"Period_Start__c &lt;= TODAY","label":"Active Interest Period","required":true}]</value></values>
+    <values><field>Output_Object__c</field><value xsi:type="xsd:string">Accrual_Daily__c</value></values>
+    <values><field>Output_Fields__c</field><value xsi:type="xsd:string">Accrual_Date__c,Accrued_Amount__c,Rate__c,Day_Count_Fraction__c</value></values>
+    <values><field>Owned_Fields__c</field><value xsi:type="xsd:string">Accrued_Amount__c,Rate__c,Day_Count_Fraction__c</value></values>
+    <values><field>Cascade_Trigger_Fields__c</field><value xsi:type="xsd:string">Initial_Margin__c,Day_Count_Convention__c,Initial_Benchmark__c,Initial_Rate_Ceiling__c,Initial_Rate_Floor__c</value></values>
+    <values><field>Invalidates__c</field><value xsi:type="xsd:string">Holder_Economics_Allocation</value></values>
+    <values><field>Depends_On__c</field><value xsi:nil="true"/></values>
+    <values><field>Business_Rule_Refs__c</field><value xsi:type="xsd:string">R5,R6,R7</value></values>
+    <values><field>Version__c</field><value xsi:type="xsd:string">1.0</value></values>
+    <values><field>Lifecycle_State__c</field><value xsi:type="xsd:string">Locked</value></values>
+    <values><field>Active__c</field><value xsi:type="xsd:boolean">true</value></values>
+</CustomMetadata>

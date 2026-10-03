@@ -1,0 +1,286 @@
+<template>
+    <div class="list-container">
+
+        <!-- KPI Strip -->
+        <div class="kpi-strip">
+            <div class="kpi-card">
+                <span class="kpi-label">Total Transactions</span>
+                <span class="kpi-value">{totalCount}</span>
+            </div>
+            <div class="kpi-card kpi-card--blue">
+                <span class="kpi-label">Total Amount</span>
+                <span class="kpi-value">{formattedTotalAmount}</span>
+            </div>
+            <div class="kpi-card kpi-card--green">
+                <span class="kpi-label">Applications</span>
+                <span class="kpi-value">{applicationCount}</span>
+            </div>
+            <div class="kpi-card kpi-card--amber">
+                <span class="kpi-label">Redemptions</span>
+                <span class="kpi-value">{redemptionCount}</span>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-bar__fields">
+
+                <!-- Fund filter -->
+                <div class="filter-group">
+                    <lightning-combobox
+                        label="Fund"
+                        placeholder="Add fund..."
+                        value={_addFundValue}
+                        options={availableFundOptions}
+                        onchange={handleAddFund}
+                        class="filter-field"
+                    ></lightning-combobox>
+                    <div class="filter-pills">
+                        <template for:each={selectedFundPills} for:item="pill">
+                            <button key={pill.value} class="filter-pill" data-value={pill.value} onclick={handleRemoveFundFilter}>
+                                {pill.label}&nbsp;×
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Transaction Type filter -->
+                <div class="filter-group">
+                    <lightning-combobox
+                        label="Transaction Type"
+                        placeholder="Add type..."
+                        value={_addTypeValue}
+                        options={availableTypeOptions}
+                        onchange={handleAddType}
+                        class="filter-field"
+                    ></lightning-combobox>
+                    <div class="filter-pills">
+                        <template for:each={selectedTypePills} for:item="pill">
+                            <button key={pill.value} class="filter-pill" data-value={pill.value} onclick={handleRemoveTypeFilter}>
+                                {pill.label}&nbsp;×
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Month filter -->
+                <div class="filter-group">
+                    <lightning-combobox
+                        label="Month"
+                        placeholder="Add month..."
+                        value={_addMonthValue}
+                        options={availableMonthOptions}
+                        onchange={handleAddMonth}
+                        class="filter-field"
+                    ></lightning-combobox>
+                    <div class="filter-pills">
+                        <template for:each={selectedMonthPills} for:item="pill">
+                            <button key={pill.value} class="filter-pill" data-value={pill.value} onclick={handleRemoveMonthFilter}>
+                                {pill.label}&nbsp;×
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <template if:true={showIntrafundFilter}>
+                    <lightning-input
+                        type="toggle"
+                        label="Intrafund Only"
+                        checked={_intrafundOnly}
+                        onchange={handleIntrafundFilter}
+                        class="filter-toggle"
+                    ></lightning-input>
+                </template>
+            </div>
+            <div class="filter-bar__actions">
+                <lightning-button
+                    label="Clear Filters"
+                    variant="neutral"
+                    icon-name="utility:clear"
+                    onclick={clearFilters}
+                ></lightning-button>
+                <lightning-button
+                    label="New Transaction"
+                    variant="brand"
+                    icon-name="utility:add"
+                    onclick={handleNewTransaction}
+                ></lightning-button>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="spinner-container">
+                <lightning-spinner alternative-text="Loading transactions..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error State -->
+        <template if:true={hasError}>
+            <div class="error-state">
+                <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                <p>{errorMessage}</p>
+            </div>
+        </template>
+
+        <!-- Data Table -->
+        <template if:false={isLoading}>
+            <template if:true={hasRecords}>
+                <div class="table-wrapper">
+                    <table class="tx-table">
+                        <thead>
+                            <tr>
+                                <th class="col-expand"></th>
+                                <th class="col-date">Date</th>
+                                <th class="col-fund">Vehicle</th>
+                                <th class="col-entity">Entity</th>
+                                <th class="col-type">Type</th>
+                                <th class="col-amount">Amount</th>
+                                <th class="col-bdm">BDM</th>
+                                <th class="col-intrafund">Intrafund</th>
+                                <th class="col-switch-completed">Switch Completed</th>
+                                <th class="col-money-received">Money Received</th>
+                                <th class="col-badge"></th>
+                                <th class="col-actions"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={records} for:item="row">
+                                <tr key={row.Id} class={row.rowClass}>
+                                    <td class="col-expand">
+                                        <button class="expand-btn" onclick={handleExpandRow} data-id={row.Id} aria-label="Expand row">
+                                            <lightning-icon icon-name={row.expandIcon} size="x-small"></lightning-icon>
+                                        </button>
+                                    </td>
+                                    <td class="col-date">{row.displayDate}</td>
+                                    <td class="col-fund">{row.vehicleName}</td>
+                                    <td class="col-entity">
+                                        <span class="entity-name">{row.Entity_Used__c}</span>
+                                        <span class="entity-id">{row.Investor_Entity_ID__c}</span>
+                                    </td>
+                                    <td class="col-type">
+                                        <span class={row.typeBadgeClass}>{row.Transaction_Type__c}</span>
+                                    </td>
+                                    <td class="col-amount col-amount--{row.amountDirection}">{row.formattedAmount}</td>
+                                    <td class="col-bdm">{row.bdmName}</td>
+                                    <td class="col-intrafund">{row.intrafundLabel}</td>
+                                    <td class="col-switch-completed">{row.displaySwitchDate}</td>
+                                    <td class="col-money-received">{row.moneyReceivedLabel}</td>
+                                    <td class="col-badge">
+                                        <template if:true={row.Intrafund__c}>
+                                            <span class="badge badge--intrafund" title="Intrafund">IF</span>
+                                        </template>
+                                        <template if:true={row.Restricted_Entity__c}>
+                                            <span class="badge badge--restricted" title="Restricted Entity">R</span>
+                                        </template>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="action-btn" onclick={handleEditRow} data-id={row.Id} aria-label="Edit">
+                                            <lightning-icon icon-name="utility:edit" size="x-small"></lightning-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <template if:true={row.isExpanded}>
+                                    <tr key={row.expandKey}>
+                                        <td colspan="12">
+                                            <div class="expand-detail">
+                                                <div class="expand-grid">
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Primary Contact</span>
+                                                        <span class="expand-val">{row.Primary_Contact_Name__c}</span>
+                                                    </div>
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Contact Email</span>
+                                                        <span class="expand-val">{row.Primary_Contact_Email__c}</span>
+                                                    </div>
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Month</span>
+                                                        <span class="expand-val">{row.Month__c}</span>
+                                                    </div>
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Vehicle Type</span>
+                                                        <span class="expand-val">{row.Investment_Vehicle_Type__c}</span>
+                                                    </div>
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Switched From</span>
+                                                        <span class="expand-val">{row.switchedFromName}</span>
+                                                    </div>
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Switch Completed</span>
+                                                        <span class="expand-val">{row.displaySwitchDate}</span>
+                                                    </div>
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Money Received On</span>
+                                                        <span class="expand-val">{row.displayMoneyDate}</span>
+                                                    </div>
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Money Received</span>
+                                                        <span class="expand-val">{row.moneyReceivedLabel}</span>
+                                                    </div>
+                                                    <div class="expand-item">
+                                                        <span class="expand-label">Intrafund</span>
+                                                        <span class="expand-val">{row.intrafundLabel}</span>
+                                                    </div>
+                                                    <template if:true={row.Comment__c}>
+                                                        <div class="expand-item expand-item--full">
+                                                            <span class="expand-label">Comment</span>
+                                                            <span class="expand-val">{row.Comment__c}</span>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="pagination-info">{paginationLabel}</span>
+                    <div class="pagination-controls">
+                        <lightning-button-icon
+                            icon-name="utility:chevronleft"
+                            variant="border-filled"
+                            size="small"
+                            onclick={handlePrevPage}
+                            disabled={isFirstPage}
+                            alternative-text="Previous page"
+                        ></lightning-button-icon>
+                        <span class="page-indicator">Page {currentPage} of {totalPages}</span>
+                        <lightning-button-icon
+                            icon-name="utility:chevronright"
+                            variant="border-filled"
+                            size="small"
+                            onclick={handleNextPage}
+                            disabled={isLastPage}
+                            alternative-text="Next page"
+                        ></lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+
+            <template if:false={hasRecords}>
+                <template if:false={isLoading}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:database" size="large" class="empty-icon"></lightning-icon>
+                        <p class="empty-title">No transactions found</p>
+                        <p class="empty-sub">Try adjusting your filters or create a new transaction.</p>
+                    </div>
+                </template>
+            </template>
+        </template>
+
+    </div>
+
+    <!-- Modal -->
+    <template if:true={showModal}>
+        <c-fund-transaction-modal
+            record-id={editRecordId}
+            onclose={handleModalClose}
+            onsave={handleModalSave}
+        ></c-fund-transaction-modal>
+    </template>
+</template>

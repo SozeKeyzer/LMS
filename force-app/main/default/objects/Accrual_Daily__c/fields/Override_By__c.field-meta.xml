@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Override_By__c</fullName>
+    <description>User who applied the override on this Accrual Daily record.</description>
+    <externalId>false</externalId>
+    <label>Override By</label>
+    <required>false</required>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Accrual Daily Records Overridden</relationshipLabel>
+    <relationshipName>Accrual_Daily_Overridden</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

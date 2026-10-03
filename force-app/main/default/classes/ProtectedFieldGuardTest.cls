@@ -10,9 +10,12 @@ private class ProtectedFieldGuardTest {
         Debt_Position__c dp = new Debt_Position__c(
             Name = 'Guard Test DP',
             Financial_Instrument__c = fi.Id,
-            Source__c = 'System_Calculated'
+            Source__c = 'System_Calculated',
+            iPlatform_External_Id__c = 'GUARD-001'
         );
+        TriggerContext.getInstance().bypassGuards = true;
         insert dp;
+        TriggerContext.getInstance().bypassGuards = false;
     }
 
     @IsTest

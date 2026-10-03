@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Bypasses BDM filter in Apex — user can see all Fund Transactions across all BDMs. Assigned to Admins, CGO, and CEO.</description>
+    <label>Full Transaction Access</label>
+</CustomPermission>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Capitalisation_Trigger__c</fullName>
+    <description>When capitalisation occurs for fees with Fee_Treatment = Capitalised. On_Due_Date = fee capitalises on its scheduled due date (default). On_Default = capitalises when the loan enters default. On_Election = borrower elects timing via Linked_Election. Spec v7 Part 5.2.8.</description>
+    <label>Capitalisation Trigger</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>On_Due_Date</fullName><default>true</default><label>On Due Date</label></value>
+            <value><fullName>On_Default</fullName><default>false</default><label>On Default</label></value>
+            <value><fullName>On_Election</fullName><default>false</default><label>On Election</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

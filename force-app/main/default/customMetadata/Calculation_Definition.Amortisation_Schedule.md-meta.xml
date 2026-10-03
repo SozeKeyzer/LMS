@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Amortisation Schedule</label>
+    <protected>false</protected>
+    <values><field>Description__c</field><value xsi:type="xsd:string">Generates the full Payment_Schedule__c amortisation table for a Debt Position. Supports Bullet, Equal Instalment, Equal Principal and Sculpted profiles via the existing ScheduleGenerationService.</value></values>
+    <values><field>Strategy_Class__c</field><value xsi:type="xsd:string">AmortisationScheduleStrategy</value></values>
+    <values><field>Trigger_Object__c</field><value xsi:type="xsd:string">Debt_Position__c</value></values>
+    <values><field>Trigger_Event__c</field><value xsi:type="xsd:string">OnDemand</value></values>
+    <values><field>Mode__c</field><value xsi:type="xsd:string">Generated</value></values>
+    <values><field>Input_Fields__c</field><value xsi:type="xsd:string">[{"apiName":"Accrual_Start_Date__c","label":"Accrual Start Date","required":true},{"apiName":"Day_Count_Convention__c","label":"Day Count Convention","required":true},{"apiName":"First_Payment_Date__c","label":"First Payment Date","required":true},{"apiName":"Position_Maturity_Date__c","label":"Position Maturity Date","required":true},{"apiName":"Payment_Frequency__c","label":"Payment Frequency","required":true}]</value></values>
+    <values><field>Output_Object__c</field><value xsi:type="xsd:string">Payment_Schedule__c</value></values>
+    <values><field>Output_Fields__c</field><value xsi:type="xsd:string">Due_Date__c,Principal_Due__c,Interest_Due__c,Total_Due__c,Status__c</value></values>
+    <values><field>Owned_Fields__c</field><value xsi:type="xsd:string">Principal_Due__c,Interest_Due__c,Total_Due__c</value></values>
+    <values><field>Cascade_Trigger_Fields__c</field><value xsi:type="xsd:string">Day_Count_Convention__c,Initial_Margin__c,Initial_Benchmark__c,Initial_Rate_Ceiling__c,Initial_Rate_Floor__c</value></values>
+    <values><field>Invalidates__c</field><value xsi:type="xsd:string">Holder_Economics_Allocation</value></values>
+    <values><field>Depends_On__c</field><value xsi:nil="true"/></values>
+    <values><field>Business_Rule_Refs__c</field><value xsi:type="xsd:string">R10,R11</value></values>
+    <values><field>Version__c</field><value xsi:type="xsd:string">1.0</value></values>
+    <values><field>Lifecycle_State__c</field><value xsi:type="xsd:string">Locked</value></values>
+    <values><field>Active__c</field><value xsi:type="xsd:boolean">true</value></values>
+</CustomMetadata>

@@ -1,0 +1,76 @@
+<template>
+  <c-calc-mode-banner
+    record-id={recordId}
+    calc-mode={calcMode}
+    mode-since={calcModeSince}>
+  </c-calc-mode-banner>
+  <c-debt-position-kpi-strip record-id={recordId}></c-debt-position-kpi-strip>
+  <div class="cockpit-layout">
+
+    <div class="cockpit-main">
+      <lightning-tabset>
+        <lightning-tab label="Cashflows">
+          <c-cashflow-chart record-id={recordId}></c-cashflow-chart>
+          <c-outstanding-balance-chart record-id={recordId}></c-outstanding-balance-chart>
+        </lightning-tab>
+        <lightning-tab label="Holders">
+          <c-holder-economics-view record-id={recordId}></c-holder-economics-view>
+        </lightning-tab>
+        <lightning-tab label="Audit">
+          <c-calc-run-history record-id={recordId}></c-calc-run-history>
+        </lightning-tab>
+        <lightning-tab label="Schedule Generation">
+          <c-schedule-generator-wizard record-id={recordId}></c-schedule-generator-wizard>
+          <c-schedule-approver-view record-id={recordId}></c-schedule-approver-view>
+        </lightning-tab>
+      </lightning-tabset>
+    </div>
+
+    <div class="cockpit-side">
+
+      <!-- Calculation Readiness -->
+      <c-calc-readiness-panel record-id={recordId} object-api-name="Debt_Position__c"
+        oncalcgenerated={handleCalcGenerated}>
+      </c-calc-readiness-panel>
+
+      <!-- Field Change / Cascade Preview -->
+      <div class="slds-m-top_medium">
+        <template if:true={showCascadePanel}>
+          <c-cascade-preview-panel
+            record-id={recordId}
+            object-api-name="Debt_Position__c"
+            field-api-name={cascadeField}
+            proposed-value={cascadeNewValue}
+            original-value={cascadeOldValue}
+            oncascadecommitted={handleCascadeCommitted}
+            oncancel={handleCascadeCancel}>
+          </c-cascade-preview-panel>
+        </template>
+        <template if:false={showCascadePanel}>
+          <lightning-card title="Field Change">
+            <div class="slds-p-around_small">
+              <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+                Preview the downstream impact before changing a key field.
+              </p>
+              <lightning-combobox label="Field to change" value={cascadeField}
+                options={cascadeFieldOptions} onchange={handleCascadeFieldChange}
+                placeholder="Select field">
+              </lightning-combobox>
+              <lightning-input label="Current value" value={cascadeOldValue}
+                onchange={handleOldValueChange} class="slds-m-top_x-small">
+              </lightning-input>
+              <lightning-input label="Proposed new value" value={cascadeNewValue}
+                onchange={handleNewValueChange} class="slds-m-top_x-small">
+              </lightning-input>
+              <lightning-button label="Preview Impact" variant="brand"
+                onclick={handlePreviewCascade} disabled={cannotPreviewCascade}
+                class="slds-m-top_small">
+              </lightning-button>
+            </div>
+          </lightning-card>
+        </template>
+      </div>
+
+    </div>
+  </div>
+</template>

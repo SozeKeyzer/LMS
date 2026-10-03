@@ -1,0 +1,4 @@
+.cockpit-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; margin-top: 12px; }
+@media (max-width: 900px) { .cockpit-layout { grid-template-columns: 1fr; } }
+.cockpit-main { min-width: 0; }
+.cockpit-side { min-width: 0; }

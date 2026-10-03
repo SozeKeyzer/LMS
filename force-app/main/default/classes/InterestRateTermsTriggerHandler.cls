@@ -28,12 +28,12 @@ public class InterestRateTermsTriggerHandler extends LMSTriggerHandler {
     ) {
         for (SObject newRec : newList) {
             SObject oldRec = oldMap.get(newRec.Id);
-            Object newStatus = newRec.get('Status__c');
-            Object oldStatus = oldRec != null ? oldRec.get('Status__c') : null;
+            Object newStatus = newRec.get('Application_Status__c');
+            Object oldStatus = oldRec != null ? oldRec.get('Application_Status__c') : null;
             if (newStatus != null && newStatus != oldStatus) {
                 AuditEventLogger.logManual(
-                    'RECORD_CREATED', 'Interest_Rate_Terms__c', String.valueOf(newRec.Id),
-                    'Interest Rate Terms status changed: ' + oldStatus + ' → ' + newStatus
+                    'STATUS_CHANGED', 'Interest_Rate_Terms__c', String.valueOf(newRec.Id),
+                    'IRT Application Status changed: ' + oldStatus + ' → ' + newStatus
                 );
             }
         }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Rate_Terms__c</fullName>
+    <description>Rate term being actioned (applied/deferred/waived).</description>
+    <externalId>false</externalId>
+    <label>Interest Rate Terms</label>
+    <required>true</required>
+    <referenceTo>Interest_Rate_Terms__c</referenceTo>
+    <relationshipLabel>Rate Application Events</relationshipLabel>
+    <relationshipName>Rate_Application_Events</relationshipName>
+    <trackTrending>false</trackTrending>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <type>Lookup</type>
+</CustomField>

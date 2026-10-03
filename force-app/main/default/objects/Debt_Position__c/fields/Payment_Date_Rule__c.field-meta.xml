@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Date_Rule__c</fullName>
+    <description>Defines the rule used to determine how payment dates are calculated and aligned within each payment period for this debt position.</description>
+    <inlineHelpText>Select the rule that governs how payment dates are set (e.g. month-start, month-end, fixed day, or business-day adjustment). This works with First Payment Date and Payment Frequency to calculate scheduled payment dates.</inlineHelpText>
+    <label>Payment Date Rule</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>First Day of Month</fullName>
+                <default>false</default>
+                <label>First Day of Month</label>
+            </value>
+            <value>
+                <fullName>Last Day of Month</fullName>
+                <default>false</default>
+                <label>Last Day of Month</label>
+            </value>
+            <value>
+                <fullName>Specific Day of Month</fullName>
+                <default>false</default>
+                <label>Specific Day of Month</label>
+            </value>
+            <value>
+                <fullName>X Days After Period End</fullName>
+                <default>false</default>
+                <label>X Days After Period End</label>
+            </value>
+            <value>
+                <fullName>Following Business Day</fullName>
+                <default>false</default>
+                <label>Following Business Day</label>
+            </value>
+            <value>
+                <fullName>Preceding Business Day</fullName>
+                <default>false</default>
+                <label>Preceding Business Day</label>
+            </value>
+            <value>
+                <fullName>Modified Following Business Day</fullName>
+                <default>false</default>
+                <label>Modified Following Business Day</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

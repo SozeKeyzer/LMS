@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requested_By__c</fullName>
+    <description>User who initiated the adjustment. Must differ from Approved_By (4-eyes per VR.PAD.05).</description>
+    <externalId>false</externalId>
+    <label>Requested By</label>
+    <required>false</required>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Payment Adjustments Requested</relationshipLabel>
+    <relationshipName>PAD_Requested_By</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

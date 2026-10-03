@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Record Status Indicators</masterLabel>
+    <description>Sidebar card showing active workflows (workouts, waivers, IC approvals, trades, reviews) on FI and DP record pages. Driven by Status_Indicator__mdt — add indicators via CMDT, no code change needed.</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Financial_Instrument__c</object>
+                <object>Debt_Position__c</object>
+            </objects>
+            <property
+                name="cardTitle"
+                type="String"
+                label="Card Title"
+                default="Status Indicators"
+                description="Heading text shown in the card header."/>
+            <property
+                name="hideWhenEmpty"
+                type="Boolean"
+                label="Hide card when no active indicators"
+                default="false"
+                description="When true, the entire card is removed from the sidebar when there are no active indicators. When false, an empty-state message is shown instead."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Position_Source__c</fullName>
+    <description>Identifies how this loan position was created within the facility lifecycle.</description>
+    <inlineHelpText>Describes how the debt position was originally sourced.
+
+Primary Origination = loan originated by us.
+Secondary Acquisition = acquired from another lender.
+Internal Transfer = moved internally (e.g. warehouse to fund).
+Participation / Syndication = economic participation where another party is lead lender.
+Other = explain in notes.
+
+Set at creation and not used for amendments or repricing.</inlineHelpText>
+    <label>Position Source</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Primary Origination</fullName>
+                <default>false</default>
+                <label>Primary Origination</label>
+            </value>
+            <value>
+                <fullName>Secondary Acquisition</fullName>
+                <default>false</default>
+                <label>Secondary Acquisition</label>
+            </value>
+            <value>
+                <fullName>Internal Transfer</fullName>
+                <default>false</default>
+                <label>Internal Transfer</label>
+            </value>
+            <value>
+                <fullName>Participation / Syndication</fullName>
+                <default>false</default>
+                <label>Participation / Syndication</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

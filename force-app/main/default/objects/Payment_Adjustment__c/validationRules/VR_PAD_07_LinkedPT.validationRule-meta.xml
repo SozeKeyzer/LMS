@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PAD_07_LinkedPT</fullName>
+    <active>true</active>
+    <description>VR.PAD.07</description>
+    <errorConditionFormula>ISPICKVAL(Adjustment_Type__c,'Reversal') &amp;&amp; ISBLANK(Linked_Payment_Transaction__c)</errorConditionFormula>
+    <errorMessage>Linked Payment Transaction is required when Adjustment Type = Reversal.</errorMessage>
+</ValidationRule>

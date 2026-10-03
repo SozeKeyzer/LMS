@@ -9,8 +9,8 @@ public class CorrelationIdGenerator {
         String h = EncodingUtil.convertToHex(b);
         return h.substring(0,8)  + '-' +
                h.substring(8,12) + '-' +
-               '4' + h.substring(13,16) + '-' +
-               '8' + h.substring(17,20) + '-' +
+               '4' + h.substring(12,15) + '-' +
+               '8' + h.substring(16,19) + '-' +
                h.substring(20,32);
     }
 }

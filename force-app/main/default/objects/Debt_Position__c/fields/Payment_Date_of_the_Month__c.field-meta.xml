@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Date_of_the_Month__c</fullName>
+    <description>Specifies the calendar day of the month on which payments are due when a fixed day-of-month rule applies.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a number between 1 and 31. Required only when Payment Date Rule is set to “Specific Day of Month”. If the selected day does not exist in a month, standard business-day adjustment rules should apply.</inlineHelpText>
+    <label>Payment Date of the Month</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Superseded_By__c</fullName>
+    <description>Replacement schedule row created by Loan_Amendment.</description>
+    <externalId>false</externalId>
+    <label>Superseded By</label>
+    <required>false</required>
+    <referenceTo>Payment_Schedule__c</referenceTo>
+    <relationshipLabel>Superseded Schedules</relationshipLabel>
+    <relationshipName>Superseded_Schedules</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

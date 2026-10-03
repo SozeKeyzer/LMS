@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Interest_Compounding__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Only relevant on Default Interest IRT rows (Rate_Segment_Type = Default_Interest). When true, accrued unpaid interest is added to the principal basis each day — interest-on-interest per Rule R20. Compounding_Frequency controls the compounding cadence. Spec v7 Part 2.11.2, Rule R20.</description>
+    <label>Default Interest Compounding (IoI)</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

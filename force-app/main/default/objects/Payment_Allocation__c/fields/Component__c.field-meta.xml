@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Component__c</fullName>
+    <description>Payment component this allocation settles. Determines waterfall priority.</description>
+    <externalId>false</externalId>
+    <label>Component</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Principal</fullName>
+                <default>false</default>
+                <label>Principal</label>
+            </value>
+            <value>
+                <fullName>Interest</fullName>
+                <default>true</default>
+                <label>Interest</label>
+            </value>
+            <value>
+                <fullName>PIK_Interest_Cash_Portion</fullName>
+                <default>false</default>
+                <label>PIK Interest Cash Portion</label>
+            </value>
+            <value>
+                <fullName>Fee</fullName>
+                <default>false</default>
+                <label>Fee</label>
+            </value>
+            <value>
+                <fullName>Penalty</fullName>
+                <default>false</default>
+                <label>Penalty</label>
+            </value>
+            <value>
+                <fullName>Escrow</fullName>
+                <default>false</default>
+                <label>Escrow</label>
+            </value>
+            <value>
+                <fullName>Reserve_Replenishment</fullName>
+                <default>false</default>
+                <label>Reserve Replenishment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

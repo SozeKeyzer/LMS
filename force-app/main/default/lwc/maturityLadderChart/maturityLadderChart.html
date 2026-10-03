@@ -1,0 +1,27 @@
+<template>
+  <lightning-card title="Maturity Ladder">
+    <div class="slds-p-around_medium chart-container">
+
+      <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+      </template>
+
+      <template if:true={hasError}>
+        <div class="slds-notify slds-notify_alert slds-theme_error slds-m-around_small" role="alert">
+          <strong>Chart error:</strong> {errorMsg}
+        </div>
+      </template>
+
+      <template if:true={showEmpty}>
+        <div class="slds-illustration slds-illustration_small slds-p-around_medium">
+          <p class="slds-text-body_regular slds-text-color_weak">
+            No principal maturity data available. Run the Amortisation Schedule first.
+          </p>
+        </div>
+      </template>
+
+      <canvas class={canvasClass}></canvas>
+
+    </div>
+  </lightning-card>
+</template>

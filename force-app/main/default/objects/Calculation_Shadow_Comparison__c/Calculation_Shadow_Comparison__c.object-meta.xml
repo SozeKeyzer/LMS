@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Temporary records produced during shadow runs. Auto-archived after promotion/rejection.</description>
+    <label>Calculation Shadow Comparison</label>
+    <nameField>
+        <displayFormat>SHC-{00000}</displayFormat>
+        <label>Shadow Comparison Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Calculation Shadow Comparisons</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+    <deploymentStatus>Deployed</deploymentStatus>
+</CustomObject>

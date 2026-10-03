@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_CALC_04_CommitRunVersion</fullName>
+    <active>true</active>
+    <description>VR.CALC.04 — Calculation_Run records are read-only after creation. Prevents any field on an existing run being changed after it is saved, preserving the tamper-evident audit trail.</description>
+    <errorConditionFormula>NOT(ISNEW())</errorConditionFormula>
+    <errorMessage>Calculation Run records are read-only after creation and cannot be modified.</errorMessage>
+</ValidationRule>

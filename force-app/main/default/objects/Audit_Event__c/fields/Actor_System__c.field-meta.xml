@@ -11,11 +11,31 @@
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value><fullName>User</fullName><default>false</default><label>User</label></value>
-            <value><fullName>Batch</fullName><default>false</default><label>Batch</label></value>
-            <value><fullName>Flow</fullName><default>false</default><label>Flow</label></value>
-            <value><fullName>Integration</fullName><default>false</default><label>Integration</label></value>
-            <value><fullName>Scheduled</fullName><default>false</default><label>Scheduled</label></value>
+            <value>
+                <fullName>User</fullName>
+                <default>false</default>
+                <label>User</label>
+            </value>
+            <value>
+                <fullName>Batch</fullName>
+                <default>false</default>
+                <label>Batch</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>Integration</fullName>
+                <default>false</default>
+                <label>Integration</label>
+            </value>
+            <value>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+                <label>Scheduled</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

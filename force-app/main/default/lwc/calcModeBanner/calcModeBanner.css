@@ -1,0 +1,15 @@
+.mode-banner { padding: 14px 18px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.mode-banner-manual { background: linear-gradient(90deg, #fde2c5 0%, #fff5e6 100%); border-left: 5px solid #fe9339; }
+.mode-banner-hybrid  { background: #cfe9fe; border-left: 5px solid #0176d3; }
+.mode-banner-engine  { background: #cdefc4; border-left: 5px solid #2e844a; }
+.banner-body { display: flex; align-items: center; gap: 12px; flex: 1; }
+.banner-icon { font-size: 18px; flex-shrink: 0; }
+.banner-title { font-size: 14px; font-weight: 700; }
+.banner-detail { font-size: 12px; margin-top: 2px; }
+.mode-banner-manual .banner-title,
+.mode-banner-manual .banner-detail { color: #7a4500; }
+.mode-banner-engine .banner-title,
+.mode-banner-engine .banner-detail { color: #194e3a; }
+.mode-banner-hybrid  .banner-title,
+.mode-banner-hybrid  .banner-detail { color: #014486; }
+.banner-actions { display: flex; gap: 8px; flex-shrink: 0; }

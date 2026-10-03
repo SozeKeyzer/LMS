@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Repayment_Amount__c</fullName>
+    <description>Principal amount due in this schedule period. Used by SculptedAmortisationCalculator to read term-sheet-defined irregular principal repayments. Set by ops at origination from the term sheet. Spec v3 Part 5.4.</description>
+    <label>Repayment Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

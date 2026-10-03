@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Placeholder_All_In_Rate__c</fullName>
+    <description>For floating-rate loans: the all-in rate used as placeholder (Placeholder_Base_Rate + Placeholder_Spread, with floor/ceiling applied). Used in provisional Interest_Due calculation. Preserved after Rate_Finalised for variance analysis.</description>
+    <externalId>false</externalId>
+    <label>Placeholder All-In Rate</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

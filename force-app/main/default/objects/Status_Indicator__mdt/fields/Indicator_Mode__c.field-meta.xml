@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Indicator_Mode__c</fullName>
+    <label>Indicator Mode</label>
+    <type>Picklist</type>
+    <required>false</required>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Active_Count</fullName>
+                <default>true</default>
+                <label>Active Count</label>
+            </value>
+            <value>
+                <fullName>Latest_Record</fullName>
+                <default>false</default>
+                <label>Latest Record</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_DR_04_FundedAmount</fullName>
+    <active>true</active>
+    <description>Record the actual funded amount.</description>
+    <errorConditionFormula>ISPICKVAL(Status__c,'Funded') &amp;&amp; ISBLANK(Funded_Amount__c)</errorConditionFormula>
+    <errorMessage>Funded Amount is required when Status = Funded.</errorMessage>
+</ValidationRule>

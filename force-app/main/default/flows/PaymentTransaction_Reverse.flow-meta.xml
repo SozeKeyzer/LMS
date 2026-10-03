@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <description>Screen Flow for reversing a Payment Transaction. Guards against non-Cleared status, captures reversal reason, enforces 4-eyes rule, then sets Status = Reversed. Spec 5.7.1.</description>
+    <interviewLabel>Payment Transaction Reverse {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Payment Transaction Reverse</label>
+    <processType>Flow</processType>
+    <status>Active</status>
+
+    <!-- Assignments — grouped -->
+    <assignments>
+        <name>Assign_Reason</name>
+        <label>Assign Reversal Reason</label>
+        <locationX>176</locationX>
+        <locationY>552</locationY>
+        <assignmentItems>
+            <assignToReference>reversalReason</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>input_reversalReason</elementReference></value>
+        </assignmentItems>
+        <connector><targetReference>Reverse_Transaction</targetReference></connector>
+    </assignments>
+
+    <!-- Decisions — grouped -->
+    <decisions>
+        <name>Check_Status</name>
+        <label>Is Status Cleared?</label>
+        <locationX>176</locationX>
+        <locationY>264</locationY>
+        <defaultConnector><targetReference>Not_Cleared_Screen</targetReference></defaultConnector>
+        <defaultConnectorLabel>Not Cleared</defaultConnectorLabel>
+        <rules>
+            <name>Is_Cleared</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Transaction.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue><stringValue>Cleared</stringValue></rightValue>
+            </conditions>
+            <connector><targetReference>Confirm_Reversal_Screen</targetReference></connector>
+            <label>Is Cleared</label>
+        </rules>
+    </decisions>
+
+    <!-- Record Lookups — grouped -->
+    <recordLookups>
+        <name>Get_Transaction</name>
+        <label>Get Payment Transaction</label>
+        <locationX>176</locationX>
+        <locationY>120</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector><targetReference>Check_Status</targetReference></connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>recordId</elementReference></value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Payment_Transaction__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Status__c</queriedFields>
+        <queriedFields>Amount__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <!-- Record Updates — grouped -->
+    <recordUpdates>
+        <name>Reverse_Transaction</name>
+        <label>Set Status to Reversed</label>
+        <locationX>176</locationX>
+        <locationY>696</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>recordId</elementReference></value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value><stringValue>Reversed</stringValue></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Reversal_Reason__c</field>
+            <value><elementReference>reversalReason</elementReference></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Reversal_Date__c</field>
+            <value><elementReference>$Flow.CurrentDate</elementReference></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Reversed_By__c</field>
+            <value><elementReference>$User.Id</elementReference></value>
+        </inputAssignments>
+        <object>Payment_Transaction__c</object>
+        <connector><targetReference>Success_Screen</targetReference></connector>
+        <faultConnector><targetReference>Fault_Screen</targetReference></faultConnector>
+    </recordUpdates>
+
+    <!-- Screens — ALL grouped together -->
+    <screens>
+        <name>Not_Cleared_Screen</name>
+        <label>Cannot Reverse</label>
+        <locationX>440</locationX>
+        <locationY>408</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>not_cleared_msg</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;This payment cannot be reversed.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Only payments with Status = &lt;b&gt;Cleared&lt;/b&gt; can be reversed. Current status: &lt;b&gt;{!Get_Transaction.Status__c}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+    </screens>
+    <screens>
+        <name>Confirm_Reversal_Screen</name>
+        <label>Confirm Payment Reversal</label>
+        <locationX>176</locationX>
+        <locationY>408</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>warning_text</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;You are about to reverse payment {!Get_Transaction.Name} of {!Get_Transaction.Amount__c}.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;This will reverse all waterfall allocations and reset the Payment Schedule status to Due or Overdue.&lt;/p&gt;&lt;p&gt;&lt;b&gt;4-Eyes Rule:&lt;/b&gt; The approver must be a different user from the one who originally cleared this payment.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>input_reversalReason</name>
+            <dataType>String</dataType>
+            <fieldText>Reversal Reason</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <connector><targetReference>Assign_Reason</targetReference></connector>
+    </screens>
+    <screens>
+        <name>Success_Screen</name>
+        <label>Reversal Submitted</label>
+        <locationX>176</locationX>
+        <locationY>840</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>success_msg</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;Payment reversal initiated.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Payment {!Get_Transaction.Name} has been marked Reversed. All allocations have been reversed and the Payment Schedule has been reset.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+    </screens>
+    <screens>
+        <name>Fault_Screen</name>
+        <label>Reversal Failed</label>
+        <locationX>440</locationX>
+        <locationY>840</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>fault_msg</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;Reversal failed.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;The payment could not be reversed. Error: &lt;b&gt;{!$Flow.FaultMessage}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Please contact your system administrator.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+    </screens>
+
+    <!-- Start -->
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <connector><targetReference>Get_Transaction</targetReference></connector>
+    </start>
+
+    <!-- Variables — grouped -->
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>reversalReason</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+
+</Flow>

@@ -1,0 +1,171 @@
+<template>
+    <lightning-card title="Rate Application Decision" icon-name="utility:adjust_value">
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="slds-m-around_large slds-text-align_center">
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template if:true={error}>
+            <div class="slds-m-around_medium">
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <lightning-icon icon-name="utility:error" variant="inverse" size="x-small"
+                        class="slds-m-right_x-small"></lightning-icon>
+                    <h2>{error}</h2>
+                </div>
+            </div>
+        </template>
+
+        <!-- Content -->
+        <template if:true={hasData}>
+
+            <!-- IRT context strip -->
+            <div class="context-strip slds-m-horizontal_medium slds-m-bottom_small">
+                <div class="slds-grid slds-gutters_small slds-wrap">
+                    <div class="slds-col slds-size_1-of-4">
+                        <p class="slds-text-title_caps ctx-label">Pricing Basis</p>
+                        <p class="slds-text-body_regular"><strong>{eventDetails.pricingBasis}</strong></p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <p class="slds-text-title_caps ctx-label">Rate</p>
+                        <p class="slds-text-body_regular"><strong>{displayRate}</strong></p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <p class="slds-text-title_caps ctx-label">Application Rule</p>
+                        <p class="slds-text-body_regular"><strong>{eventDetails.applicationRule}</strong></p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <p class="slds-text-title_caps ctx-label">IRT Status</p>
+                        <p class="slds-text-body_regular"><strong>{eventDetails.irtStatus}</strong></p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4 slds-m-top_x-small">
+                        <p class="slds-text-title_caps ctx-label">Reset Trigger</p>
+                        <p class="slds-text-body_regular"><strong>{eventDetails.resetTrigger}</strong></p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4 slds-m-top_x-small">
+                        <p class="slds-text-title_caps ctx-label">Application Rule</p>
+                        <p class="slds-text-body_regular"><strong>{eventDetails.applicationRule}</strong></p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4 slds-m-top_x-small">
+                        <p class="slds-text-title_caps ctx-label">Actual Application Date</p>
+                        <p class="slds-text-body_regular"><strong>{actualAppDateLabel}</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Already decided -->
+            <template if:false={eventDetails.isPending}>
+                <div class="slds-m-horizontal_medium slds-m-bottom_medium">
+                    <div class="decided-banner">
+                        <lightning-icon icon-name="utility:check" variant="success" size="small"
+                            class="slds-m-right_small"></lightning-icon>
+                        <div>
+                            <p class="slds-text-heading_small">Decision recorded: <strong>{eventDetails.decisionType}</strong></p>
+                            <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                                {decisionSummary}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Decision form — only when pending -->
+            <template if:true={eventDetails.isPending}>
+                <div class="slds-m-horizontal_medium slds-m-bottom_medium">
+
+                    <!-- Decision type selector -->
+                    <div class="decision-section slds-m-bottom_small">
+                        <p class="slds-text-heading_small slds-m-bottom_small">Select Decision</p>
+                        <div class="slds-grid slds-gutters_small slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-large-size_1-of-4">
+                                <button class={applyButtonClass} onclick={handleDecisionSelect}
+                                    data-value="Apply">
+                                    <lightning-icon icon-name="utility:check" size="x-small"
+                                        class="slds-m-right_x-small"></lightning-icon>
+                                    Apply
+                                </button>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-large-size_1-of-4">
+                                <button class={deferButtonClass} onclick={handleDecisionSelect}
+                                    data-value="Defer">
+                                    <lightning-icon icon-name="utility:clock" size="x-small"
+                                        class="slds-m-right_x-small"></lightning-icon>
+                                    Defer
+                                </button>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-large-size_1-of-4">
+                                <button class={waivePeriodButtonClass} onclick={handleDecisionSelect}
+                                    data-value="Waive_Period">
+                                    <lightning-icon icon-name="utility:event_ext" size="x-small"
+                                        class="slds-m-right_x-small"></lightning-icon>
+                                    Waive Period
+                                </button>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-large-size_1-of-4">
+                                <button class={waivedPermButtonClass} onclick={handleDecisionSelect}
+                                    data-value="Waive_Permanently">
+                                    <lightning-icon icon-name="utility:ban" size="x-small"
+                                        class="slds-m-right_x-small"></lightning-icon>
+                                    Waive Permanently
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deferral date — only for Defer -->
+                    <template if:true={isDeferSelected}>
+                        <div class="slds-m-bottom_small">
+                            <lightning-input
+                                type="date"
+                                label="Defer To Date"
+                                required
+                                value={deferDate}
+                                onchange={handleDeferDateChange}
+                                min={todayIso}>
+                            </lightning-input>
+                        </div>
+                    </template>
+
+                    <!-- Reason -->
+                    <div class="slds-m-bottom_small">
+                        <lightning-textarea
+                            label={reasonLabel}
+                            required={isReasonRequired}
+                            placeholder="Enter reason for this decision..."
+                            value={reason}
+                            onchange={handleReasonChange}
+                            max-length="1000">
+                        </lightning-textarea>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="slds-m-top_small">
+                        <template if:true={isSubmitting}>
+                            <lightning-spinner alternative-text="Submitting..." size="small"></lightning-spinner>
+                        </template>
+                        <template if:false={isSubmitting}>
+                            <lightning-button
+                                label="Submit Decision"
+                                variant="brand"
+                                disabled={isSubmitDisabled}
+                                onclick={handleSubmit}>
+                            </lightning-button>
+                            <lightning-button
+                                label="Cancel"
+                                variant="neutral"
+                                class="slds-m-left_x-small"
+                                disabled={isSubmitting}
+                                onclick={handleCancel}>
+                            </lightning-button>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+        </template>
+
+    </lightning-card>
+</template>

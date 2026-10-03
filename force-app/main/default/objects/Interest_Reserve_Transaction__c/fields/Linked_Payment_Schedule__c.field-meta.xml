@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linked_Payment_Schedule__c</fullName>
+    <description>Required when Type = Draw. The Payment_Schedule row being settled from the reserve.</description>
+    <externalId>false</externalId>
+    <label>Linked Payment Schedule</label>
+    <required>false</required>
+    
+    <referenceTo>Payment_Schedule__c</referenceTo>
+    <relationshipLabel>Reserve Draws</relationshipLabel>
+    <relationshipName>Reserve_Draws_IRT</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

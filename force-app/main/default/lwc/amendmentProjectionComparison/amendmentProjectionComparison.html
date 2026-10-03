@@ -1,0 +1,245 @@
+<template>
+    <lightning-card title="Amendment Impact — Schedule Comparison" icon-name="utility:contract_alt">
+
+        <div slot="actions">
+            <template if:true={isGenerating}>
+                <lightning-spinner alternative-text="Generating..." size="small"></lightning-spinner>
+            </template>
+            <template if:false={isGenerating}>
+                <lightning-button
+                    label={generateButtonLabel}
+                    icon-name="utility:refresh"
+                    variant={generateButtonVariant}
+                    disabled={isGenerateDisabled}
+                    onclick={handleGeneratePreview}>
+                </lightning-button>
+            </template>
+        </div>
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="slds-m-around_large slds-text-align_center">
+                <lightning-spinner alternative-text="Loading comparison..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template if:true={error}>
+            <div class="slds-m-around_medium">
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <lightning-icon icon-name="utility:error" variant="inverse" size="x-small"
+                        class="slds-m-right_x-small"></lightning-icon>
+                    <h2>{error}</h2>
+                </div>
+            </div>
+        </template>
+
+        <!-- Content -->
+        <template if:true={hasData}>
+
+            <!-- Amendment metadata strip -->
+            <div class="metadata-strip slds-m-horizontal_medium slds-m-bottom_small">
+                <div class="slds-grid slds-gutters_small">
+                    <div class="slds-col">
+                        <p class="slds-text-title_caps label-muted">Amendment Type</p>
+                        <p class="slds-text-body_regular slds-text-color_default">
+                            <strong>{comparisonResult.amendmentType}</strong>
+                        </p>
+                    </div>
+                    <div class="slds-col">
+                        <p class="slds-text-title_caps label-muted">Scope</p>
+                        <p class="slds-text-body_regular slds-text-color_default">
+                            <strong>{comparisonResult.scope}</strong>
+                        </p>
+                    </div>
+                    <div class="slds-col">
+                        <p class="slds-text-title_caps label-muted">Status</p>
+                        <p class="slds-text-body_regular slds-text-color_default">
+                            <strong>{comparisonResult.amendmentStatus}</strong>
+                        </p>
+                    </div>
+                    <div class="slds-col">
+                        <p class="slds-text-title_caps label-muted">Effective Date</p>
+                        <p class="slds-text-body_regular slds-text-color_default">
+                            <strong>{effectiveDateLabel}</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No-projection warning -->
+            <template if:false={hasProjection}>
+                <div class="slds-m-horizontal_medium slds-m-bottom_small">
+                    <div class="slds-notify slds-notify_alert slds-alert_warning" role="alert">
+                        <lightning-icon icon-name="utility:warning" variant="warning"
+                            size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                        No projection linked to this amendment. Click <strong>Generate Preview</strong>
+                        to run the calculation engine and populate the projected schedule.
+                        A projection is required before submitting this amendment (VR.LA.04).
+                    </div>
+                </div>
+            </template>
+
+            <!-- Impact summary bar -->
+            <template if:true={hasProjection}>
+                <div class="impact-bar slds-m-horizontal_medium slds-m-bottom_small">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-4 impact-stat">
+                            <p class="slds-text-title_caps label-muted">Periods Affected</p>
+                            <p class="slds-text-heading_medium">{impact.periodsAffected}</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-4 impact-stat impact-stat_border">
+                            <p class="slds-text-title_caps label-muted">Current Interest</p>
+                            <p class="slds-text-heading_medium">{impact.currentInterestFmt}</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-4 impact-stat impact-stat_border">
+                            <p class="slds-text-title_caps label-muted">Projected Interest</p>
+                            <p class="slds-text-heading_medium">{impact.projectedInterestFmt}</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-4 impact-stat impact-stat_border">
+                            <p class="slds-text-title_caps label-muted">&#916; Interest</p>
+                            <p class={impact.deltaHeadingClass}>{impact.deltaInterestFmt}</p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Two-column comparison -->
+            <div class="slds-grid slds-gutters_small slds-m-horizontal_medium slds-m-bottom_medium">
+
+                <!-- ── Current Schedule ────────────────────────────────── -->
+                <div class="slds-col slds-size_1-of-2 panel-col">
+                    <div class="panel-header">
+                        <span class="slds-text-heading_small">Current Schedule</span>
+                        <span class="slds-text-body_small slds-text-color_weak panel-subtitle">{currentScheduleSubtitle}</span>
+                    </div>
+
+                    <template if:true={hasCurrentSchedule}>
+                        <table class="slds-table slds-table_bordered slds-table_fixed-layout schedule-table" role="grid">
+                            <colgroup>
+                                <col style="width:34%"/>
+                                <col style="width:17%"/>
+                                <col style="width:17%"/>
+                                <col style="width:17%"/>
+                                <col style="width:15%"/>
+                            </colgroup>
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th scope="col"><div class="slds-truncate">Period</div></th>
+                                    <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Principal</div></th>
+                                    <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Interest</div></th>
+                                    <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Total</div></th>
+                                    <th scope="col"><div class="slds-truncate">Status</div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={currentSchedule} for:item="row">
+                                    <tr key={row.key} class={row.rowClass}>
+                                        <td data-label="Period" class={row.periodCellClass}>
+                                            <div class="slds-truncate" title={row.periodLabel}>{row.periodLabel}</div>
+                                            <template if:true={row.isAffectedByAmend}>
+                                                <span class="affected-badge">Affected</span>
+                                            </template>
+                                        </td>
+                                        <td class="slds-text-align_right" data-label="Principal">
+                                            <div class="slds-truncate">{row.principalFmt}</div>
+                                        </td>
+                                        <td class="slds-text-align_right" data-label="Interest">
+                                            <div class="slds-truncate">{row.interestFmt}</div>
+                                        </td>
+                                        <td class="slds-text-align_right" data-label="Total">
+                                            <div class="slds-truncate">{row.totalFmt}</div>
+                                        </td>
+                                        <td data-label="Status">
+                                            <lightning-badge label={row.status}></lightning-badge>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+
+                    <template if:false={hasCurrentSchedule}>
+                        <div class="empty-state">
+                            <lightning-icon icon-name="utility:table" size="small"
+                                class="slds-m-bottom_x-small"></lightning-icon>
+                            <p class="slds-text-body_small slds-text-color_weak">No open schedule rows.</p>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- ── Projected Schedule ─────────────────────────────── -->
+                <div class="slds-col slds-size_1-of-2 panel-col">
+                    <div class="panel-header">
+                        <span class="slds-text-heading_small">Projected Schedule</span>
+                        <span class="slds-text-body_small slds-text-color_weak panel-subtitle">{projectionSubtitle}</span>
+                    </div>
+
+                    <template if:true={hasProjection}>
+                        <template if:true={hasProjectedRows}>
+                            <table class="slds-table slds-table_bordered slds-table_fixed-layout schedule-table" role="grid">
+                                <colgroup>
+                                    <col style="width:30%"/>
+                                    <col style="width:16%"/>
+                                    <col style="width:16%"/>
+                                    <col style="width:16%"/>
+                                    <col style="width:22%"/>
+                                </colgroup>
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col"><div class="slds-truncate">Period</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Principal</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Interest</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Total</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">&#916; Interest</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={projectedRows} for:item="row">
+                                        <tr key={row.key}>
+                                            <td data-label="Period">
+                                                <div class="slds-truncate" title={row.periodLabel}>{row.periodLabel}</div>
+                                            </td>
+                                            <td class="slds-text-align_right" data-label="Principal">
+                                                <div class="slds-truncate">{row.principalFmt}</div>
+                                            </td>
+                                            <td class="slds-text-align_right" data-label="Interest">
+                                                <div class="slds-truncate">{row.interestFmt}</div>
+                                            </td>
+                                            <td class="slds-text-align_right" data-label="Total">
+                                                <div class="slds-truncate">{row.totalFmt}</div>
+                                            </td>
+                                            <td class="slds-text-align_right" data-label="Δ Interest">
+                                                <div class={row.deltaClass}>{row.deltaFmt}</div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+
+                        <template if:false={hasProjectedRows}>
+                            <div class="empty-state">
+                                <p class="slds-text-body_small slds-text-color_weak">
+                                    Projection generated but contains no rows.
+                                </p>
+                            </div>
+                        </template>
+                    </template>
+
+                    <template if:false={hasProjection}>
+                        <div class="empty-state">
+                            <lightning-icon icon-name="utility:preview" size="medium"
+                                class="slds-m-bottom_small"></lightning-icon>
+                            <p class="slds-text-body_small slds-text-color_weak">
+                                Projected schedule will appear here after you generate a preview.
+                            </p>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+        </template>
+
+    </lightning-card>
+</template>

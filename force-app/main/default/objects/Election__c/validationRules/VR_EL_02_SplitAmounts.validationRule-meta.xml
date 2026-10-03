@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_EL_02_SplitAmounts</fullName>
+    <active>true</active>
+    <description>Split elections must specify both cash and PIK components.</description>
+    <errorConditionFormula>ISPICKVAL(Election_Type__c,'Split') &amp;&amp; (ISBLANK(Cash_Amount__c) || ISBLANK(PIK_Amount__c))</errorConditionFormula>
+    <errorMessage>Cash Amount and PIK Amount are both required for a Split election.</errorMessage>
+</ValidationRule>

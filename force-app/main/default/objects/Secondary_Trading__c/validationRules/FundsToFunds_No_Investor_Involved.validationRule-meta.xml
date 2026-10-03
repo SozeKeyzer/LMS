@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FundsToFunds_No_Investor_Involved</fullName>
+    <active>true</active>
+    <description>Prevents Syndicate/Investor from being selected as either Buyer or Seller when the offer is Fund-to-Fund.</description>
+    <errorConditionFormula>AND(
+    TEXT(Offer_Initiated_By__c) = &quot;Funds / Funds&quot;,
+    OR(
+        TEXT(Buyer__c) = &quot;Syndicate/Investor&quot;,
+        TEXT(Seller__c) = &quot;Syndicate/Investor&quot;
+    )
+)</errorConditionFormula>
+    <errorMessage>For Funds / Funds trades, neither Buyer nor Seller can be Syndicate/Investor.</errorMessage>
+</ValidationRule>

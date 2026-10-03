@@ -5,11 +5,14 @@
  */
 public interface IWaterfallAllocator {
     /**
-     * Allocate a payment amount across penalty, fee, interest, and principal buckets
-     * according to the waterfall priority order defined in Waterfall_Rule__mdt.
-     * @param paymentAmount  Total cash received
-     * @param ctx            CalcContext with outstanding amounts per bucket in extras map
-     * @return               EngineResult with recordsToInsert = Payment_Allocation__c records
+     * Allocate a payment amount across penalty, fee, interest, and principal buckets.
+     * Iterates scheduleTargets in order (oldest first), creating one Payment_Allocation__c
+     * per component per schedule. For components not tracked on the schedule (Penalty, PIK,
+     * Reserve) the allocator falls back to ctx.extras.
+     * @param paymentAmount    Total cash received
+     * @param ctx              CalcContext (correlationId, waterfallRule, extras for non-schedule buckets)
+     * @param scheduleTargets  Ordered list of Payment_Schedule__c to allocate against
+     * @return                 EngineResult with recordsToInsert = Payment_Allocation__c records
      */
-    EngineResult allocate(Decimal paymentAmount, CalcContext ctx);
+    EngineResult allocate(Decimal paymentAmount, CalcContext ctx, List<Payment_Schedule__c> scheduleTargets);
 }

@@ -1,0 +1,65 @@
+<template>
+  <lightning-card>
+    <div slot="title">
+      Calculation Readiness
+      <template if:true={hasCalcs}>
+        <lightning-badge label={summaryLabel} class="slds-m-left_x-small"></lightning-badge>
+      </template>
+    </div>
+    <div class="slds-p-around_small">
+      <template if:true={modeIsManual}>
+        <div class="slds-notify slds-notify_alert slds-theme_warning" role="alert">
+          <lightning-icon icon-name="utility:warning" variant="inverse" size="x-small"
+            class="slds-m-right_x-small"></lightning-icon>
+          <strong>Manual Mode active.</strong>&nbsp;Engine suspended — calculations will not run.
+        </div>
+      </template>
+      <template if:false={modeIsManual}>
+        <template for:each={calcs} for:item="calc">
+          <div key={calc.calcDeveloperName} class={calc.itemClass}>
+            <div class="slds-grid slds-grid_vertical-align-center">
+              <div class="slds-col">
+                <lightning-badge label={calc.status}></lightning-badge>
+                <span class="slds-text-title_bold slds-m-left_x-small">{calc.calcName}</span>
+              </div>
+              <div class="slds-col slds-no-flex">
+                <lightning-button label="Preview" size="small" onclick={handlePreview}
+                  data-calc={calc.calcDeveloperName} disabled={calc.previewDisabled}>
+                </lightning-button>
+                <template if:true={calc.isScheduled}>
+                  <span class="slds-badge slds-m-left_xx-small slds-badge_lightest"
+                    title="Runs automatically via daily batch">Auto</span>
+                </template>
+                <template if:false={calc.isScheduled}>
+                  <lightning-button label="Run" variant="brand" size="small"
+                    onclick={handleGenerate} data-calc={calc.calcDeveloperName}
+                    disabled={calc.runDisabled} class="slds-m-left_xx-small">
+                  </lightning-button>
+                </template>
+              </div>
+            </div>
+            <div class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+              {calc.description}
+            </div>
+            <template if:true={calc.hasMissingFields}>
+              <div class="missing-fields">
+                <lightning-icon icon-name="utility:warning" size="xx-small"
+                  class="slds-m-right_xx-small"></lightning-icon>
+                <strong>Missing inputs:</strong>
+                <template for:each={calc.missingFields} for:item="f">
+                  <a key={f} class="missing-link slds-m-left_xx-small"
+                    onclick={scrollToField} data-field={f}>{f}</a>
+                </template>
+              </div>
+            </template>
+          </div>
+        </template>
+        <template if:false={hasCalcs}>
+          <div class="slds-text-align_center slds-text-color_weak slds-p-around_medium">
+            No calculations configured for this record.
+          </div>
+        </template>
+      </template>
+    </div>
+  </lightning-card>
+</template>

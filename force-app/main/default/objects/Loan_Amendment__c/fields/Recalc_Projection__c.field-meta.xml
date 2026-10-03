@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recalc_Projection__c</fullName>
+    <description>Preview projection showing impact of amendment. Required before Submitted per VR.LA.04.</description>
+    <externalId>false</externalId>
+    <label>Recalc Projection</label>
+    <required>false</required>
+    <referenceTo>Projection__c</referenceTo>
+    <relationshipLabel>Loan Amendments</relationshipLabel>
+    <relationshipName>Loan_Amendments_Proj</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

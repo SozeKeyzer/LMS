@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>DP Pending IC Approval</label>
+    <protected>false</protected>
+    <values><field>Label__c</field><value xsi:type="xsd:string">IC Approval</value></values>
+    <values><field>Parent_Object__c</field><value xsi:type="xsd:string">Debt_Position__c</value></values>
+    <values><field>Child_Object__c</field><value xsi:type="xsd:string">IC_Approval__c</value></values>
+    <values><field>Relationship_Field__c</field><value xsi:type="xsd:string">Debt_Position__c</value></values>
+    <values><field>Active_Filter__c</field><value xsi:type="xsd:string">Status__c IN ('Submitted','Under Review','Pending')</value></values>
+    <values><field>Indicator_Mode__c</field><value xsi:type="xsd:string">Active_Count</value></values>
+    <values><field>Latest_Sort_Field__c</field><value xsi:nil="true"/></values>
+    <values><field>Latest_Display_Field__c</field><value xsi:nil="true"/></values>
+    <values><field>Icon__c</field><value xsi:type="xsd:string">utility:standard_objects</value></values>
+    <values><field>Variant__c</field><value xsi:type="xsd:string">info</value></values>
+    <values><field>Detail_Template__c</field><value xsi:type="xsd:string">Pending — {!Count} in review</value></values>
+    <values><field>Related_List_API_Name__c</field><value xsi:type="xsd:string">IC_Approvals__r</value></values>
+    <values><field>Sort_Order__c</field><value xsi:type="xsd:double">3</value></values>
+    <values><field>Is_Active__c</field><value xsi:type="xsd:boolean">true</value></values>
+</CustomMetadata>

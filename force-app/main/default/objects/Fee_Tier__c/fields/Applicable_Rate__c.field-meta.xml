@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Applicable_Rate__c</fullName>
+    <description>Annual fee rate for this tier, expressed as a percentage (e.g. 0.50 = 0.50% p.a.). Applied to the undrawn/drawn amount (per fee structure's fee basis) multiplied by the day count fraction for the period.</description>
+    <label>Applicable Rate (%)</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>6</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

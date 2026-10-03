@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Amendment__c</fullName>
+    <description>Loan Amendment that triggered this projection. Null for standalone previews.</description>
+    <externalId>false</externalId>
+    <label>Loan Amendment</label>
+    <required>false</required>
+    <referenceTo>Loan_Amendment__c</referenceTo>
+    <relationshipLabel>Projections</relationshipLabel>
+    <relationshipName>Projections_LA</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

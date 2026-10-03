@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_AD_09_InterestPeriodRequired</fullName>
+    <active>true</active>
+    <description>VR.AD.09</description>
+    <errorConditionFormula>ISBLANK(Interest_Period__c)</errorConditionFormula>
+    <errorMessage>Interest Period is required on every Accrual Daily record per Rule R2.</errorMessage>
+</ValidationRule>

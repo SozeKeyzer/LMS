@@ -11,10 +11,26 @@
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value><fullName>Immediate</fullName><default>false</default><label>Immediate</label></value>
-            <value><fullName>Next_Period_Start</fullName><default>true</default><label>Next Period Start</label></value>
-            <value><fullName>Next_Payment_Date</fullName><default>false</default><label>Next Payment Date</label></value>
-            <value><fullName>Manual_Trigger</fullName><default>false</default><label>Manual Trigger</label></value>
+            <value>
+                <fullName>Immediate</fullName>
+                <default>false</default>
+                <label>Immediate</label>
+            </value>
+            <value>
+                <fullName>Next_Period_Start</fullName>
+                <default>true</default>
+                <label>Next Period Start</label>
+            </value>
+            <value>
+                <fullName>Next_Payment_Date</fullName>
+                <default>false</default>
+                <label>Next Payment Date</label>
+            </value>
+            <value>
+                <fullName>Manual_Trigger</fullName>
+                <default>false</default>
+                <label>Manual Trigger</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

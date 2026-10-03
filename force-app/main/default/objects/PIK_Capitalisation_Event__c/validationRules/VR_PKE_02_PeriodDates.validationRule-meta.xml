@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PKE_02_PeriodDates</fullName>
+    <active>true</active>
+    <description>Accrual period boundaries must be in order.</description>
+    <errorConditionFormula>Source_Accrual_Period_Start__c &gt;= Source_Accrual_Period_End__c</errorConditionFormula>
+    <errorMessage>Source Accrual Period Start must be before Period End.</errorMessage>
+</ValidationRule>

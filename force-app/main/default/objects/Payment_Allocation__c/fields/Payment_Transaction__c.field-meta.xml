@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Transaction__c</fullName>
+    <description>Parent Payment Transaction. Master-Detail.</description>
+    <externalId>false</externalId>
+    <label>Payment Transaction</label>
+    <referenceTo>Payment_Transaction__c</referenceTo>
+    <relationshipLabel>Payment Allocations</relationshipLabel>
+    <relationshipName>Payment_Allocations</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+</CustomField>

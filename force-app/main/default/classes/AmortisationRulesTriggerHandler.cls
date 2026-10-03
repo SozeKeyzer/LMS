@@ -21,22 +21,11 @@ public class AmortisationRulesTriggerHandler extends LMSTriggerHandler {
         AuditEventLogger.flush();
     }
 
-    /** Log status/key field changes. ProtectedFieldGuardHandler already ran in base.run(). */
+    /** Log key field changes. ProtectedFieldGuardHandler already ran in base.run(). */
     override protected void afterUpdate(
         List<SObject> newList, Map<Id,SObject> newMap,
         List<SObject> oldList, Map<Id,SObject> oldMap
     ) {
-        for (SObject newRec : newList) {
-            SObject oldRec = oldMap.get(newRec.Id);
-            Object newStatus = newRec.get('Status__c');
-            Object oldStatus = oldRec != null ? oldRec.get('Status__c') : null;
-            if (newStatus != null && newStatus != oldStatus) {
-                AuditEventLogger.logManual(
-                    'RECORD_CREATED', 'Amortisation_Rules__c', String.valueOf(newRec.Id),
-                    'Amortisation Rules status changed: ' + oldStatus + ' → ' + newStatus
-                );
-            }
-        }
         AuditEventLogger.flush();
     }
 }

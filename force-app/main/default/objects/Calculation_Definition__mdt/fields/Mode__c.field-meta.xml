@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mode__c</fullName>
+    <label>Mode</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Generated</fullName><default>true</default><label>Generated</label></value>
+            <value><fullName>Imported</fullName><default>false</default><label>Imported</label></value>
+            <value><fullName>Hybrid</fullName><default>false</default><label>Hybrid</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

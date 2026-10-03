@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Decision_Type__c</fullName>
+    <description>What decision was taken. Apply=rate goes live. Defer=delayed to New_Application_Date. Waive_Period=skipped for this period only. Waive_Permanently=rate never applies.</description>
+    <externalId>false</externalId>
+    <label>Decision Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Apply</fullName>
+                <default>false</default>
+                <label>Apply</label>
+            </value>
+            <value>
+                <fullName>Defer</fullName>
+                <default>false</default>
+                <label>Defer</label>
+            </value>
+            <value>
+                <fullName>Waive_Period</fullName>
+                <default>false</default>
+                <label>Waive Period</label>
+            </value>
+            <value>
+                <fullName>Waive_Permanently</fullName>
+                <default>false</default>
+                <label>Waive Permanently</label>
+            </value>
+            <value>
+                <fullName>Reinstate</fullName>
+                <default>false</default>
+                <label>Reinstate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

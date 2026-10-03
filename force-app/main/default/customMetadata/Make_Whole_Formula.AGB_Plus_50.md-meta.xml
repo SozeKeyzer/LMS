@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>AGB Plus 50bps</label>
+    <protected>false</protected>
+    <values>
+        <field>Reference_Rate_Source__c</field>
+        <value xsi:type="xsd:string">AGB_5Y</value>
+    </values>
+    <values>
+        <field>Make_Whole_Spread__c</field>
+        <value xsi:type="xsd:double">0.005000</value>
+    </values>
+    <values>
+        <field>PV_Method__c</field>
+        <value xsi:type="xsd:string">Standard</value>
+    </values>
+    <values>
+        <field>Effective_Date_Logic__c</field>
+        <value xsi:type="xsd:string">Prepayment_Date</value>
+    </values>
+    <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+</CustomMetadata>

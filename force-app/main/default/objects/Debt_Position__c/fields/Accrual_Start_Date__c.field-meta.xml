@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accrual_Start_Date__c</fullName>
+    <description>Date from which interest starts accruing for this debt position (may differ from settlement or first drawdown date).</description>
+    <inlineHelpText>Use when accrual starts on a specific contractual date (e.g., delayed accrual, backdated accrual, or non-standard start).</inlineHelpText>
+    <label>Accrual Start Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

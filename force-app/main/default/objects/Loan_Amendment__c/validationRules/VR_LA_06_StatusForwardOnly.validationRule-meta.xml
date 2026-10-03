@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_LA_06_StatusForwardOnly</fullName>
+    <active>true</active>
+    <description>Enforces strictly forward status progression. Terminal states (Effective, Superseded) cannot be exited. Rejected may return to Draft for re-submission. No other backward transitions are permitted.</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(Status__c),
+    OR(
+        /* Terminal states — once set, Status cannot change */
+        ISPICKVAL(PRIORVALUE(Status__c), 'Effective'),
+        ISPICKVAL(PRIORVALUE(Status__c), 'Superseded'),
+        /* Submitted cannot revert to Draft */
+        AND(ISPICKVAL(PRIORVALUE(Status__c), 'Submitted'),  ISPICKVAL(Status__c, 'Draft')),
+        /* Approved cannot revert to Draft or Submitted */
+        AND(ISPICKVAL(PRIORVALUE(Status__c), 'Approved'),   ISPICKVAL(Status__c, 'Draft')),
+        AND(ISPICKVAL(PRIORVALUE(Status__c), 'Approved'),   ISPICKVAL(Status__c, 'Submitted'))
+    )
+)</errorConditionFormula>
+    <errorMessage>Amendment status cannot move backward. Effective and Superseded are terminal states. To re-submit a Rejected amendment, return it to Draft first.</errorMessage>
+</ValidationRule>

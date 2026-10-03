@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reversed_By__c</fullName>
+    <description>User who actioned the reversal. Must differ from original clearing user (4-eyes).</description>
+    <externalId>false</externalId>
+    <label>Reversed By</label>
+    <required>false</required>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Reversed Bys</relationshipLabel>
+    <relationshipName>Reversed_By</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

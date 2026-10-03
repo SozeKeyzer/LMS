@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Component_Type__c</fullName>
+    <description>Classifies the type of loan component represented by this Debt Position under the governing loan agreement (e.g. term loan, revolving facility, bond).</description>
+    <inlineHelpText>Identifies the type of loan component under the agreement (e.g. term loan, revolver, bond). Use a separate Debt Position for each component documented under the same agreement. This field describes what the loan is, not how it was originated or amended.
+Term Loan = fixed principal loan.
+Revolving Credit = draw-and-repay facility.
+Delayed Draw Term Loan = committed but drawn later.
+Bridge Loan = short-term financing.
+Bond = debt security issued under a bond/note agreement.
+Other = explain in notes.</inlineHelpText>
+    <label>Loan Component Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Term Loan</fullName>
+                <default>false</default>
+                <label>Term Loan</label>
+            </value>
+            <value>
+                <fullName>Revolving Credit</fullName>
+                <default>false</default>
+                <label>Revolving Credit</label>
+            </value>
+            <value>
+                <fullName>Delayed Draw Term Loan</fullName>
+                <default>false</default>
+                <label>Delayed Draw Term Loan</label>
+            </value>
+            <value>
+                <fullName>Bridge</fullName>
+                <default>false</default>
+                <label>Bridge</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Bond</fullName>
+                <default>false</default>
+                <label>Bond</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

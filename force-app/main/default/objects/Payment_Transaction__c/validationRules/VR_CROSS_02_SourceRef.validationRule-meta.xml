@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_CROSS_02_SourceRef</fullName>
+    <active>true</active>
+    <description>VR.CROSS.02</description>
+    <errorConditionFormula>ISPICKVAL(Source__c,'System_Imported') &amp;&amp; ISBLANK(Source_Reference__c)</errorConditionFormula>
+    <errorMessage>Source Reference is required when Source = System Imported.</errorMessage>
+</ValidationRule>

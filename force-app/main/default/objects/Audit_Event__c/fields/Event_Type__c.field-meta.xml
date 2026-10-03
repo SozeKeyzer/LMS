@@ -11,33 +11,251 @@
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value><fullName>RECORD_CREATED</fullName><default>false</default><label>Record Created</label></value>
-            <value><fullName>RECORD_UPDATED</fullName><default>false</default><label>Record Updated</label></value>
-            <value><fullName>FIELD_MODIFIED</fullName><default>false</default><label>Field Modified</label></value>
-            <value><fullName>ENGINE_RUN_PREVIEW</fullName><default>false</default><label>Engine Run - Preview</label></value>
-            <value><fullName>ENGINE_RUN_COMMIT</fullName><default>false</default><label>Engine Run - Commit</label></value>
-            <value><fullName>ACCRUAL_POSTED</fullName><default>false</default><label>Accrual Posted</label></value>
-            <value><fullName>PERIOD_CLOSED</fullName><default>false</default><label>Period Closed</label></value>
-            <value><fullName>RECALC_CASCADE</fullName><default>false</default><label>Recalculation Cascaded</label></value>
-            <value><fullName>RATE_APPLIED</fullName><default>false</default><label>Rate Applied</label></value>
-            <value><fullName>RATE_DEFERRED</fullName><default>false</default><label>Rate Deferred</label></value>
-            <value><fullName>RATE_WAIVED</fullName><default>false</default><label>Rate Waived</label></value>
-            <value><fullName>RATE_FIXING_INGESTED</fullName><default>false</default><label>Rate Fixing Ingested</label></value>
-            <value><fullName>PAYMENT_ALLOCATED</fullName><default>false</default><label>Payment Allocated</label></value>
-            <value><fullName>PAYMENT_REVERSED</fullName><default>false</default><label>Payment Reversed</label></value>
-            <value><fullName>PAYMENT_ADJUSTED</fullName><default>false</default><label>Payment Adjusted</label></value>
-            <value><fullName>SCHEDULE_GENERATED</fullName><default>false</default><label>Schedule Generated</label></value>
-            <value><fullName>AMENDMENT_DRAFTED</fullName><default>false</default><label>Amendment Drafted</label></value>
-            <value><fullName>AMENDMENT_COMMITTED</fullName><default>false</default><label>Amendment Committed</label></value>
-            <value><fullName>AMENDMENT_REJECTED</fullName><default>false</default><label>Amendment Rejected</label></value>
-            <value><fullName>RECORD_SUPERSEDED</fullName><default>false</default><label>Record Superseded</label></value>
-            <value><fullName>IMPORT_SUBMITTED</fullName><default>false</default><label>Import Submitted</label></value>
-            <value><fullName>IMPORT_APPROVED</fullName><default>false</default><label>Import Approved</label></value>
-            <value><fullName>IMPORT_REJECTED</fullName><default>false</default><label>Import Rejected</label></value>
-            <value><fullName>MANUAL_ENTRY_CREATED</fullName><default>false</default><label>Manual Entry Created</label></value>
-            <value><fullName>GUARD_VIOLATION_BLOCKED</fullName><default>false</default><label>Guard Violation Blocked</label></value>
-            <value><fullName>STATUS_CHANGED</fullName><default>false</default><label>Status Changed</label></value>
-            <value><fullName>DISBURSEMENT_RECORDED</fullName><default>false</default><label>Disbursement Recorded</label></value>
+            <value>
+                <fullName>RECORD_CREATED</fullName>
+                <default>false</default>
+                <label>Record Created</label>
+            </value>
+            <value>
+                <fullName>RECORD_UPDATED</fullName>
+                <default>false</default>
+                <label>Record Updated</label>
+            </value>
+            <value>
+                <fullName>FIELD_MODIFIED</fullName>
+                <default>false</default>
+                <label>Field Modified</label>
+            </value>
+            <value>
+                <fullName>ENGINE_RUN_PREVIEW</fullName>
+                <default>false</default>
+                <label>Engine Run - Preview</label>
+            </value>
+            <value>
+                <fullName>ENGINE_RUN_COMMIT</fullName>
+                <default>false</default>
+                <label>Engine Run - Commit</label>
+            </value>
+            <value>
+                <fullName>ACCRUAL_POSTED</fullName>
+                <default>false</default>
+                <label>Accrual Posted</label>
+            </value>
+            <value>
+                <fullName>PERIOD_CLOSED</fullName>
+                <default>false</default>
+                <label>Period Closed</label>
+            </value>
+            <value>
+                <fullName>RECALC_CASCADE</fullName>
+                <default>false</default>
+                <label>Recalculation Cascaded</label>
+            </value>
+            <value>
+                <fullName>RATE_APPLIED</fullName>
+                <default>false</default>
+                <label>Rate Applied</label>
+            </value>
+            <value>
+                <fullName>RATE_DEFERRED</fullName>
+                <default>false</default>
+                <label>Rate Deferred</label>
+            </value>
+            <value>
+                <fullName>RATE_WAIVED</fullName>
+                <default>false</default>
+                <label>Rate Waived</label>
+            </value>
+            <value>
+                <fullName>RATE_FIXING_INGESTED</fullName>
+                <default>false</default>
+                <label>Rate Fixing Ingested</label>
+            </value>
+            <value>
+                <fullName>PAYMENT_ALLOCATED</fullName>
+                <default>false</default>
+                <label>Payment Allocated</label>
+            </value>
+            <value>
+                <fullName>PAYMENT_REVERSED</fullName>
+                <default>false</default>
+                <label>Payment Reversed</label>
+            </value>
+            <value>
+                <fullName>PAYMENT_ADJUSTED</fullName>
+                <default>false</default>
+                <label>Payment Adjusted</label>
+            </value>
+            <value>
+                <fullName>SCHEDULE_GENERATED</fullName>
+                <default>false</default>
+                <label>Schedule Generated</label>
+            </value>
+            <value>
+                <fullName>AMENDMENT_DRAFTED</fullName>
+                <default>false</default>
+                <label>Amendment Drafted</label>
+            </value>
+            <value>
+                <fullName>AMENDMENT_APPROVED</fullName>
+                <default>false</default>
+                <label>Amendment Approved</label>
+            </value>
+            <value>
+                <fullName>AMENDMENT_COMMITTED</fullName>
+                <default>false</default>
+                <label>Amendment Committed</label>
+            </value>
+            <value>
+                <fullName>AMENDMENT_REJECTED</fullName>
+                <default>false</default>
+                <label>Amendment Rejected</label>
+            </value>
+            <value>
+                <fullName>RECORD_SUPERSEDED</fullName>
+                <default>false</default>
+                <label>Record Superseded</label>
+            </value>
+            <value>
+                <fullName>IMPORT_SUBMITTED</fullName>
+                <default>false</default>
+                <label>Import Submitted</label>
+            </value>
+            <value>
+                <fullName>IMPORT_APPROVED</fullName>
+                <default>false</default>
+                <label>Import Approved</label>
+            </value>
+            <value>
+                <fullName>IMPORT_REJECTED</fullName>
+                <default>false</default>
+                <label>Import Rejected</label>
+            </value>
+            <value>
+                <fullName>MANUAL_ENTRY_CREATED</fullName>
+                <default>false</default>
+                <label>Manual Entry Created</label>
+            </value>
+            <value>
+                <fullName>GUARD_VIOLATION_BLOCKED</fullName>
+                <default>false</default>
+                <label>Guard Violation Blocked</label>
+            </value>
+            <value>
+                <fullName>STATUS_CHANGED</fullName>
+                <default>false</default>
+                <label>Status Changed</label>
+            </value>
+            <value>
+                <fullName>DISBURSEMENT_RECORDED</fullName>
+                <default>false</default>
+                <label>Disbursement Recorded</label>
+            </value>
+            <value>
+                <fullName>PERIOD_CREATED</fullName>
+                <default>false</default>
+                <label>Period Created</label>
+            </value>
+            <value>
+                <fullName>PERIOD_SKIPPED</fullName>
+                <default>false</default>
+                <label>Period Skipped</label>
+            </value>
+            <value>
+                <fullName>PERIOD_ERROR</fullName>
+                <default>false</default>
+                <label>Period Error</label>
+            </value>
+            <value>
+                <fullName>PERIOD_CREATION_COMPLETE</fullName>
+                <default>false</default>
+                <label>Period Creation Complete</label>
+            </value>
+            <value>
+                <fullName>PERIOD_LOCKED</fullName>
+                <default>false</default>
+                <label>Period Locked</label>
+            </value>
+            <value>
+                <fullName>RATE_RESET_APPROACHING</fullName>
+                <default>false</default>
+                <label>Rate Reset Approaching</label>
+            </value>
+            <value>
+                <fullName>OVERDUE_DETECTED</fullName>
+                <default>false</default>
+                <label>Overdue Detected</label>
+            </value>
+            <value>
+                <fullName>SCHEDULE_REAMORTISED</fullName>
+                <default>false</default>
+                <label>Schedule Reamortised</label>
+            </value>
+            <value>
+                <fullName>FEE_CAPITALISED</fullName>
+                <default>false</default>
+                <label>Fee Capitalised</label>
+            </value>
+            <value>
+                <fullName>UPSERT_FAILURE</fullName>
+                <default>false</default>
+                <label>Upsert Failure</label>
+            </value>
+            <value>
+                <fullName>ELECTION_DEFAULTED</fullName>
+                <default>false</default>
+                <label>Election Defaulted</label>
+            </value>
+            <value>
+                <fullName>ELECTION_PROCESSED</fullName>
+                <default>false</default>
+                <label>Election Processed</label>
+            </value>
+            <value>
+                <fullName>NOTIFICATION_FIRED</fullName>
+                <default>false</default>
+                <label>Notification Fired</label>
+            </value>
+            <value>
+                <fullName>PAYMENT_CLEARED</fullName>
+                <default>false</default>
+                <label>Payment Cleared</label>
+            </value>
+            <value>
+                <fullName>RECALC_CASCADE_ERROR</fullName>
+                <default>false</default>
+                <label>Recalculation Cascade Error</label>
+            </value>
+            <value>
+                <fullName>SCHEDULE_APPROVED</fullName>
+                <default>false</default>
+                <label>Schedule Approved</label>
+            </value>
+            <value>
+                <fullName>SCHEDULE_REJECTED</fullName>
+                <default>false</default>
+                <label>Schedule Rejected</label>
+            </value>
+            <value>
+                <fullName>SCHEDULE_DRAFT_GENERATED</fullName>
+                <default>false</default>
+                <label>Schedule Draft Generated</label>
+            </value>
+            <value>
+                <fullName>SCHEDULE_SUBMITTED_FOR_REVIEW</fullName>
+                <default>false</default>
+                <label>Schedule Submitted For Review</label>
+            </value>
+            <value>
+                <fullName>PIK_CAPITALISED</fullName>
+                <default>false</default>
+                <label>PIK Capitalised</label>
+            </value>
+            <value>
+                <fullName>RATE_FIXING_LOCKED</fullName>
+                <default>false</default>
+                <label>Rate Fixing Locked</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

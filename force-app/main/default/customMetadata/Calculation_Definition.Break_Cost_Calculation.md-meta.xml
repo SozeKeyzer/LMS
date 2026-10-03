@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Break Cost Calculation</label>
+    <protected>false</protected>
+    <values><field>Description__c</field><value xsi:type="xsd:string">Computes prepayment penalty using Break_Cost_Formula__mdt. Formula selected by Basis_Code on the Prepayment_Event. Supported bases: Par, Sliding Scale, Non-Call Period Breach, Make-Whole Treasury Plus. Trigger this from the Prepayment_Event record, not directly from the Debt Position.</value></values>
+    <values><field>Strategy_Class__c</field><value xsi:type="xsd:string">BreakCostStrategy</value></values>
+    <values><field>Trigger_Object__c</field><value xsi:type="xsd:string">Prepayment_Event__c</value></values>
+    <values><field>Trigger_Event__c</field><value xsi:type="xsd:string">OnDemand</value></values>
+    <values><field>Mode__c</field><value xsi:type="xsd:string">Generated</value></values>
+    <values><field>Input_Fields__c</field><value xsi:type="xsd:string">[]</value></values>
+    <values><field>Output_Object__c</field><value xsi:type="xsd:string">Prepayment_Event__c</value></values>
+    <values><field>Output_Fields__c</field><value xsi:type="xsd:string">Break_Cost__c</value></values>
+    <values><field>Owned_Fields__c</field><value xsi:type="xsd:string">Break_Cost__c</value></values>
+    <values><field>Cascade_Trigger_Fields__c</field><value xsi:nil="true"/></values>
+    <values><field>Invalidates__c</field><value xsi:nil="true"/></values>
+    <values><field>Depends_On__c</field><value xsi:nil="true"/></values>
+    <values><field>Business_Rule_Refs__c</field><value xsi:type="xsd:string">R15,R16</value></values>
+    <values><field>Version__c</field><value xsi:type="xsd:string">1.0</value></values>
+    <values><field>Lifecycle_State__c</field><value xsi:type="xsd:string">Locked</value></values>
+    <values><field>Active__c</field><value xsi:type="xsd:boolean">true</value></values>
+</CustomMetadata>

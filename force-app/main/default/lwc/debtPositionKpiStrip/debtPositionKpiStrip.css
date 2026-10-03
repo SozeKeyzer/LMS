@@ -1,0 +1,20 @@
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.kpi-tile {
+  background: #fff;
+  border-radius: 6px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  border-left: 3px solid #0176d3;
+}
+.kpi-tile.health-good   { border-left-color: #2e844a; }
+.kpi-tile.health-warn   { border-left-color: #f4bc25; }
+.kpi-tile.health-alert  { border-left-color: #fe9339; }
+.kpi-tile.health-danger { border-left-color: #ea001e; }
+.kpi-label { font-size: 11px; text-transform: uppercase; color: #747474; font-weight: 600; letter-spacing: 0.4px; margin-bottom: 4px; }
+.kpi-value { font-size: 22px; font-weight: 700; color: #1b1b1b; margin-bottom: 2px; }
+.kpi-sub { font-size: 11px; color: #747474; }

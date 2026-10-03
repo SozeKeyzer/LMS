@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Effective_Date_Logic__c</fullName>
+    <description>Which date is used to look up the reference rate and define 'today' for PV discounting. Prepayment_Date = date the prepayment is made. Notice_Date = date borrower gave notice. Settlement_Date = date funds are received. Spec v7 Part 2.12.2.</description>
+    <label>Effective Date Logic</label>
+    <length>40</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

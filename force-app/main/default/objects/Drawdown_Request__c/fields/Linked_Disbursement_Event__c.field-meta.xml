@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linked_Disbursement_Event__c</fullName><description>Disbursement_Event created when this drawdown is funded. Represents the actual outbound cash movement.</description>
+    <externalId>false</externalId><label>Linked Disbursement Event</label><required>false</required>
+    <referenceTo>Disbursement_Event__c</referenceTo><relationshipLabel>Drawdown Requests</relationshipLabel>
+    <relationshipName>Drawdown_Disbursements</relationshipName><trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

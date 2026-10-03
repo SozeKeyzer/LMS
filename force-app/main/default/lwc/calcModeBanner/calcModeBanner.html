@@ -1,0 +1,42 @@
+<template>
+  <template if:true={isManual}>
+    <div class="mode-banner mode-banner-manual">
+      <div class="banner-body">
+        <div class="banner-icon">⚠</div>
+        <div>
+          <div class="banner-title">Manual Calculation Mode Active</div>
+          <div class="banner-detail">Engine suspended since {modeSince} · Reason: {reason} · Owner: {owner}</div>
+        </div>
+      </div>
+      <div class="banner-actions">
+        <lightning-button label={episodeLabel} onclick={viewEpisode}></lightning-button>
+        <lightning-button label="Return to Engine" variant="brand" onclick={returnToEngine}></lightning-button>
+      </div>
+    </div>
+  </template>
+  <template if:true={isHybrid}>
+    <div class="mode-banner mode-banner-hybrid">
+      <div class="banner-body">
+        <div class="banner-icon">ℹ</div>
+        <div>
+          <div class="banner-title">Hybrid Calculation Mode Active</div>
+          <div class="banner-detail">Some calculations are running manually.</div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template if:true={isEngine}>
+    <div class="mode-banner mode-banner-engine">
+      <div class="banner-body">
+        <div class="banner-icon">✓</div>
+        <div>
+          <div class="banner-title">Engine Mode Active</div>
+          <div class="banner-detail">All calculations running normally.</div>
+        </div>
+      </div>
+      <div class="banner-actions">
+        <lightning-button label="Switch to Manual" onclick={switchToManual}></lightning-button>
+      </div>
+    </div>
+  </template>
+</template>

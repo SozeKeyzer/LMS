@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PV_Method__c</fullName>
+    <description>Present-value discounting method. Standard = discrete discounting: PV = CF / (1+r)^t. Treasury_Plus = same as Standard but explicitly uses Treasury reference rate. Yield_Maintenance = continuous discounting: PV = CF × e^(-r×t). Spec v7 Part 2.12.2.</description>
+    <label>PV Method</label>
+    <length>40</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

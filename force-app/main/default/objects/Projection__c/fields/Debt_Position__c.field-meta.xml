@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Debt_Position__c</fullName>
+    <description>Debt Position this projection models.</description>
+    <externalId>false</externalId>
+    <label>Debt Position</label>
+    <required>true</required>
+    <referenceTo>Debt_Position__c</referenceTo>
+    <relationshipLabel>Projections</relationshipLabel>
+    <relationshipName>Projections_DP</relationshipName>
+    <trackTrending>false</trackTrending>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <type>Lookup</type>
+</CustomField>

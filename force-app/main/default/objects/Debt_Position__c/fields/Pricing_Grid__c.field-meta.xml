@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_Grid__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Active Pricing_Grid linked to this Debt Position. Set by PricingGridService when a grid is activated. Used by RateApplicationService to determine margin on Covenant_Test result change.</description>
+    <label>Active Pricing Grid</label>
+    <referenceTo>Pricing_Grid__c</referenceTo>
+    <relationshipLabel>Debt Positions</relationshipLabel>
+    <relationshipName>DP_Pricing_Grid</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

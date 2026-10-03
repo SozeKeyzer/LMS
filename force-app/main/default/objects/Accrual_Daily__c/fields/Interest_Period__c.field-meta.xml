@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Period__c</fullName>
+    <description>Interest period this accrual belongs to. Accrual reads rate from here per Rule R2. NEVER reads directly from Interest_Rate_Terms.</description>
+    <externalId>false</externalId>
+    <label>Interest Period</label>
+    <required>true</required>
+    <referenceTo>Interest_Period__c</referenceTo>
+    <relationshipLabel>Daily Accruals</relationshipLabel>
+    <relationshipName>Daily_Accruals_IP</relationshipName>
+    <trackTrending>false</trackTrending>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <type>Lookup</type>
+</CustomField>

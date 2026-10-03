@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Debt_Position_Id__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>Debt Position Id</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Unique Id for Debt Position</inlineHelpText>
+    <label>Debt Position Id</label>
+    <length>60</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

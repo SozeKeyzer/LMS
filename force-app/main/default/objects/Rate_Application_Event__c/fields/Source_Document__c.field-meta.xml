@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_Document__c</fullName>
+    <description>Reference to supporting document (email subject/date, board approval ref, etc.) that authorised this decision.</description>
+    <externalId>false</externalId>
+    <label>Source Document Reference</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

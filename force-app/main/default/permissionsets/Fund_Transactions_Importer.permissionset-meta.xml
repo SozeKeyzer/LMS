@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Assigned to Operations team and CGO in addition to their BDM or Manager set. Grants the Fund_Transaction_Importer custom permission enabling the CSV import button in the LWC.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Fund Transactions - Importer</label>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Fund_Transaction_Importer</name>
+    </customPermissions>
+</PermissionSet>

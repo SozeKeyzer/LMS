@@ -1,0 +1,191 @@
+<template>
+    <div class="import-container">
+
+        <!-- Permission denied state -->
+        <template if:false={hasImportPerm}>
+            <div class="permission-denied">
+                <lightning-icon icon-name="utility:lock" size="large" class="lock-icon"></lightning-icon>
+                <h3>Access Denied</h3>
+                <p>You do not have the <strong>Fund Transaction Importer</strong> permission required to use this feature.</p>
+                <p>Contact your Salesforce administrator to request access.</p>
+            </div>
+        </template>
+
+        <template if:true={hasImportPerm}>
+            <!-- Step indicator -->
+            <div class="step-indicator">
+                <div class={step1Class}>
+                    <span class="step-num">1</span>
+                    <span class="step-label">Upload</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class={step2Class}>
+                    <span class="step-num">2</span>
+                    <span class="step-label">Preview</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class={step3Class}>
+                    <span class="step-num">3</span>
+                    <span class="step-label">Result</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Upload -->
+            <template if:true={isStep1}>
+                <div class="step-card">
+                    <div
+                        class={uploadZoneClass}
+                        ondragover={handleDragOver}
+                        ondrop={handleDrop}
+                        onclick={handleUploadClick}
+                    >
+                        <lightning-icon icon-name="utility:upload" size="large" class="upload-icon"></lightning-icon>
+                        <p class="upload-title">Drop your CSV file here or click to browse</p>
+                        <p class="upload-hint">Supported format: .csv · Max 5,000 rows</p>
+                        <input
+                            type="file"
+                            accept=".csv"
+                            class="file-input-hidden"
+                            onchange={handleFileSelect}
+                        />
+                    </div>
+                    <div class="csv-spec">
+                        <div class="csv-spec-header">
+                            <h4>Expected CSV Columns:</h4>
+                            <lightning-button
+                                label="Download Template"
+                                variant="neutral"
+                                icon-name="utility:download"
+                                onclick={handleDownloadTemplate}
+                            ></lightning-button>
+                        </div>
+                        <code>Transaction_Date, Fund_Name, Investor_Entity_ID, Transaction_Type, Amount, BDM_Username, Switched_From_Fund_Name, Money_Received, Money_Received_On, Switch_Completed, Comment, Financial_Instrument_Name, Warehouse_Note_Name</code>
+                        <p class="csv-spec-note">Column order does not matter — columns are matched by name. Accepted date formats: DD/MM/YYYY, D-Mon-YY, D-Month-YYYY (e.g. 25/07/2026, 25-Jul-26, 25-July-2026). <strong>Money_Received</strong> must be <em>Yes</em> or <em>No</em>; <strong>Money_Received_On</strong> is the date funds were received. Provide only one vehicle per row: Fund_Name <em>or</em> Financial_Instrument_Name <em>or</em> Warehouse_Note_Name. Rows with validation issues are flagged in the Status column and unchecked by default.</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Step 2: Preview -->
+            <template if:true={isStep2}>
+                <div class="step-card">
+                    <div class="preview-header">
+                        <div class="preview-stats">
+                            <span class="stat stat--total">{previewRows.length} rows parsed</span>
+                            <span class="stat stat--ok">{validCount} valid to import</span>
+                        </div>
+                        <div class="preview-actions">
+                            <lightning-button label="Back" variant="neutral" onclick={handleBack}></lightning-button>
+                            <lightning-button
+                                label={confirmLabel}
+                                variant="brand"
+                                onclick={handleConfirmImport}
+                                disabled={isImporting}
+                            ></lightning-button>
+                        </div>
+                    </div>
+
+                    <div class="preview-table-wrapper">
+                        <table class="preview-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="col-status">Status</th>
+                                    <th>Date</th>
+                                    <th>Fund</th>
+                                    <th>Entity ID</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>BDM</th>
+                                    <th>Switched From</th>
+                                    <th>Money Received</th>
+                                    <th>Money Received On</th>
+                                    <th>Switch Completed</th>
+                                    <th>Comment</th>
+                                    <th>FI Name</th>
+                                    <th>Warehouse Note</th>
+                                    <th class="col-validation-header">Validation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={previewRows} for:item="row">
+                                    <tr key={row.index} class="preview-row">
+                                        <td>{row.displayIndex}</td>
+                                        <td class="col-status">
+                                            <template if:true={row.hasValidationError}>
+                                                <span class="status-dot status-dot--error" title={row.validationMessage}>&#x2717;</span>
+                                            </template>
+                                            <template if:false={row.hasValidationError}>
+                                                <span class="status-dot status-dot--ok">&#x2713;</span>
+                                            </template>
+                                        </td>
+                                        <td>{row.Transaction_Date__c}</td>
+                                        <td>{row.fundName}</td>
+                                        <td>{row.entityId}</td>
+                                        <td>{row.Transaction_Type__c}</td>
+                                        <td class="col-amount">{row.formattedAmount}</td>
+                                        <td>{row.bdmUsername}</td>
+                                        <td>{row.switchedFromFund}</td>
+                                        <td>{row.Money_Received__c}</td>
+                                        <td>{row.Money_Received_On__c}</td>
+                                        <td>{row.Switch_Completed__c}</td>
+                                        <td>{row.Comment__c}</td>
+                                        <td>{row.fiName}</td>
+                                        <td>{row.warehouseName}</td>
+                                        <td class="col-validation">{row.validationMessage}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <template if:true={isImporting}>
+                        <div class="import-progress">
+                            <lightning-spinner alternative-text="Importing..." size="small"></lightning-spinner>
+                            <span>Importing records…</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Step 3: Result -->
+            <template if:true={isStep3}>
+                <div class="step-card result-card">
+                    <lightning-icon
+                        icon-name={resultIcon}
+                        size="large"
+                        class={resultIconClass}
+                    ></lightning-icon>
+                    <h3>{resultTitle}</h3>
+                    <div class="result-stats">
+                        <div class="result-stat">
+                            <span class="result-stat__val">{importResult.imported}</span>
+                            <span class="result-stat__label">Imported</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="result-stat__val">{resolutionErrorCount}</span>
+                            <span class="result-stat__label">Unresolved Rows</span>
+                        </div>
+                    </div>
+                    <template if:true={resolutionErrorCount}>
+                        <div class="resolution-errors">
+                            <p class="resolution-errors__title">The following rows could not be resolved and were not imported:</p>
+                            <template for:each={importResult.resolutionErrors} for:item="re">
+                                <div key={re.rowIndex} class="resolution-error-row">
+                                    <strong>Row {re.displayRowIndex}</strong>:
+                                    <template for:each={re.errors} for:item="msg">
+                                        <span key={msg} class="resolution-error-msg">{msg}</span>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <div class="result-actions">
+                        <lightning-button label="Import Another File" variant="neutral" onclick={handleReset}></lightning-button>
+                        <lightning-button label="Download Results" variant="neutral" icon-name="utility:download" onclick={handleDownloadResults}></lightning-button>
+                        <lightning-button label="View Transactions" variant="brand" onclick={handleViewTransactions}></lightning-button>
+                    </div>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

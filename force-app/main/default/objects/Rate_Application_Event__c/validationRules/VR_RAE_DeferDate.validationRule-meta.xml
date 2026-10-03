@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_RAE_DeferDate</fullName>
+    <active>true</active>
+    <description>Decision_Type=Defer requires New_Application_Date</description>
+    <errorConditionFormula>ISPICKVAL(Decision_Type__c,'Defer') &amp;&amp; ISBLANK(New_Application_Date__c)</errorConditionFormula>
+    <errorMessage>New Application Date is required when Decision Type = Defer.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Triggered_By__c</fullName>
+    <label>Triggered By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Cascade Runs</relationshipLabel>
+    <relationshipName>Cascade_Runs</relationshipName>
+    <type>Lookup</type>
+</CustomField>

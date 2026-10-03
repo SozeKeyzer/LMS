@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_DR_02_FutureDate</fullName>
+    <active>true</active>
+    <description>Cannot request historical drawdown date.</description>
+    <errorConditionFormula>NOT(ISBLANK(Requested_Drawdown_Date__c)) &amp;&amp; Requested_Drawdown_Date__c &lt; TODAY()</errorConditionFormula>
+    <errorMessage>Requested Drawdown Date must be today or in the future.</errorMessage>
+</ValidationRule>

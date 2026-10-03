@@ -1,0 +1,7 @@
+.chart-container {
+    position: relative;
+    height: 320px;
+}
+.canvas-hidden {
+    display: none;
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Capitalisation_Date__c</fullName>
+    <description>Effective date for Position_Notional uplift. Accrual_Daily and schedule recalculate from this date forward when the event is approved.</description>
+    <label>Capitalisation Date</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

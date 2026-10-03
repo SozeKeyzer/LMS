@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_IA_02_Counts</fullName>
+    <active>true</active>
+    <description>VR.IA.02</description>
+    <errorConditionFormula>ISPICKVAL(Status__c,'Submitted') &amp;&amp; (Row_Count__c &lt;= 0 || Total_Amount__c &lt;= 0)</errorConditionFormula>
+    <errorMessage>Expected Row Count and Total Amount must be positive before submitting.</errorMessage>
+</ValidationRule>

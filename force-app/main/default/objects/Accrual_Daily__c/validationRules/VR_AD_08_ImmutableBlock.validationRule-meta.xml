@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_AD_08_ImmutableBlock</fullName>
+    <active>true</active>
+    <description>VR.AD.08</description>
+    <errorConditionFormula>NOT(ISNEW()) &amp;&amp; Is_Immutable__c &amp;&amp; (ISCHANGED(Accrued_Amount__c) || ISCHANGED(Rate__c) || ISCHANGED(Principal_Basis__c) || ISCHANGED(Day_Count_Fraction__c))</errorConditionFormula>
+    <errorMessage>This accrual record is from a closed period and cannot be modified. Apply an override before period close or create a new Manual Entry record.</errorMessage>
+</ValidationRule>

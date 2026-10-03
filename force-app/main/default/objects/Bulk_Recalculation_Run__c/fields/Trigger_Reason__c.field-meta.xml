@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger_Reason__c</fullName>
+    <label>Trigger Reason</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Version_Upgrade</fullName><default>false</default><label>Version Upgrade</label></value>
+            <value><fullName>Reconciliation</fullName><default>false</default><label>Reconciliation</label></value>
+            <value><fullName>Data_Correction</fullName><default>false</default><label>Data Correction</label></value>
+            <value><fullName>Other</fullName><default>false</default><label>Other</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

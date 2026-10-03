@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Buyer__c</fullName>
+    <label>Buyer</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Syndicate/Investor</fullName>
+                <default>false</default>
+                <label>Syndicate/Investor</label>
+            </value>
+            <value>
+                <fullName>ICIF02-Short Term Income Fund</fullName>
+                <default>false</default>
+                <label>ICIF02-Short Term Income Fund</label>
+            </value>
+            <value>
+                <fullName>ICIF01-Core Income Fund</fullName>
+                <default>false</default>
+                <label>ICIF01-Core Income Fund</label>
+            </value>
+            <value>
+                <fullName>IPIF01-Credit Investment Fund</fullName>
+                <default>false</default>
+                <label>IPIF01-Credit Investment Fund</label>
+            </value>
+            <value>
+                <fullName>IGF01-High Yield Fund</fullName>
+                <default>false</default>
+                <label>IGF01-High Yield Fund</label>
+            </value>
+            <value>
+                <fullName>IPCF01-Property Credit Fund</fullName>
+                <default>false</default>
+                <label>IPCF01-Property Credit Fund</label>
+            </value>
+            <value>
+                <fullName>IBIF01-Bond Income Fund</fullName>
+                <default>false</default>
+                <label>IBIF01-Bond Income Fund</label>
+            </value>
+            <value>
+                <fullName>IPEF01-Emerging Equities</fullName>
+                <default>false</default>
+                <label>IPEF01-Emerging Equities</label>
+            </value>
+            <value>
+                <fullName>Private-Max Alpha</fullName>
+                <default>false</default>
+                <label>Private-Max Alpha</label>
+            </value>
+            <value>
+                <fullName>Private-MiF</fullName>
+                <default>false</default>
+                <label>Private-MiF</label>
+            </value>
+            <value>
+                <fullName>Private-Hejaz Retail</fullName>
+                <default>false</default>
+                <label>Private-Hejaz Retail</label>
+            </value>
+            <value>
+                <fullName>Private-Hejaz Super</fullName>
+                <default>false</default>
+                <label>Private-Hejaz Super</label>
+            </value>
+            <value>
+                <fullName>iPartners Warehouse 1</fullName>
+                <default>false</default>
+                <label>iPartners Warehouse 1</label>
+            </value>
+            <value>
+                <fullName>iPartners Warehouse 2</fullName>
+                <default>false</default>
+                <label>iPartners Warehouse 2</label>
+            </value>
+            <value>
+                <fullName>Fund A</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Fund A</label>
+            </value>
+            <value>
+                <fullName>Fund B</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Fund B</label>
+            </value>
+            <value>
+                <fullName>iPartnersTreasury</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>iPartnersTreasury</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

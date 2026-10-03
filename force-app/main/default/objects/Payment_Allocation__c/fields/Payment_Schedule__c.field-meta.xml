@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Schedule__c</fullName>
+    <description>Schedule row being settled. Null for reserve-funding or ad-hoc allocations.</description>
+    <externalId>false</externalId>
+    <label>Payment Schedule</label>
+    <required>false</required>
+    <referenceTo>Payment_Schedule__c</referenceTo>
+    <relationshipLabel>Allocations</relationshipLabel>
+    <relationshipName>Payment_Allocations_PA</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

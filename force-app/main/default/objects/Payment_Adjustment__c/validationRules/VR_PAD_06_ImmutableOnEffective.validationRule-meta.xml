@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PAD_06_ImmutableOnEffective</fullName>
+    <active>true</active>
+    <description>VR.PAD.06 - Immutable once Effective: further changes as new Adjustment records.</description>
+    <errorConditionFormula>NOT(ISNEW()) &amp;&amp; ISPICKVAL(PRIORVALUE(Status__c), &apos;Effective&apos;) &amp;&amp; NOT(ISPICKVAL(Status__c, &apos;Reversed&apos;))</errorConditionFormula>
+    <errorMessage>Payment Adjustments are immutable once Effective. Create a new adjustment record to make further changes.</errorMessage>
+</ValidationRule>

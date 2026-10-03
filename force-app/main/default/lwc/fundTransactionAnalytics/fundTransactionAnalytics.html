@@ -1,0 +1,202 @@
+<template>
+    <div class="analytics-container">
+        <!-- Controls -->
+        <div class="analytics-controls">
+            <div class="control-group">
+                <lightning-combobox
+                    label="Month Filter"
+                    placeholder="All Months"
+                    value={selectedMonth}
+                    options={monthOptions}
+                    onchange={handleMonthChange}
+                    class="month-filter"
+                ></lightning-combobox>
+                <lightning-combobox
+                    label="Fund Filter"
+                    placeholder="All Funds"
+                    value={selectedFund}
+                    options={fundOptions}
+                    onchange={handleFundChange}
+                    class="fund-filter"
+                ></lightning-combobox>
+            </div>
+            <lightning-button
+                label="Refresh"
+                variant="neutral"
+                icon-name="utility:refresh"
+                onclick={refreshAll}
+            ></lightning-button>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="analytics-tabs">
+            <button class={fundFlowTabClass}  onclick={handleAnalyticsTab} data-tab="fundFlow">Fund Flow</button>
+            <button class={bdmTabClass}        onclick={handleAnalyticsTab} data-tab="bdm">BDM Performance</button>
+            <button class={breakdownTabClass}  onclick={handleAnalyticsTab} data-tab="breakdown">Breakdown</button>
+            <button class={switchMapTabClass}  onclick={handleAnalyticsTab} data-tab="switchMap">Switch Flow Map</button>
+        </div>
+
+        <!-- Error -->
+        <template if:true={analyticsError}>
+            <div class="analytics-error">
+                <lightning-icon icon-name="utility:error" variant="error" size="x-small"></lightning-icon>
+                <span>{analyticsError}</span>
+            </div>
+        </template>
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="analytics-loading">
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+
+            <!-- Fund Flow Summary -->
+            <template if:true={isFundFlowTab}>
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3>Fund Flow Summary</h3>
+                        <span class="card-subtitle">External transactions only · Excludes intrafund · Excludes restricted entities</span>
+                    </div>
+                    <template if:true={hasFundFlowData}>
+                        <table class="analytics-table">
+                            <thead>
+                                <tr>
+                                    <th>Fund</th>
+                                    <th>Transaction Type</th>
+                                    <th class="num">Count</th>
+                                    <th class="num">Total Amount (AUD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={fundFlowRows} for:item="row">
+                                    <tr key={row.key} class={row.subtotalClass}>
+                                        <td>{row.fundName}</td>
+                                        <td>
+                                            <span class={row.typeBadgeClass}>{row.txType}</span>
+                                        </td>
+                                        <td class="num">{row.txCount}</td>
+                                        <td class="num">{row.formattedTotal}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template if:false={hasFundFlowData}>
+                        <div class="empty-analytics">No data for the selected filters.</div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- BDM Performance -->
+            <template if:true={isBDMTab}>
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3>BDM Performance</h3>
+                        <span class="card-subtitle">External transactions only · Excludes intrafund · Excludes restricted entities</span>
+                    </div>
+                    <template if:true={hasBDMData}>
+                        <table class="analytics-table">
+                            <thead>
+                                <tr>
+                                    <th>BDM</th>
+                                    <th>Transaction Type</th>
+                                    <th class="num">Count</th>
+                                    <th class="num">Total Amount (AUD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={bdmRows} for:item="row">
+                                    <tr key={row.key}>
+                                        <td>{row.bdmName}</td>
+                                        <td><span class={row.typeBadgeClass}>{row.txType}</span></td>
+                                        <td class="num">{row.txCount}</td>
+                                        <td class="num">{row.formattedTotal}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template if:false={hasBDMData}>
+                        <div class="empty-analytics">No data for the selected filters.</div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Transaction Breakdown -->
+            <template if:true={isBreakdownTab}>
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3>Transaction Breakdown by Month</h3>
+                        <span class="card-subtitle">External transactions only</span>
+                    </div>
+                    <template if:true={hasBreakdownData}>
+                        <table class="analytics-table">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Transaction Type</th>
+                                    <th class="num">Count</th>
+                                    <th class="num">Total Amount (AUD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={breakdownRows} for:item="row">
+                                    <tr key={row.key}>
+                                        <td>{row.month}</td>
+                                        <td><span class={row.typeBadgeClass}>{row.txType}</span></td>
+                                        <td class="num">{row.txCount}</td>
+                                        <td class="num">{row.formattedTotal}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template if:false={hasBreakdownData}>
+                        <div class="empty-analytics">No data for the selected filters.</div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Switch Flow Map -->
+            <template if:true={isSwitchMapTab}>
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3>Switch Flow Map</h3>
+                        <span class="card-subtitle">Fund Switch In and Fund Switch Out transactions</span>
+                    </div>
+                    <template if:true={hasSwitchData}>
+                        <table class="analytics-table">
+                            <thead>
+                                <tr>
+                                    <th>Fund (To)</th>
+                                    <th>Switched From</th>
+                                    <th>Direction</th>
+                                    <th class="num">Count</th>
+                                    <th class="num">Total Amount (AUD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={switchRows} for:item="row">
+                                    <tr key={row.key}>
+                                        <td>{row.fundName}</td>
+                                        <td>{row.switchedFrom}</td>
+                                        <td><span class={row.typeBadgeClass}>{row.txType}</span></td>
+                                        <td class="num">{row.txCount}</td>
+                                        <td class="num">{row.formattedTotal}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template if:false={hasSwitchData}>
+                        <div class="empty-analytics">No switch transactions for the selected filters.</div>
+                    </template>
+                </div>
+            </template>
+
+        </template>
+    </div>
+</template>

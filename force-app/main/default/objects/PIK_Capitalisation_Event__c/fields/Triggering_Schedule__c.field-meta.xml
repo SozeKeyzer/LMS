@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Triggering_Schedule__c</fullName>
+    <description>Payment_Schedule row (Status=Settled_PIK) that triggered this capitalisation event.</description>
+    <externalId>false</externalId>
+    <label>Triggering Schedule</label>
+    <required>false</required>
+    
+    <referenceTo>Payment_Schedule__c</referenceTo>
+    <relationshipLabel>PIK Capitalisation Events</relationshipLabel>
+    <relationshipName>PIK_Cap_Schedule</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

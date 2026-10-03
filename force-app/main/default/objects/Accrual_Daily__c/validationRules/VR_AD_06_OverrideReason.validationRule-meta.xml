@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_AD_06_OverrideReason</fullName>
+    <active>true</active>
+    <description>VR.AD.06</description>
+    <errorConditionFormula>NOT(ISBLANK(Override_Value__c)) &amp;&amp; ISBLANK(Override_Reason__c)</errorConditionFormula>
+    <errorMessage>Override Reason is required when Override Value is populated.</errorMessage>
+</ValidationRule>

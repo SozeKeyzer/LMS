@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Assigned to named users per CGO. Grants View_Restricted_Transactions custom permission so Restriction Rule does not filter out restricted entity records for these users. Assigned in addition to other sets.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Fund Transactions - Restricted Viewer</label>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>View_Restricted_Transactions</name>
+    </customPermissions>
+</PermissionSet>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <description>When Loan_Amendment Status changes to Approved, logs audit event. AmendmentService.commit is called from trigger handler when Status = Effective.</description>
+    <label>Loan Amendment Approved</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+    <start>
+        <locationX>176</locationX><locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters><field>Status__c</field><operator>IsChanged</operator><value><booleanValue>true</booleanValue></value></filters>
+        <filters><field>Status__c</field><operator>EqualTo</operator><value><stringValue>Approved</stringValue></value></filters>
+        <object>Loan_Amendment__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+        <connector><targetReference>Log_Approval_Event</targetReference></connector>
+    </start>
+    <actionCalls>
+        <name>Log_Approval_Event</name>
+        <label>Log Amendment Approved Audit Event</label>
+        <locationX>176</locationX><locationY>120</locationY>
+        <actionName>AuditEventLogger</actionName>
+        <actionType>apex</actionType>
+        <inputParameters><name>eventType</name><value><stringValue>AMENDMENT_APPROVED</stringValue></value></inputParameters>
+        <inputParameters><name>objectApiName</name><value><stringValue>Loan_Amendment__c</stringValue></value></inputParameters>
+        <inputParameters><name>recordId</name><value><elementReference>$Record.Id</elementReference></value></inputParameters>
+        <inputParameters><name>source</name><value><stringValue>Manual_Entry</stringValue></value></inputParameters>
+        <inputParameters><name>reason</name><value><stringValue>Loan Amendment approved and pending commit.</stringValue></value></inputParameters>
+    </actionCalls>
+</Flow>

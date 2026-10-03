@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Election_Locked_By__c</fullName>
+    <description>User (or integration user) who locked the election.</description>
+    <externalId>false</externalId>
+    <label>Election Locked By</label>
+    <required>false</required>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Election Locked Bys</relationshipLabel>
+    <relationshipName>Election_Locked_By</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,36 @@
+.chart-scroll {
+    overflow-x: auto;
+}
+.chart-svg {
+    display: block;
+    width: 100%;
+    min-width: 480px;
+}
+.state-box {
+    padding: 24px;
+    text-align: center;
+}
+.grid-line {
+    stroke: #e4e4e4;
+    stroke-width: 1;
+}
+.axis-line {
+    stroke: #747474;
+    stroke-width: 1.5;
+}
+.axis-label {
+    font-size: 11px;
+    fill: #747474;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+.bar-label {
+    font-size: 10px;
+    fill: #3e3e3c;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+.legend-label {
+    font-size: 11px;
+    fill: #3e3e3c;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}

@@ -1,0 +1,77 @@
+<template>
+    <div class="app-shell">
+        <div class="app-header">
+            <div class="header-inner">
+                <div class="header-title">
+                    <lightning-icon icon-name="custom:custom18" size="small" class="header-icon"></lightning-icon>
+                    <h1>Fund Transactions</h1>
+                </div>
+                <div class="header-meta">
+                    <span class="header-subtitle">iPartners Funds Data Operations</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-bar">
+            <button
+                class={listTabClass}
+                onclick={handleTabSelect}
+                data-tab="list"
+                aria-selected={isListTab}
+            >
+                <lightning-icon icon-name="utility:list" size="x-small"></lightning-icon>
+                Transactions
+            </button>
+            <button
+                class={bulkTabClass}
+                onclick={handleTabSelect}
+                data-tab="bulk"
+                aria-selected={isBulkTab}
+            >
+                <lightning-icon icon-name="utility:table" size="x-small"></lightning-icon>
+                Bulk Entry
+            </button>
+            <template if:true={showImportTab}>
+                <button
+                    class={importTabClass}
+                    onclick={handleTabSelect}
+                    data-tab="import"
+                    aria-selected={isImportTab}
+                >
+                    <lightning-icon icon-name="utility:upload" size="x-small"></lightning-icon>
+                    Import CSV
+                </button>
+            </template>
+            <button
+                class={analyticsTabClass}
+                onclick={handleTabSelect}
+                data-tab="analytics"
+                aria-selected={isAnalyticsTab}
+            >
+                <lightning-icon icon-name="utility:chart" size="x-small"></lightning-icon>
+                Analytics
+            </button>
+        </div>
+
+        <div class="tab-content">
+            <template if:true={isListTab}>
+                <c-fund-transaction-list
+                    onrefresh={handleRefresh}
+                ></c-fund-transaction-list>
+            </template>
+            <template if:true={isBulkTab}>
+                <c-fund-transaction-bulk-entry
+                    onrefresh={handleRefresh}
+                ></c-fund-transaction-bulk-entry>
+            </template>
+            <template if:true={isImportTab}>
+                <c-fund-transaction-import
+                    onrefresh={handleRefresh}
+                ></c-fund-transaction-import>
+            </template>
+            <template if:true={isAnalyticsTab}>
+                <c-fund-transaction-analytics></c-fund-transaction-analytics>
+            </template>
+        </div>
+    </div>
+</template>

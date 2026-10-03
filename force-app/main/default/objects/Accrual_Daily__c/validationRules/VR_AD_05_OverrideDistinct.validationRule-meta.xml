@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_AD_05_OverrideDistinct</fullName>
+    <active>true</active>
+    <description>VR.AD.05</description>
+    <errorConditionFormula>NOT(ISBLANK(Override_Value__c)) &amp;&amp; Override_Value__c == Calculated_Value__c</errorConditionFormula>
+    <errorMessage>Override Value must differ from Calculated Value when populated.</errorMessage>
+</ValidationRule>

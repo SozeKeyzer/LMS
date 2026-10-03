@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Drawdown_Reamortisation_Mode__c</fullName>
+    <description>How multi-drawdown loans react when new drawdowns clear after schedule activation. Re-Amortise_Forward regenerates future schedule rows on each clearing; Bullet_Hold adjusts balance only; Manual notifies ops. Editable only via Loan_Amendment after schedule activation. Spec v7 Rule R19 / Part 5.2.1.3.</description>
+    <inlineHelpText>Re-Amortise_Forward: future schedule rows are superseded and regenerated on each drawdown.
+Bullet_Hold: outstanding balance grows; final period absorbs the increase.
+Manual: engine takes no action; ops handles via Manual Entry.</inlineHelpText>
+    <label>Drawdown Reamortisation Mode</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Re-Amortise_Forward</fullName><default>false</default><label>Re-Amortise Forward</label></value>
+            <value><fullName>Bullet_Hold</fullName><default>false</default><label>Bullet Hold</label></value>
+            <value><fullName>Manual</fullName><default>false</default><label>Manual</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

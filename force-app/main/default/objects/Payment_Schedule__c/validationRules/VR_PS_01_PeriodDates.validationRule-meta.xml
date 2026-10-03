@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PS_01_PeriodDates</fullName>
+    <active>true</active>
+    <description>VR.PS.01 — Period_Start &lt;= Period_End (same-day maturity stubs are valid)</description>
+    <errorConditionFormula>Period_Start__c &gt; Period_End__c</errorConditionFormula>
+    <errorMessage>Period Start must not be after Period End.</errorMessage>
+</ValidationRule>

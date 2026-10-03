@@ -1,0 +1,7 @@
+.calc-item { border-radius: 4px; margin-bottom: 8px; padding: 10px 12px; border: 1px solid #e5e5e5; }
+.calc-item-ready   { background: #f4fce8; border-left: 3px solid #2e844a; }
+.calc-item-stale   { background: #fff8ed; border-left: 3px solid #fe9339; }
+.calc-item-blocked { background: #fff8ed; border-left: 3px solid #fe9339; }
+.calc-item-error   { background: #fde0e0; border-left: 3px solid #ea001e; }
+.missing-fields { background: #fde2c5; border-radius: 3px; padding: 6px 8px; font-size: 12px; margin-top: 6px; }
+.missing-link { color: #014486; text-decoration: underline; cursor: pointer; margin-right: 8px; }

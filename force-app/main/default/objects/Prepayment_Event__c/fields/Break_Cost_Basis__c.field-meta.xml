@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Break_Cost_Basis__c</fullName>
+    <description>Basis for computing break cost. Par=no break cost. Make_Whole_Treasury_Plus=treasury-based. Sliding_Scale=time-decaying premium. Non_Call_Period_Breach=flat fee. Other=custom.</description>
+    <externalId>false</externalId>
+    <label>Break Cost Basis</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Par</fullName>
+                <default>true</default>
+                <label>Par</label>
+            </value>
+            <value>
+                <fullName>Make_Whole_Treasury_Plus</fullName>
+                <default>false</default>
+                <label>Make Whole Treasury Plus</label>
+            </value>
+            <value>
+                <fullName>Sliding_Scale</fullName>
+                <default>false</default>
+                <label>Sliding Scale</label>
+            </value>
+            <value>
+                <fullName>Non_Call_Period_Breach</fullName>
+                <default>false</default>
+                <label>Non Call Period Breach</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

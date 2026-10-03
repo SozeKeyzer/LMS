@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>LMS Status Indicators</label>
+    <description>Grants access to StatusIndicatorController (recordStatusIndicators LWC). Child object access (Workout__c, Waiver__c, IC_Approval__c etc.) belongs in role-specific permission sets, not here.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <license>Salesforce</license>
+    <classAccesses>
+        <apexClass>StatusIndicatorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+</PermissionSet>

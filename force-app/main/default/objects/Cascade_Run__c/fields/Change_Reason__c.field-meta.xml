@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Change_Reason__c</fullName>
+    <label>Change Reason</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Data_Entry_Correction</fullName><default>false</default><label>Data Entry Correction</label></value>
+            <value><fullName>Amendment</fullName><default>false</default><label>Amendment</label></value>
+            <value><fullName>Restructuring</fullName><default>false</default><label>Restructuring</label></value>
+            <value><fullName>Audit_Reconciliation</fullName><default>false</default><label>Audit Reconciliation</label></value>
+            <value><fullName>Other</fullName><default>false</default><label>Other</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_IA_04_StatusForward</fullName>
+    <active>true</active>
+    <description>VR.IA.04 - Status transitions strictly forward: Draft-&gt;Submitted-&gt;Approved/Rejected-&gt;Executing-&gt;Completed/Failed.</description>
+    <errorConditionFormula>NOT(ISNEW()) &amp;&amp; ISCHANGED(Status__c) &amp;&amp;
+CASE(TEXT(Status__c),
+  &apos;Draft&apos;,0,
+  &apos;Submitted&apos;,1,
+  &apos;Approved&apos;,2,
+  &apos;Executing&apos;,3,
+  &apos;Completed&apos;,4,
+  &apos;Completed_With_Exceptions&apos;,4,
+  &apos;Failed&apos;,4,
+  &apos;Rejected&apos;,2,
+  99) &lt;
+CASE(TEXT(PRIORVALUE(Status__c)),
+  &apos;Draft&apos;,0,
+  &apos;Submitted&apos;,1,
+  &apos;Approved&apos;,2,
+  &apos;Executing&apos;,3,
+  &apos;Completed&apos;,4,
+  &apos;Completed_With_Exceptions&apos;,4,
+  &apos;Failed&apos;,4,
+  &apos;Rejected&apos;,2,
+  0)</errorConditionFormula>
+    <errorMessage>Import Approval status can only move forward. No backward transitions are permitted.</errorMessage>
+</ValidationRule>

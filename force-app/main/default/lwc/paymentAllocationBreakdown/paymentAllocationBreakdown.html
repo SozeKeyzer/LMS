@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Payment Allocation Breakdown">
+        <template if:true={allocations}>
+            <div class="slds-m-around_medium">
+                <p class="slds-text-heading_small slds-m-bottom_small">
+                    Total Payment: {totalAmount} | Waterfall Rule: {waterfallRule}
+                </p>
+                <template for:each={allocations} for:item="alloc">
+                    <div key={alloc.id} class="slds-grid slds-m-bottom_x-small slds-box">
+                        <div class="slds-col slds-size_1-of-12 slds-text-align_center">
+                            <lightning-badge label={alloc.order}></lightning-badge>
+                        </div>
+                        <div class="slds-col slds-size_5-of-12">
+                            <p><strong>{alloc.component}</strong></p>
+                        </div>
+                        <div class="slds-col slds-size_3-of-12 slds-text-align_right">
+                            <p>{alloc.amount}</p>
+                        </div>
+                        <div class="slds-col slds-size_3-of-12 slds-text-align_right">
+                            <lightning-badge label={alloc.status} class={alloc.badgeClass}></lightning-badge>
+                        </div>
+                    </div>
+                </template>
+                <template if:true={hasUnallocated}>
+                    <div class="slds-box slds-theme_warning slds-m-top_small">
+                        <p>Unallocated: {unallocatedAmount} — review required</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </lightning-card>
+</template>

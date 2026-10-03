@@ -11,11 +11,31 @@
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value><fullName>Pending</fullName><default>true</default><label>Pending</label></value>
-            <value><fullName>Applied</fullName><default>false</default><label>Applied</label></value>
-            <value><fullName>Deferred</fullName><default>false</default><label>Deferred</label></value>
-            <value><fullName>Waived_For_Period</fullName><default>false</default><label>Waived For Period</label></value>
-            <value><fullName>Superseded</fullName><default>false</default><label>Superseded</label></value>
+            <value>
+                <fullName>Pending</fullName>
+                <default>true</default>
+                <label>Pending</label>
+            </value>
+            <value>
+                <fullName>Applied</fullName>
+                <default>false</default>
+                <label>Applied</label>
+            </value>
+            <value>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+                <label>Deferred</label>
+            </value>
+            <value>
+                <fullName>Waived_For_Period</fullName>
+                <default>false</default>
+                <label>Waived For Period</label>
+            </value>
+            <value>
+                <fullName>Superseded</fullName>
+                <default>false</default>
+                <label>Superseded</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

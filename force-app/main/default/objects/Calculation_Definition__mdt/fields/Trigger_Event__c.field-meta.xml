@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger_Event__c</fullName>
+    <label>Trigger Event</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>OnDemand</fullName><default>false</default><label>OnDemand</label></value>
+            <value><fullName>OnSave</fullName><default>false</default><label>OnSave</label></value>
+            <value><fullName>OnApproval</fullName><default>false</default><label>OnApproval</label></value>
+            <value><fullName>Scheduled</fullName><default>false</default><label>Scheduled</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

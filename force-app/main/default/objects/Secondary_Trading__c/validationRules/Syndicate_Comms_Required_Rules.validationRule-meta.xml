@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Syndicate_Comms_Required_Rules</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(TEXT( Offer_Initiated_By__c ) &lt;&gt; &apos;Funds Bid&apos;,  TEXT(Syndicate_Comms_Required__c) = &apos;Yes&apos;)</errorConditionFormula>
+    <errorMessage>Invalid selection — Syndicate Comms Required should remain &apos;No&apos; when Offer Initiated By is not &apos;Funds Bid (To Investors)&apos;.</errorMessage>
+</ValidationRule>

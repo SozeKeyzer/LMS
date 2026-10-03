@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Equal Principal Amortisation</label>
+    <protected>false</protected>
+    <values><field>Apex_Class_Name__c</field><value xsi:type="xsd:string">EqualPrincipalAmortisationCalculator</value></values>
+    <values><field>Strategy_Type__c</field><value xsi:type="xsd:string">IAmortisationCalculator</value></values>
+    <values><field>Description__c</field><value xsi:type="xsd:string">Equal principal amortisation. Divides original principal equally across all periods. Principal_Due is constant per period.</value></values>
+    <values><field>Is_Active__c</field><value xsi:type="xsd:boolean">true</value></values>
+</CustomMetadata>

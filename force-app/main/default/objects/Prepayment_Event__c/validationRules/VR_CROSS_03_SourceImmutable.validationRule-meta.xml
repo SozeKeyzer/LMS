@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_CROSS_03_SourceImmutable</fullName>
+    <active>true</active>
+    <description>VR.CROSS.03</description>
+    <errorConditionFormula>NOT(ISNEW()) &amp;&amp; ISCHANGED(Source__c)</errorConditionFormula>
+    <errorMessage>Source cannot be changed after record creation.</errorMessage>
+</ValidationRule>

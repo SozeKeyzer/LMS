@@ -1,0 +1,108 @@
+.metadata-strip {
+    background-color: #f3f3f3;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+}
+
+.label-muted {
+    color: #706e6b;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+}
+
+.impact-bar {
+    background: linear-gradient(135deg, #f4f6f9 0%, #eef1f6 100%);
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+    padding: 0;
+}
+
+.impact-stat {
+    padding: 0.75rem 1rem;
+    text-align: center;
+}
+
+.impact-stat_border {
+    border-left: 1px solid #d8dde6;
+}
+
+.panel-col {
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.panel-header {
+    background-color: #fafaf9;
+    border-bottom: 2px solid #dddbda;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.panel-subtitle {
+    font-size: 0.75rem;
+    color: #706e6b;
+}
+
+.schedule-table {
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.schedule-table thead th {
+    background-color: #f3f3f3;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.5rem;
+    color: #444;
+}
+
+.schedule-table tbody td {
+    padding: 0.4rem 0.5rem;
+    vertical-align: middle;
+}
+
+.affected-row > td:first-child {
+    border-left: 3px solid #f4bc25;
+    padding-left: calc(0.5rem - 3px);
+}
+
+.affected-badge {
+    display: inline-block;
+    background-color: #fef7e6;
+    color: #7a5c00;
+    border: 1px solid #f4bc25;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.delta-positive {
+    color: #2e844a;
+    font-weight: 600;
+}
+
+.delta-negative {
+    color: #ba0517;
+    font-weight: 600;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 8rem;
+    padding: 1.5rem;
+    color: #706e6b;
+    background-color: #fafaf9;
+}

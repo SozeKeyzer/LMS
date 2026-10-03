@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>Current lifecycle status of the debt position.</description>
+    <inlineHelpText>Shows whether the debt position is active or how it was closed.
+
+Active = live position.
+Closed – Matured = closed at contractual maturity.
+Closed – Early (Repaid) = fully repaid before maturity, no replacement loan.
+Closed – Early (Refinanced) = closed before maturity and replaced by a new loan.
+Cancelled = approved but never settled.</inlineHelpText>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Draft</fullName>
+                <default>false</default>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Active</fullName>
+                <default>false</default>
+                <label>Active</label>
+            </value>
+            <value>
+                <fullName>Closed - Matured</fullName>
+                <default>false</default>
+                <label>Closed - Matured</label>
+            </value>
+            <value>
+                <fullName>Matured</fullName>
+                <default>false</default>
+                <label>Matured</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+            <value>
+                <fullName>Closed – Early (Repaid)</fullName>
+                <default>false</default>
+                <label>Closed – Early (Repaid)</label>
+            </value>
+            <value>
+                <fullName>Closed – Early (Refinanced)</fullName>
+                <default>false</default>
+                <label>Closed – Early (Refinanced)</label>
+            </value>
+            <value>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+                <label>Pending Approval</label>
+            </value>
+            <value>
+                <fullName>In Amendment</fullName>
+                <default>false</default>
+                <label>In Amendment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

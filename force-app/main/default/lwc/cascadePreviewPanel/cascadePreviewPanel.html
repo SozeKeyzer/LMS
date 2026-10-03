@@ -1,0 +1,56 @@
+<template>
+  <lightning-card>
+    <div slot="title">
+      <lightning-icon icon-name="utility:warning" size="x-small"
+        class="slds-m-right_x-small"></lightning-icon>
+      Cascade Impact Preview
+    </div>
+    <div class="slds-p-around_medium">
+      <template if:true={hasOriginalValue}>
+        <div class="change-banner">
+          <div class="change-label">Editing {fieldApiName} on {objectApiName}</div>
+          <div class="change-value">
+            <span class="old-value">{originalValue}</span>
+            <span class="arrow">→</span>
+            <span class="new-value">{proposedValue}</span>
+          </div>
+        </div>
+      </template>
+      <template if:true={impact}>
+        <template if:true={hasAffectedCalcs}>
+          <div class="impact-box">
+            <p class="slds-text-title_bold slds-m-bottom_x-small">
+              {affectedCalcsCount} calculation(s) will be affected:
+            </p>
+            <template for:each={impact.affectedCalcs} for:item="c">
+              <div key={c.calcName} class="impact-item">
+                <span>{c.calcName}</span>
+                <span class="impact-count">{c.outputRowsExpected} rows</span>
+              </div>
+            </template>
+          </div>
+        </template>
+        <template if:true={hasDownstream}>
+          <div class="slds-m-bottom_small">
+            <p class="slds-text-title_bold slds-m-bottom_xx-small">Downstream stale:</p>
+            <template for:each={impact.downstreamStale} for:item="d">
+              <lightning-badge key={d} label={d} class="slds-m-right_xx-small"></lightning-badge>
+            </template>
+          </div>
+        </template>
+      </template>
+      <lightning-combobox label="Reason for change" value={reason}
+        options={reasonOptions} onchange={handleReasonChange} required>
+      </lightning-combobox>
+      <lightning-textarea label="Explanation (minimum 20 characters)" value={explanation}
+        onchange={handleExplanationChange} required class="slds-m-top_small">
+      </lightning-textarea>
+      <div class="slds-m-top_medium slds-grid">
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+        <lightning-button label="Proceed with Cascade" variant="destructive"
+          onclick={handleProceed} disabled={cannotProceed}
+          class="slds-m-left_x-small"></lightning-button>
+      </div>
+    </div>
+  </lightning-card>
+</template>

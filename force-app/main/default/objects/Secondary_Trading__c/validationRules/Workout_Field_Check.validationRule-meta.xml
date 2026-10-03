@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Workout_Field_Check</fullName>
+    <active>true</active>
+    <description>Workout / distressed value changes from yes to no then while filling the form, the value in the workout look up field should be blank.</description>
+    <errorConditionFormula>AND( TEXT(Is_related_deal_in_workout_distressed__c) = &apos;No&apos;,  Workout__c &lt;&gt; &apos;&apos;)</errorConditionFormula>
+    <errorDisplayField>Workout__c</errorDisplayField>
+    <errorMessage>Please leave the Workout field blank when &apos;Is Related Deal in Workout/Distressed?&apos; is No.</errorMessage>
+</ValidationRule>

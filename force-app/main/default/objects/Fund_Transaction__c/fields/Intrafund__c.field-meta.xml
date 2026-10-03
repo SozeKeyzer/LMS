@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intrafund__c</fullName>
+    <description>True when the linked Account name contains iPartners and does NOT contain K+P. The K+P iPartners Investment Fund is explicitly excluded.</description>
+    <externalId>false</externalId>
+    <formula>AND(
+  CONTAINS(Investor_Entity__r.Name, &quot;iPartners&quot;),
+  NOT(CONTAINS(Investor_Entity__r.Name, &quot;K+P&quot;))
+)</formula>
+    <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
+    <label>Intrafund</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InvestorOffer_Buyer_Must_Be_Investor</fullName>
+    <active>true</active>
+    <description>Ensures that when the offer is initiated by an investor, the Buyer must be the Syndicate/Investor.</description>
+    <errorConditionFormula>AND(
+    TEXT(Offer_Initiated_By__c) = &quot;Investor Offer&quot;,
+    TEXT(Buyer__c) &lt;&gt; &quot;Syndicate/Investor&quot;
+)</errorConditionFormula>
+    <errorMessage>For Investor Offers, Buyer must be Syndicate/Investor.</errorMessage>
+</ValidationRule>

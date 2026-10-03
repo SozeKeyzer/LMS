@@ -1,0 +1,63 @@
+<template>
+  <lightning-modal-header label="Calculation Preview"></lightning-modal-header>
+  <lightning-modal-body>
+    <div class="slds-p-around_medium">
+
+      <!-- Info banner -->
+      <div class="slds-box slds-theme_shade slds-m-bottom_medium slds-p-around_small">
+        <lightning-icon icon-name="utility:info" size="x-small"
+          class="slds-m-right_x-small"></lightning-icon>
+        <strong>Preview only</strong> — Nothing has been saved yet. Click Generate to commit.
+      </div>
+
+      <!-- Summary tiles -->
+      <div class="slds-grid slds-gutters slds-m-bottom_medium">
+        <div class="slds-col slds-size_1-of-3">
+          <div class="slds-box slds-text-align_center slds-p-around_small">
+            <div class="slds-text-body_small slds-text-color_weak">Rows</div>
+            <div class="slds-text-heading_medium">{totals.count}</div>
+          </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+          <div class="slds-box slds-text-align_center slds-p-around_small">
+            <div class="slds-text-body_small slds-text-color_weak">{totals.label1}</div>
+            <div class="slds-text-heading_medium">{totals.val1}</div>
+          </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+          <div class="slds-box slds-text-align_center slds-p-around_small">
+            <div class="slds-text-body_small slds-text-color_weak">{totals.label2}</div>
+            <div class="slds-text-heading_medium">{totals.val2}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rows table -->
+      <template if:true={hasRows}>
+        <lightning-datatable
+          key-field={keyField}
+          data={rows}
+          columns={columns}
+          hide-checkbox-column>
+        </lightning-datatable>
+      </template>
+
+      <!-- Empty state -->
+      <template if:true={isEmpty}>
+        <div class="slds-illustration slds-illustration_small slds-p-around_medium">
+          <lightning-icon icon-name="utility:warning" size="medium"
+            variant="warning" class="slds-m-bottom_small"></lightning-icon>
+          <p class="slds-text-body_regular">{emptyMessage}</p>
+        </div>
+      </template>
+
+    </div>
+  </lightning-modal-body>
+  <lightning-modal-footer>
+    <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+    <lightning-button label="Edit Inputs" onclick={handleEditInputs}
+      class="slds-m-left_x-small"></lightning-button>
+    <lightning-button label="Generate" variant="brand" onclick={handleGenerate}
+      class="slds-m-left_x-small"></lightning-button>
+  </lightning-modal-footer>
+</template>

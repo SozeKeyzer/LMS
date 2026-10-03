@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Margin_Used__c</fullName>
+    <description>Credit spread at schedule generation time. Read-only after crystallisation.</description>
+    <externalId>false</externalId>
+    <label>Margin Used (Snapshot)</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

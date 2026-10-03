@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Financial_Instrument__c</fullName>
+    <description>Lookup to the Financial Instrument for this transaction. Populated when Investment Vehicle Type is Financial Instrument.</description>
+    <externalId>false</externalId>
+    <label>Financial Instrument</label>
+    <referenceTo>Financial_Instrument__c</referenceTo>
+    <relationshipLabel>Fund Transactions</relationshipLabel>
+    <relationshipName>Fund_Transactions_FI</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

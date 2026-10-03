@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_PIK__c</fullName>
+    <description>TRUE when Interest_Rate_Terms.Interest_Treatment = PIK or PIK portion of Split. PIK rows never appear on Payment_Schedule per Rule R5.</description>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId>
+    <label>Is PIK</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

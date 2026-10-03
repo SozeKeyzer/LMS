@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Schedule_Activated_DateTime__c</fullName>
+    <description>Timestamp when the checker approved the schedule and it became Active. Set by PaymentScheduleService.approve. Spec v7 Part 5.2.1.2.</description>
+    <label>Schedule Activated Date/Time</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

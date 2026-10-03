@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Trading_Name__c</fullName>
+    <description>Secondary Trading Name</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Specify a concise name that clearly identifies the secondary trade. Use fund and deal references where relevant.</inlineHelpText>
+    <label>Secondary Trading Name</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

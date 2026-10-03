@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="Audit Event Timeline">
+        <div class="slds-m-around_medium">
+            <div class="slds-grid slds-gutters slds-grid_vertical-align-end">
+                <div class="slds-col">
+                    <lightning-input label="Correlation ID" value={correlationId}
+                        onchange={handleCorrelationChange}></lightning-input>
+                </div>
+                <div class="slds-col slds-col_bump-left">
+                    <lightning-button label="Search" variant="brand"
+                        onclick={handleSearch} disabled={isLoading}></lightning-button>
+                </div>
+            </div>
+        </div>
+        <template if:true={isLoading}>
+            <div class="slds-m-around_medium">
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </div>
+        </template>
+        <template if:true={error}>
+            <div class="slds-m-around_medium slds-box slds-theme_error">
+                <p>{error}</p>
+            </div>
+        </template>
+        <template if:true={hasEvents}>
+            <div class="slds-timeline slds-m-around_medium">
+                <template for:each={events} for:item="evt">
+                    <article key={evt.id} class="slds-timeline__item">
+                        <div class="slds-timeline__item-bullet">
+                            <lightning-icon icon-name="standard:event" size="x-small"></lightning-icon>
+                        </div>
+                        <div class="slds-media__figure slds-timeline__figure">
+                            <p class="slds-text-heading_small">{evt.eventType}</p>
+                            <p class="slds-text-body_small">{evt.eventDateTime} | {evt.actorSystem} | {evt.actorName}</p>
+                            <p class="slds-text-color_weak">{evt.reason}</p>
+                            <p class="slds-text-body_small">
+                                <a href={evt.recordLink}>{evt.sourceObject}: {evt.sourceRecordId}</a>
+                            </p>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </template>
+    </lightning-card>
+</template>

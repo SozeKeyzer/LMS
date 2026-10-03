@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linked_Payment_Transaction__c</fullName>
+    <description>Required when Type = Fund or Replenish. The Payment_Transaction record representing the cash movement.</description>
+    <externalId>false</externalId>
+    <label>Linked Payment Transaction</label>
+    <required>false</required>
+    
+    <referenceTo>Payment_Transaction__c</referenceTo>
+    <relationshipLabel>Reserve Transactions</relationshipLabel>
+    <relationshipName>Reserve_Transactions_PT</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

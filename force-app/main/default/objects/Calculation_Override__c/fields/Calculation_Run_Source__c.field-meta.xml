@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Calculation_Run_Source__c</fullName>
+    <label>Calculation Run Source</label>
+    <referenceTo>Calculation_Run__c</referenceTo>
+    <relationshipLabel>Calculation Overrides</relationshipLabel>
+    <relationshipName>Calculation_Overrides</relationshipName>
+    <type>Lookup</type>
+</CustomField>

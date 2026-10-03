@@ -1,0 +1,40 @@
+<template>
+  <lightning-card>
+    <div slot="title">
+      Shadow Comparison Report
+      <template if:true={hasDifferences}>
+        <lightning-badge label={diffBadgeLabel} class="slds-m-left_x-small"></lightning-badge>
+      </template>
+    </div>
+    <div class="slds-p-around_medium">
+      <div class="stats-strip">
+        <div class="stat-tile">
+          <div class="stat-label">Total Runs</div>
+          <div class="stat-value">{totalRuns}</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Differences</div>
+          <div class={diffStatClass}>{differencesCount}</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Reviewed</div>
+          <div class="stat-value">{reviewedCount}</div>
+        </div>
+      </div>
+      <lightning-datatable key-field="Id" data={comparisons} columns={columns}
+        onrowaction={handleRowAction}>
+      </lightning-datatable>
+      <div class="report-footer">
+        <div class="largest-diff-label">
+          Largest difference: <strong>{largestDiff}</strong>
+        </div>
+        <div class="slds-grid">
+          <lightning-button label="Export" onclick={handleExport}></lightning-button>
+          <lightning-button label="Approve and Promote" variant="success"
+            onclick={handleApproveAndPromote} disabled={noReviewed}
+            class="slds-m-left_x-small"></lightning-button>
+        </div>
+      </div>
+    </div>
+  </lightning-card>
+</template>

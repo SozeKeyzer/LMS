@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PT_03_PaymentMethod</fullName>
+    <active>true</active>
+    <description>VR.PT.03</description>
+    <errorConditionFormula>ISPICKVAL(Status__c,'Cleared') &amp;&amp; ISBLANK(TEXT(Payment_Method__c))</errorConditionFormula>
+    <errorMessage>Payment Method is required when Status = Cleared.</errorMessage>
+</ValidationRule>

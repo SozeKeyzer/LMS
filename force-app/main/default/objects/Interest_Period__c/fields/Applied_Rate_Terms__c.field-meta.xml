@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Applied_Rate_Terms__c</fullName>
+    <description>Interest_Rate_Terms record that governed rate selection for this period. Required per VR.IP.04.</description>
+    <externalId>false</externalId>
+    <label>Applied Rate Terms</label>
+    <required>true</required>
+    <referenceTo>Interest_Rate_Terms__c</referenceTo>
+    <relationshipLabel>Interest Periods</relationshipLabel>
+    <relationshipName>Interest_Periods_IRT</relationshipName>
+    <trackTrending>false</trackTrending>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <type>Lookup</type>
+</CustomField>

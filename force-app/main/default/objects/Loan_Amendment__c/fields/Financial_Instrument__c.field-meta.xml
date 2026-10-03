@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Financial_Instrument__c</fullName>
+    <description>Required when Scope = Facility. The facility being amended (all tranches affected).</description>
+    <externalId>false</externalId>
+    <label>Financial Instrument</label>
+    <required>false</required>
+    <referenceTo>Financial_Instrument__c</referenceTo>
+    <relationshipLabel>Loan Amendments</relationshipLabel>
+    <relationshipName>Loan_Amendments_FI</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

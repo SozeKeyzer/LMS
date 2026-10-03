@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BDM__c</fullName>
+    <description>The BDM who originated this transaction. Defaults to the running user.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the BDM responsible. Defaults to you — change if entering on behalf of another BDM</inlineHelpText>
+    <label>BDM</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Fund_Transactions_BDM</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

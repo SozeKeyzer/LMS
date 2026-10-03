@@ -1,0 +1,7 @@
+.precondition-list { list-style: none; padding: 0; margin: 0; }
+.precondition-fail { padding: 4px 0; color: #ba0517; font-size: 13px; }
+.precondition-pass { color: #2e844a; font-size: 13px; }
+.draft-table-wrap { max-height: 320px; overflow-y: auto; }
+.status-summary { display: flex; align-items: center; padding: 12px 16px; background: #f3f3f3; border-radius: 4px; }
+.status-summary_success { background: #f4fce8; }
+.status-summary p { font-size: 13px; margin: 0; }

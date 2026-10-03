@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Reserve__c</fullName>
+    <description>Parent Interest Reserve header record. This Master-Detail relationship means transactions are deleted with the parent.</description>
+    <externalId>false</externalId>
+    <label>Interest Reserve</label>
+    
+    
+    <referenceTo>Interest_Reserve__c</referenceTo>
+    <relationshipLabel>Reserve Transactions</relationshipLabel>
+    <relationshipName>Reserve_Transactions</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+</CustomField>

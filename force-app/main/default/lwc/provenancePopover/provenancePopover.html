@@ -1,0 +1,40 @@
+<template>
+  <lightning-button-icon icon-name="utility:info" onclick={togglePopover}
+      alternative-text="Why this number?" variant="bare" size="small">
+  </lightning-button-icon>
+  <template if:true={isOpen}>
+    <section class="slds-popover slds-popover_medium slds-nubbin_left" role="dialog">
+      <div class="slds-popover__header">
+        <h2 class="slds-text-heading_small">Why this number? — {fieldLabel}</h2>
+      </div>
+      <div class="slds-popover__body">
+        <dl class="slds-dl_horizontal">
+          <dt class="slds-dl__dt slds-text-color_weak">Value</dt>
+          <dd class="slds-dl__dd slds-text-title_bold">{value}</dd>
+          <dt class="slds-dl__dt slds-text-color_weak">Produced by</dt>
+          <dd class="slds-dl__dd">{calcName} v{version}</dd>
+          <dt class="slds-dl__dt slds-text-color_weak">Run record</dt>
+          <dd class="slds-dl__dd"><a onclick={openRun}>{runName}</a></dd>
+          <dt class="slds-dl__dt slds-text-color_weak">Run on</dt>
+          <dd class="slds-dl__dd">{runAt}</dd>
+          <dt class="slds-dl__dt slds-text-color_weak">Run by</dt>
+          <dd class="slds-dl__dd">{runBy}</dd>
+          <dt class="slds-dl__dt slds-text-color_weak">Inputs used</dt>
+          <dd class="slds-dl__dd">{inputsSummary}</dd>
+          <dt class="slds-dl__dt slds-text-color_weak">Formula</dt>
+          <dd class="slds-dl__dd">{formulaSummary}</dd>
+          <dt class="slds-dl__dt slds-text-color_weak">Override</dt>
+          <dd class="slds-dl__dd">{overrideStatus}</dd>
+        </dl>
+      </div>
+      <div class="slds-popover__footer slds-grid">
+        <lightning-button label="View Full Run Record" size="small"
+          onclick={openRun}></lightning-button>
+        <lightning-button label="Request Override" variant="brand" size="small"
+          onclick={requestOverride} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Close" size="small"
+          onclick={togglePopover} class="slds-m-left_x-small"></lightning-button>
+      </div>
+    </section>
+  </template>
+</template>

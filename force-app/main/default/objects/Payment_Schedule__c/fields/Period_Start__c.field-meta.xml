@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Period_Start__c</fullName>
+    <description>Start of the accrual period (inclusive). Accrual_Daily.Accrual_Date must be within [Period_Start, Period_End).</description>
+    <externalId>false</externalId>
+    <label>Period Start</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

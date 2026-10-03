@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Immutable__c</fullName>
+    <description>Set TRUE when interest period is closed. PeriodCloseBatch sets this. No edits permitted after.</description>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId>
+    <label>Is Immutable</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

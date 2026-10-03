@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Import button renders in LWC. User can run bulk CSV import with duplicate checking. Assigned to Operations team and CGO.</description>
+    <label>Fund Transaction Importer</label>
+</CustomPermission>

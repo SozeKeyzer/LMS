@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PIK_Amount__c</fullName>
+    <description>PIK portion of a Split election. Will be capitalised into principal at period end.</description>
+    <externalId>false</externalId>
+    <label>PIK Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

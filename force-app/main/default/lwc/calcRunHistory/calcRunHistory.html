@@ -1,0 +1,59 @@
+<template>
+  <lightning-card title="Calculation Run History">
+    <div class="slds-p-around_medium">
+      <div class="slds-grid slds-gutters slds-m-bottom_small">
+        <div class="slds-col">
+          <lightning-combobox label="Filter by Calc" value={filterCalc}
+            options={calcOptions} onchange={handleFilterCalc} placeholder="All">
+          </lightning-combobox>
+        </div>
+        <div class="slds-col">
+          <lightning-input type="date" label="From Date" value={filterFrom}
+            onchange={handleFilterFrom}>
+          </lightning-input>
+        </div>
+      </div>
+      <template if:true={hasRuns}>
+        <ul class="run-timeline">
+          <template for:each={filteredRuns} for:item="run">
+            <li key={run.Id} class="run-item">
+              <div class={run.dotClass}></div>
+              <div class="run-time">{run.Run_At__c} · {run.Trigger_Source__c}</div>
+              <div class="run-title">
+                <lightning-badge label={run.Status__c}></lightning-badge>
+                <span class="slds-m-left_x-small slds-text-title_bold">
+                  {run.Calc_Definition__c}
+                </span>
+                <span class="slds-text-body_small slds-text-color_weak slds-m-left_xx-small">
+                  v{run.Calc_Version__c}
+                </span>
+                <c-provenance-popover
+                  field-label={run.Calc_Definition__c}
+                  value={run.outputCountLabel}
+                  calc-name={run.Calc_Definition__c}
+                  version={run.Calc_Version__c}
+                  run-name={run.Name}
+                  run-at={run.Run_At__c}
+                  run-by={run.Run_By__c}
+                  inputs-summary={run.Inputs_Snapshot__c}
+                  formula-summary={run.Run_Mode__c}
+                  override-status="None"
+                  run-id={run.Id}>
+                </c-provenance-popover>
+              </div>
+              <div class="run-meta">
+                Mode: {run.Run_Mode__c} · {run.Output_Count__c} rows · {run.Duration_Ms__c}ms
+              </div>
+            </li>
+          </template>
+        </ul>
+      </template>
+      <template if:false={hasRuns}>
+        <div class="slds-text-align_center slds-text-color_weak slds-p-around_large">
+          <lightning-icon icon-name="utility:date_time" size="medium"></lightning-icon>
+          <p class="slds-m-top_small">No calculation runs yet.</p>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

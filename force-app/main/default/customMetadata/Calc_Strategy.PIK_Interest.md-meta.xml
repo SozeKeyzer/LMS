@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>PIK Interest</label>
+    <protected>false</protected>
+    <values><field>Apex_Class_Name__c</field><value xsi:type="xsd:string">PIKInterestCalculator</value></values>
+    <values><field>Strategy_Type__c</field><value xsi:type="xsd:string">IInterestCalculator</value></values>
+    <values><field>Description__c</field><value xsi:type="xsd:string">PIK (Payment In Kind) calculator. Accrues same as floating/fixed but sets Is_PIK=true. Does not contribute to Payment_Schedule.Interest_Due per Rule R5.</value></values>
+    <values><field>Is_Active__c</field><value xsi:type="xsd:boolean">true</value></values>
+</CustomMetadata>

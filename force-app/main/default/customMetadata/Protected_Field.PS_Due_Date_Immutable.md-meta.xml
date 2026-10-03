@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>PS Due Date Immutable</label><protected>false</protected>
+    <values><field>Object_API_Name__c</field><value xsi:type="xsd:string">Payment_Schedule__c</value></values>
+    <values><field>Field_API_Name__c</field><value xsi:type="xsd:string">Due_Date__c</value></values>
+    <values><field>Protection_Rule__c</field><value xsi:type="xsd:string">When_Immutable</value></values>
+    <values><field>Error_Message__c</field><value xsi:type="xsd:string">Due Date is locked once the schedule is Active. Changes flow only through Amendment, Adjustment, or Manual Entry.</value></values>
+</CustomMetadata>

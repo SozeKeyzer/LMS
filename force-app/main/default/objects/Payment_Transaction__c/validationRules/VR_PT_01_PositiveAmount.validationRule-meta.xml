@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_PT_01_PositiveAmount</fullName>
+    <active>true</active>
+    <description>VR.PT.01</description>
+    <errorConditionFormula>Amount__c &lt;= 0</errorConditionFormula>
+    <errorMessage>Amount must be greater than zero. Payment Transactions are always inbound (positive amounts).</errorMessage>
+</ValidationRule>

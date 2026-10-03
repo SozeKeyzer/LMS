@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_LA_01_ScopeTarget</fullName>
+    <active>true</active>
+    <description>VR.LA.01</description>
+    <errorConditionFormula>ISPICKVAL(Scope__c,'Position') &amp;&amp; ISBLANK(Debt_Position__c) || ISPICKVAL(Scope__c,'Facility') &amp;&amp; ISBLANK(Financial_Instrument__c)</errorConditionFormula>
+    <errorMessage>Debt Position is required when Scope = Position. Financial Instrument is required when Scope = Facility.</errorMessage>
+</ValidationRule>

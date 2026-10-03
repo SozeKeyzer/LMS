@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Placeholder_Spread__c</fullName>
+    <description>For floating-rate loans: the margin/spread used as placeholder at schedule generation. Snapshot of IRT.Spread__c at time of generation. Preserved for variance analysis.</description>
+    <externalId>false</externalId>
+    <label>Placeholder Spread</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Election_Type__c</fullName>
+    <description>Cash=full cash payment. PIK=full capitalisation. Split=partial cash and partial PIK.</description>
+    <externalId>false</externalId>
+    <label>Election Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cash</fullName>
+                <default>true</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>PIK</fullName>
+                <default>false</default>
+                <label>PIK</label>
+            </value>
+            <value>
+                <fullName>Split</fullName>
+                <default>false</default>
+                <label>Split</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restricted_Entity__c</fullName>
+    <description>Mirrors Restricted_Transaction_Visibility__c from the linked Account. Used by Restriction Rule to hide records at the database layer.</description>
+    <externalId>false</externalId>
+    <formula>Investor_Entity__r.Restricted_Transaction_Visibility__c</formula>
+    <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
+    <label>Restricted Entity</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

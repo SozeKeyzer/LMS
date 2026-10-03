@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Drawdown_Date__c</fullName><description>Date funds were actually disbursed. Set by DisbursementService on funding.</description>
+    <externalId>false</externalId><label>Actual Drawdown Date</label><required>false</required>
+    <trackTrending>false</trackTrending><type>Date</type>
+</CustomField>

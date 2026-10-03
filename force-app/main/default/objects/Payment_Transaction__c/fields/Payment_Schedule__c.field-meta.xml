@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Schedule__c</fullName>
+    <description>Schedule row being settled. Null for ad-hoc or unscheduled receipts.</description>
+    <externalId>false</externalId>
+    <label>Payment Schedule</label>
+    <required>false</required>
+    <referenceTo>Payment_Schedule__c</referenceTo>
+    <relationshipLabel>Payment Transactions</relationshipLabel>
+    <relationshipName>Payment_Transactions_PT</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

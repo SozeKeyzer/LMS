@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Settlement_Date_Tranche_Tap__c</fullName>
+    <description>Date on which this tranche, tap, upsize, or repricing legally settles and becomes effective. Not used for the primary loan, which uses the Financial Instrument settlement date.</description>
+    <inlineHelpText>Enter the settlement date for this tranche or tap. Use this field only for secondary positions (e.g. tranche, tap, upsize, repricing). The primary loan settlement date is captured on the Financial Instrument.</inlineHelpText>
+    <label>Settlment Date (Tranche/Tap)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Debt_Position__c</fullName>
+    <description>Required when Scope = Position. The tranche being amended.</description>
+    <externalId>false</externalId>
+    <label>Debt Position</label>
+    <required>false</required>
+    <referenceTo>Debt_Position__c</referenceTo>
+    <relationshipLabel>Loan Amendments</relationshipLabel>
+    <relationshipName>Loan_Amendments_DP</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Reserve_Balance__c</fullName><description>Current outstanding reserve balance. Maintained transactionally by InterestReserveTransactionHandler on every Interest_Reserve_Transaction insert. Draw reduces balance, Fund/Replenish increases it, Release zeros it.</description>
+    <externalId>false</externalId><label>Current Reserve Balance</label><precision>18</precision>
+    <required>false</required><scale>2</scale><trackTrending>false</trackTrending><type>Currency</type>
+</CustomField>

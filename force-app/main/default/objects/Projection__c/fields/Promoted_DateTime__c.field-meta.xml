@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Promoted_DateTime__c</fullName>
+    <description>When this projection was promoted to live records (committed).</description>
+    <externalId>false</externalId>
+    <label>Promoted DateTime</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

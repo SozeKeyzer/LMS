@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Position_Notional__c</fullName>
+    <description>Notional/face amount allocated to this debt position (contracted size for the tranche/position).</description>
+    <inlineHelpText>Use for tranche size/notional. Drawn/outstanding should be derived from drawdown/repayment events rather than manually edited here.</inlineHelpText>
+    <label>Position Notional</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

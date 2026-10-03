@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ratio_Metric__c</fullName><description>Financial ratio metric used for band selection. e.g. LVR, Interest_Cover_Ratio, Debt_to_EBITDA. Must match the metric reported in Covenant_Test (Phase 3).</description><externalId>false</externalId><label>Ratio Metric</label>
+    <length>100</length><required>true</required><trackTrending>false</trackTrending><type>Text</type><unique>false</unique>
+</CustomField>

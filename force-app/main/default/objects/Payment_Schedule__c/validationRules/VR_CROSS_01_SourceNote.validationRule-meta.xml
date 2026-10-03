@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_CROSS_01_SourceNote</fullName>
+    <active>true</active>
+    <description>VR.CROSS.01</description>
+    <errorConditionFormula>OR(ISPICKVAL(Source__c,'Manual_Entry'),ISPICKVAL(Source__c,'System_Imported')) &amp;&amp; ISBLANK(Source_Note__c)</errorConditionFormula>
+    <errorMessage>Source Note is required when Source is Manual Entry or System Imported.</errorMessage>
+</ValidationRule>

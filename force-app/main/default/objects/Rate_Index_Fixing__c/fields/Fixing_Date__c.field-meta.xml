@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fixing_Date__c</fullName>
+    <description>Publication date of the rate fixing. Combined with Rate_Index to form External_Id.</description>
+    <externalId>false</externalId>
+    <label>Fixing Date</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

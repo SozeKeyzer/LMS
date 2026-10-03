@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Warehouse_Note__c</fullName>
+    <description>Lookup to the Warehouse Note for this transaction. Populated when Investment Vehicle Type is Warehouse Note.</description>
+    <externalId>false</externalId>
+    <label>Warehouse Note</label>
+    <referenceTo>Warehouse_Note__c</referenceTo>
+    <relationshipLabel>Fund Transactions</relationshipLabel>
+    <relationshipName>Fund_Transactions_WN</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

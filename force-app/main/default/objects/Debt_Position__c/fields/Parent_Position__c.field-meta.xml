@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Position__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Parent position reference used to link taps/increases or related sub-positions to an original position.</description>
+    <inlineHelpText>Use when this position is a tap/increase/child of another position to maintain lineage and reporting rollups.</inlineHelpText>
+    <label>Parent Position</label>
+    <referenceTo>Debt_Position__c</referenceTo>
+    <relationshipLabel>Debt Position</relationshipLabel>
+    <relationshipName>Debt_Position</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linked_Payment_Transaction__c</fullName>
+    <description>Required when Adjustment_Type = Reversal per VR.PAD.07.</description>
+    <externalId>false</externalId>
+    <label>Linked Payment Transaction</label>
+    <required>false</required>
+    <referenceTo>Payment_Transaction__c</referenceTo>
+    <relationshipLabel>Payment Adjustments</relationshipLabel>
+    <relationshipName>Adjustment_Payment_Transactions</relationshipName>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
